@@ -1,0 +1,65 @@
+<ion-view view-title={{storedClub}}  ng-controller="cardCtrl">
+<ion-nav-bar>
+</ion-nav-bar>
+   <ion-nav-buttons side="left">
+  <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+    <ion-content>
+       
+       
+       
+        <div>
+            <label class="item in item-input item-select item-positive">
+                <div class="input-label" style="font-size:13px">Players ({{storedDay}} - {{storedTime}} Roll Up)</div><select ng-model="selectedPlayer.ID"  ng-options="item.Player as item.Player for item in Players" ng-change="update()" ></select></label>
+        <div>
+            <ion-radio style="height:42px; font-size:12px; " ng-model="user.value" ng-checked="checked" value="Club" ng-click="validateHcp(user);"><font size="3">&nbsp;Use Club Hcp (Default)&nbsp;&nbsp;</font></ion-radio>
+            <ion-radio style="height:42px; font-size:12px;" ng-model="user.value" value="Revised" ng-click="validateHcp(user);"><font size="3"> Use Perpetual Hcp</font></ion-radio>
+        </div></div>
+<table style="width:100%">
+        <tr class="row header" style="height:38px">
+          <th class="col4">Player:</th>
+          <th class="col4" colspan="3" style="width:50%" >{{selectedPlayer.ID}}</th>
+          <th></th><th></th>
+          <th class="col4">Hcp:</th>
+          <th class="col4" style="text-align: center; vertical-align: middle;"><select  ng-options="item as item.Hcp for item in hcps" ng-change="getShots(par)" ng-model="selectedHcp"></select></th></tr>
+                       
+         <tr class="row header">
+           <td class="col">Hole</td>
+           <td class="col1">Index</td>
+           <td class="col">Par</td>
+           <td class="col2">Points</td>
+           <td class="col">Shots</td>
+           <td class="col3">Score</td>
+         </tr>
+         <tr class="row" ng-repeat="par in Par">
+           <td class="col">{{$index +1}}</td>
+           <td class="col1">{{par.Index}}</td>
+           <td class="col"> {{par.Par}}</td>
+           <td class="col2">{{getPoints(par)}}</td>
+           <td class="col">{{getShots(par)}}</td>
+           <td class="col3" ><select ng-model="par.Score"  ng-options="item for item in items" value=""></select</td>
+          <tr class="row" style="height:32px">
+           <td class="col">Total</td>
+           <td class="col"></td>
+           <td class="col">{{getPar()}}</td>
+           <td class="col">{{getTotal()}}</td>
+           <td class="col">{{getTotalShots()}}</td>
+           <td class="col">{{getScoreTotal()}}</td>
+        </tr>
+      
+</table>
+        <form ng-submit="submitScore(datePlayed)">
+            <label class="item in item-input item-positive">
+                <div >DATE OF ROUND :&nbsp;</div><input style="font-size: 14px; color: white" type="Date"  ng-model="datePlayed"><--Amend &nbsp;</label>
+             </div>
+               </form>
+              
+               <div ><button class="button button-block button-positive" ng-click="submitScore(datePlayed)" >SUBMIT RESULT</button></div>
+             
+    </ion-content>
+     
+   
+</ion-view>
+ 
+ 
+ 
