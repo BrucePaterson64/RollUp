@@ -1,0 +1,8 @@
+{
+    "jscodehints.detectedExclusions": [
+        "C:/Users/Bruce Paterson/myApp/plugins/cordova-plugin-device/www/device.js",
+        "C:/Users/Bruce Paterson/myApp/platforms/ios/www/lib/ionic/js/ionic-angular.min.js",
+        "C:/Users/Bruce Paterson/myApp/platforms/ios/www/lib/ionic/js/ionic.bundle.js",
+        "C:/Users/Bruce Paterson/myApp/platforms/ios/www/lib/ionic/js/ionic.bundle.min.js"
+    ]
+}

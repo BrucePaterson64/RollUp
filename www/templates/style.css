@@ -1,0 +1,157 @@
+H1{
+font-size:24px;
+font-weight:bold;
+color: Blue;
+font-family: arial;
+}
+H2{
+font-size:18px;
+font-weight:bold;
+color: Black;
+font-family: Arial;
+}
+H3{
+font-size:24px;
+font-weight:bold;
+color: Red;
+font-family: Arial;
+}
+H4{
+font-size:20px;
+font-weight:bold;
+color: Blue;
+font-family: Arial;
+}
+H5{
+font-size:14px;
+color: Red;
+font-family: arial;
+}
+H6{
+font-size:18px;
+color: Blue;
+font-family: arial;
+}
+td {
+text-align: center;
+vertical-align: middle;	
+height:30px;
+font-size:16px;
+border:solid 0px;
+	
+}
+
+.list .item {
+  background-color: transparent;
+  color:#ff5;
+   
+}
+.pane {
+  background: url('../img/shot.jpg') no-repeat center center fixed; 
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        background-size: cover;
+    background-position: center;
+    
+}
+.dark{
+    background-color: #307BEA !important;
+    color: #865;  
+}
+
+.item {
+ color: #865;  
+}
+.item-complex .item-content, .item{
+    background-color: #307BEA;
+}
+.nav-bar-block, .bar {
+  background-color: #307bea !important;
+}
+.header .col {
+    background-color:lightgrey;
+    text-align:center;
+    width: 16.6%;
+	padding: 3px;
+	
+}
+.header .col1 {
+    background-color:lightcoral;
+    text-align:center;
+    width: 16.6%;
+    padding: 3px;
+    
+}
+.header .col2 {
+     background-color:lightgreen;
+    border: solid 1px grey;
+    border-bottom-style: none;
+    border-right-style: none;
+    width: 16.6%;
+    text-align:center;
+	padding:3px;
+}
+.header .col3 {
+   background-color:yellow;
+    border: solid 1px grey;
+    border-bottom-style: none;
+    border-right-style: none;
+    width: 16.6%;
+    text-align:center;
+	padding:3px;
+}
+.col {
+    border: solid 1px grey;
+    border-bottom-style: none;
+    border-right-style: none;
+    width: 16.6%;
+    text-align:center;
+	background-color:white;
+	padding: 2px;
+}
+.col1 {
+    background-color:lightcoral;
+    border: solid 1px grey;
+    border-bottom-style: none;
+    border-right-style: none;
+    width: 16.6%;
+    text-align:center;
+	padding: 2px;
+    
+}
+.col2 {
+    background-color:lightgreen;
+    border: solid 1px grey;
+    border-bottom-style: none;
+    border-right-style: none;
+    width: 16.6%;
+    text-align:center;
+    border-bottom: solid 1px grey;
+}
+.col3 {
+    background-color:yellow;
+    border: solid 1px grey;
+    border-bottom-style: none;
+    border-right-style: none;
+    width: 16.6%;
+    text-align:center;
+    border-bottom: solid 1px grey;
+    border-right: solid 1px grey;
+    border-top: solid 1px grey;
+	padding-top: 2px;
+}
+ 
+ 
+.col:last-child {
+    border-right: solid 1px grey;
+}
+ 
+ 
+.row:last-child .col {
+    border-bottom: solid 1px grey;
+	
+}
+.row {
+height:28px;
+	
+}

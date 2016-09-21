@@ -1,0 +1,53 @@
+
+<body ng-app="starter">
+<ion-view view-title="Select Roll Up">
+<ion-nav-bar></ion-nav-bar>
+   <ion-nav-buttons side="left">
+	   <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+   </ion-nav-buttons>
+        <ion-nav-view></ion-nav-view>
+	 
+<ion-content ng-controller="CourseController">
+          
+              <ion-list>
+				<form id="clubForm">
+                    <ion-item class="item-select item-input" style="background:white; color:blue">
+                            <ion-label class="input-text" >Course:</ion-label>
+                            <select ng-model="selectedClub.ID" ng-change="update()" ng-options="item.Club as item.Club for item in Clubs" ></select>
+                   </ion-item>
+                </form>
+             </ion-list>
+               
+               <ion-list>
+             
+                 <form >
+                    <ion-item class="item-select item-input" style="background:white; color:blue">
+                            <ion-label class="input-text">Day:</ion-label>
+                            <select ng-model="selectedDay.ID" ng-change="DayUpdate()" ng-options="item.Day_S as item.Day_S for item in Days" ></select>
+                       
+                     </ion-item>
+                </form>
+            
+             </ion-list> 
+            
+            <ion-list>
+             
+                 <form >
+                    <ion-item class="item-select item-input" style="background:white; color:blue" >
+                            <ion-label class="input-text">Tee Time:</ion-label>
+                            <select ng-model="selectedTime.ID" ng-change="TeamUpdate()"  ng-options="item.TeeTime as item.TeeTime for item in TeeTimes" ></select>
+                       
+                     </ion-item>
+                </form>
+                <br><p align="center" style="font-size:25px; color:Blue"><B>{{selectedClub.ID }}</B></p><br>
+				<h2><p align="center">{{selectedDay.ID}} Roll Up @  {{selectedTime.ID}}</p></h2>
+                <h4><p align="center"><b>Members:</p></h4>
+                
+               <ion-list>
+                 <ion-item ng-repeat="item in players | orderBy:'Player'">
+                        <p align="center" style="font-size:20px"><a href="#/app/scoreCard">{{item.Player}} </a></p>  
+                 </ion-item>
+              </ion-list>
+			  
+</ion-content>
+</ion-view>
