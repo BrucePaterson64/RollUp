@@ -1,46 +1,114 @@
-@import url('http://cdnjs.cloudflare.com/ajax/libs/select2/3.4.8/select2.css');
-@import url('http://cdnjs.cloudflare.com/ajax/libs/select2/3.4.8/select2-bootstrap.css');
-@import url('http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.min.css');
-@import url('//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css');                                    
-.timepicker-picker .table-condensed td{text-align:center} 
+H1{
+font-size:24px;
+font-weight:bold;
+color: Blue;
+font-family: arial;
+}
+H2{
+font-size:18px;
+font-weight:bold;
+color: Black;
+font-family: Arial;
+}
+H3{
+font-size:24px;
+font-weight:bold;
+color: Red;
+font-family: Arial;
+}
+H4{
+font-size:20px;
+font-weight:bold;
+color: Blue;
+font-family: Arial;
+}
+H5{
+font-size:14px;
+color: Red;
+font-family: arial;
+}
+H6{
+font-size:18px;
+color: Blue;
+font-family: arial;
+}
+td {
+text-align: left;
+vertical-align: middle;	
+height:30px;
+font-size:16px;
+border:solid 0px;
+padding-left:5px;
+	
+}
 
+.list .item {
+  background-color: transparent;
+  color:#ff5;
+   
+}
+.pane {
+  background: url('../img/shot.jpg') no-repeat center center fixed; 
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        background-size: cover;
+    background-position: center;
+    
+}
+.dark{
+    background-color: #307BEA !important;
+    color: #865;  
+}
+
+.item {
+ color: #865;  
+}
+.item-complex .item-content, .item{
+    background-color: #307BEA;
+}
+.nav-bar-block, .bar {
+  background-color: #307bea !important;
+}
 .header .col {
     background-color:lightgrey;
     text-align:center;
     width: 16.6%;
-    font-weight: bold;
+	padding: 3px;
+	
 }
 .header .col1 {
     background-color:lightcoral;
     text-align:center;
     width: 16.6%;
-    border-top: solid 1px grey;
-    border-left: solid 1px grey;
-     border-bottom: solid 0px grey;
-    padding-top:5px;
-    font-weight: bold;
+    padding: 3px;
     
 }
 .header .col2 {
-    background-color:lightgreen;
-    text-align:center;
+     background-color:lightgreen;
+    border: solid 1px grey;
+    border-bottom-style: none;
+    border-right-style: none;
     width: 16.6%;
-    border-top: solid 1px grey;
-    border-left: solid 1px grey;
-     border-bottom: solid 0px grey;
-    padding-top:5px;
-    font-weight: bold;
+    text-align:center;
+	padding:3px;
 }
 .header .col3 {
-    background-color:lightyellow;
-    text-align:center;
+   background-color:yellow;
+    border: solid 1px grey;
+    border-bottom-style: none;
+    border-right-style: none;
     width: 16.6%;
-    border-top: solid 1px grey;
-    border-right: solid 1px grey;
-    border-left: solid 1px grey;
-    border-bottom: solid 0px grey;
-    padding-top:5px;
-    font-weight: bold;
+    text-align:center;
+	padding:3px;
+}
+.header .col4 {
+   background-color:#fff;
+    border: solid 1px grey;
+    border-bottom-style: none;
+    border-right-style: none;
+    width: 16.6%;
+    text-align:center;
+	padding:3px;
 }
 .col {
     border: solid 1px grey;
@@ -48,6 +116,8 @@
     border-right-style: none;
     width: 16.6%;
     text-align:center;
+	background-color:white;
+	padding: 2px;
 }
 .col1 {
     background-color:lightcoral;
@@ -56,8 +126,8 @@
     border-right-style: none;
     width: 16.6%;
     text-align:center;
-    border-bottom: solid 1px grey;
-    padding-top:5px;
+	padding: 2px;
+    
 }
 .col2 {
     background-color:lightgreen;
@@ -67,10 +137,9 @@
     width: 16.6%;
     text-align:center;
     border-bottom: solid 1px grey;
-    padding-top:5px;
 }
 .col3 {
-    background-color:lightyellow;
+    background-color:yellow;
     border: solid 1px grey;
     border-bottom-style: none;
     border-right-style: none;
@@ -79,53 +148,20 @@
     border-bottom: solid 1px grey;
     border-right: solid 1px grey;
     border-top: solid 1px grey;
-    padding-top:2px;
-    
+	padding-top: 2px;
 }
-input {
-    text-align: center;    
-}
-
+ 
+ 
 .col:last-child {
     border-right: solid 1px grey;
 }
-
-
+ 
+ 
 .row:last-child .col {
     border-bottom: solid 1px grey;
+	
 }
-body {
-  max-width: 30em;
-  margin: 1em auto;
-  text-align: center;
-}
-
-.demo {
-  text-align: left;
-  .input-group-btn:last-child>.btn {
-    margin-top: 25px;
-  }
-    HTML  CSS  JS  Result
-EDIT ON
- body {
-  cursor: url('http://ionicframework.com/img/finger.png'), auto;
-}
-
-/*
- * http://docs.angularjs.org/api/ng/directive/ngShow#usage_animations
- */
-.list .item.item-accordion {
-  line-height: 38px;
-  padding-top: 0;
-  padding-bottom: 0;
-  transition: 0.09s all linear;
-}
-.list .item.item-accordion.ng-hide {
-  line-height: 0px;
-}
-.list .item.item-accordion.ng-hide-add,
-.list .item.item-accordion.ng-hide-remove {
-  display: block !important;
-}
-RERUN
+.row {
+height:28px;
+	
 }

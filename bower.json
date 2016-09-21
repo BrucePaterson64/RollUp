@@ -2,7 +2,12 @@
   "name": "HelloIonic",
   "private": "true",
   "devDependencies": {
-    "ionic": "driftyco/ionic-bower#1.1.0",
-    "plugin": "~3.1.0"
+    "ionic": "driftyco/ionic-bower#1.1.0"
+  },
+  "resolutions": {
+    "angular": "~1.4.4"
+  },
+  "dependencies": {
+    "eonasdan-bootstrap-datetimepicker": "^4.17.37"
   }
 }

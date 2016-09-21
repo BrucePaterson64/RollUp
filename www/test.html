@@ -1,31 +1,185 @@
-<!DOCTYPE html>
-<html ng-app="app">
-<head>
-    <title>AngularJS DatePicker</title>
-    <link rel="stylesheet" href="src/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="src/css/ngDatepicker.css">
-</head>
-<body ng-controller="Ctrl as ctrl">
- 
-    <div>
-        <h4>Basic Example</h4>
-        <ng-datepicker ng-model="ctrl.date1">
-        </ng-datepicker>
-        <span ng-bind="ctrl.date1" style="display: block; margin-top: 5px;"></span>
-    </div>
- 
-
- 
- 
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment-with-locales.min.js"></script>
-<script type="text/javascript" src="src/js/ngDatepicker.min.js"></script>
-<script type="text/javascript">
+<html ng-app="starter">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     
-var app = angular.module('app', ['jkuri.datepicker']);
-app.controller('Ctrl', [function() {
-    var self = this;
-}]);
-</script> 
-</body>
+    <title>Side Menus</title>
+
+     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <script src="js/ng-cordova.min.js"></script>
+	  <script src="js/app.js"></script>
+    <script src="cordova.js"></script>
+    
+    
+    <script src="js/controllers.js"></script>
+  </head>
+ 
+  <body>
+    
+    <div>       
+      <ion-nav-view ></ion-nav-view>
+    </div>
+    
+    
+     <script id="event-menu.html" type="text/ng-template">
+      <ion-side-menus>
+        
+        <ion-pane ion-side-menu-content>
+          <ion-nav-bar type="bar-positive"
+                   back-button-type="button-icon"
+                   back-button-icon="ion-ios7-arrow-back"></ion-nav-bar>
+          <ion-nav-view name="menuContent"></ion-nav-view>
+        </ion-pane> 
+        
+        <ion-side-menu side="left">
+          <header class="bar bar-header bar-assertive">
+            <div class="title">Left Menu</div>
+          </header>
+          <ion-content has-header="true">
+            <ul class="list">
+              <a href="#/event/home" class="item">home</a>
+             
+             <a href="#/event/home/home1" class="item">home 1</a>
+                         
+              
+              <a href="#/event/home/home2" class="item">home 2</a>
+  
+            </ul>
+          </ion-content>
+        </ion-side-menu>
+        
+      </ion-side-menus>
+    </script>
+    
+    <script id="home.html" type="text/ng-template">
+      <ion-view title="'Welcome'">
+		  
+        <ion-content has-header="true" padding="true">
+          <p>Swipe to the right to reveal the left menu.</p>
+         
+          
+          <div ui-view name="inception"></div>          
+          
+          
+        </ion-content>
+      </ion-view>
+    </script>
+
+    
+    
+    <script id="home1.html" type="text/ng-template">
+         <ion-content ng-controller="PlayerCtrl">
+          
+  <ion-list>
+  <br>
+	  <div align="center">
+		<table>
+			<tr>  
+				<td align="right">Club:</td><td><select ng-model="selectedClub.ID" ng-change="refresh()" ng-options="item.Club as item.Club for item in Clubs" ></select></td>
+			</tr>
+			<tr>
+			    <td>Name:</td><td><select ng-model="selectedPlayer.ID"   ng-change="refresh()" ng-options="item.Player as item.Player for item in aPlayers" ></select></td>
+			</tr>
+			<tr>
+			   <td>Roll Up Day:</td>
+			   <td><select ng-model="selectedDay.ID"> 
+	  <option value="">---Please select---</option> <!-- not selected / blank option -->
+      <option value="Monday">Monday</option> 
+      <option value="Tuesday">Tuesday</option>
+	  <option value="Wednesday">Wednesday</option> 
+      <option value="Thursday">Thursday</option>
+	  <option value="Friday">Friday</option> 
+      <option value="Saturday">Saturday</option>
+	  <option value="Sunday">Sunday</option>
+				  </select></td>
+			</tr>
+			<tr>
+			   <td>Roll Up Time:</td><td><select ng-model="selectedTime.ID" >
+	  <option value="">---Please select---</option> <!-- not selected / blank option -->
+      <option value="6.15">6.15</option> 
+      <option value="6.30">6.30</option>
+	  <option value="6.45">6.45</option> 
+      <option value="7.00">7.00</option>
+	  <option value="7.15">7.15</option> 
+      <option value="7.30">7.30</option>
+	  <option value="7.45">7.45</option>
+						  </select></td>
+						  
+				  </tr>
+					  <tr>
+					  <td>Club Handicap:</td><td><select ng-model="selectedNewHcp.ID"  ng-options="item.Hcp as item.Hcp for item in hcps track by Hcp"></select></td>
+				  </tr>
+					  <tr>
+					  <td>Revised Handicap</td><td><select ng-model="selectedRevHcp.ID"  ng-options="item.RevHcp as item.RevHcp for item in RevHcps track by RevHcp" ></select></td>
+				  </tr>
+					  <tr><td></td></tr></table>
+					<table>  <tr><td><button class="button button-positive" ng-click="refresh()">Refresh</button></td><td><button class="button button-positive" ng-click="refresh()">Update</button></td><td><button class="button button-positive" ng-click="refresh()">Delete</button></td></tr>
+				  </table>
+				
+	</div>	  
+
+		</ion-list>
+	</ion-content>
+    </script>
+    
+    <script id="home2.html" type="text/ng-template">
+     <ion-content ng-controller="PlayerCtrl">
+          
+  <ion-list>
+  <br>
+	  
+				  <div align="center">
+				  <table >
+				  <tr>  
+					  <td align="right">New Club \ Roll Up:</td><td><select ng-model="selectedNewClub.ID" ng-change="refresh()" ng-options="item.Club as item.Club for item in Clubs" ></select></td>
+				  </tr>
+				  <tr>
+					  <td>Name:</td><td><select ng-model="selectedPlayer.ID"   ng-change="refresh()" ng-options="item.Player as item.Player for item in aPlayers" ></select></td>
+				  </tr>
+				  <tr>
+					 <td>Roll Up Day:</td>
+					  <td><select ng-model="selectedNewDay.ID"> 
+	  <option value="">---Please select---</option> <!-- not selected / blank option -->
+      <option value="Monday">Monday</option> 
+      <option value="Tuesday">Tuesday</option>
+	  <option value="Wednesday">Wednesday</option> 
+      <option value="Thursday">Thursday</option>
+	  <option value="Friday">Friday</option> 
+      <option value="Saturday">Saturday</option>
+	  <option value="Sunday">Sunday</option>
+						  </select></td>
+				  </tr>
+				  <tr>
+					  <td>Roll Up Time:</td><td><select ng-model="selectedNewTime.ID" >
+	  <option value="">---Please select---</option> <!-- not selected / blank option -->
+      <option value="6.15">6.15</option> 
+      <option value="6.30">6.30</option>
+	  <option value="6.45">6.45</option> 
+      <option value="7.00">7.00</option>
+	  <option value="7.15">7.15</option> 
+      <option value="7.30">7.30</option>
+	  <option value="7.45">7.45</option>
+						  </select></td>
+				  </tr>
+				  <tr>
+					  <td>Amend Club Hcp:</td><td><input type="number" name="newHcp" ng-model="selectedNewHcp.ID" placeholder="  ---Insert new Hcp---" style="height:22px;" ></td>
+				 </tr>
+				 <tr>
+					  <td>Revised Handicap:</td><td><input type="number" name="newHcp" ng-model="selectedRevHcp.ID" placeholder="  ---Insert  Revision---" style="height:22px;" ></td>
+				 </tr>
+				 <tr><td></td><td><button class="button button-positive" ng-click="update()">Update</td></tr>
+				 </table>
+happy days
+	</div>
+
+		</ion-list>
+	</ion-content>
+    </script>
+    
+       
+    
+    
+  </body>
 </html>
