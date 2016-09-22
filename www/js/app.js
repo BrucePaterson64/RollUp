@@ -233,10 +233,18 @@ App.controller('CourseController', function ($scope, $window, $http, $state) {
 		//$state.go('app.amendPlayer');
 	};
 	$scope.TeamUpdate = function () {
-	
-		console.log($scope.selectedDay.ID);
-		console.log($scope.selectedClub.ID);
-		console.log($scope.selectedTime.ID);
+	    $window.localStorage['club'] =false;
+        $window.localStorage['day'] =false;
+		$window.localStorage['time'] =false;
+		$window.localStorage['player'] =false;
+		$window.localStorage['club'] = $scope.selectedClub.ID;
+		$scope.storedClub = $window.localStorage['club'];
+		$window.localStorage['day'] = $scope.selectedDay.ID;
+		$scope.storedDay = $window.localStorage['day'];
+		$window.localStorage['time'] = $scope.selectedTime.ID;
+		$scope.storedTime = $window.localStorage['time'];
+		console.log($scope.storedDay);
+
 		var day = $scope.selectedDay.ID;
 		var club = $scope.selectedClub.ID;
 		var time = $scope.selectedTime.ID;
@@ -1178,6 +1186,146 @@ $scope.data = {};
 	});
 
 App.controller('CardParCtrl', function ($scope, $http, $ionicPopup) {
+    $scope.selectedClub = {};
+    $http({ url: "http://regencyusedcars.co.uk/aAppCourse.php",
+			method: "GET"
+
+		   }).success(function (data) {
+		$scope.Clubs = data;
+
+
+	}).error(function (data) {
+		alert("ERROR 1");
+
+	});
+    $scope.selTown = function () {
+        var club = $scope.selectedClub.ID;
+        console.log(club);
+          $http({ url: "http://regencyusedcars.co.uk/aAppAmendCourses.php",
+			method: "POST",
+			data: {
+			 	'Club': club
+			 	}
+		   }).success(function (data) {
+		$scope.C = data[0];
+		$scope.town = $scope.C.Town;
+        $scope.hh1 = $scope.C.Par1;
+        $scope.j1 = $scope.C.Index1;
+        $scope.hh2 = $scope.C.Par2;
+        $scope.j2 = $scope.C.Index2;
+         $scope.hh3 = $scope.C.Par3;
+        $scope.j3 = $scope.C.Index3;
+        $scope.hh4 = $scope.C.Par4;
+        $scope.j4 = $scope.C.Index4;
+        $scope.hh5 = $scope.C.Par5;
+        $scope.j5 = $scope.C.Index5;
+        $scope.hh6 = $scope.C.Par6;
+        $scope.j6 = $scope.C.Index6;
+        $scope.hh7 = $scope.C.Par7;
+        $scope.j7 = $scope.C.Index7;
+        $scope.hh8 = $scope.C.Par8;
+        $scope.j8 = $scope.C.Index8;
+        $scope.hh9 = $scope.C.Par9;
+        $scope.j9 = $scope.C.Index9;
+        $scope.hh10 = $scope.C.Par10;
+        $scope.j10 = $scope.C.Index10;
+        $scope.hh11 = $scope.C.Par11;
+        $scope.j11 = $scope.C.Index11;
+        $scope.hh12 = $scope.C.Par12;
+        $scope.j12 = $scope.C.Index12;
+        $scope.hh13 = $scope.C.Par13;
+        $scope.j13 = $scope.C.Index13;
+        $scope.hh14 = $scope.C.Par14;
+        $scope.j14 = $scope.C.Index14;
+              $scope.hh15 = $scope.C.Par15;
+        $scope.j15 = $scope.C.Index15;
+              $scope.hh16 = $scope.C.Par16;
+        $scope.j16 = $scope.C.Index16;
+              $scope.hh17 = $scope.C.Par17;
+        $scope.j17 = $scope.C.Index17;
+              $scope.hh18 = $scope.C.Par18;
+        $scope.j18 = $scope.C.Index18;
+        $scope.items = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+	      $scope.AmendResult = function () {
+		var answer1 = 0;
+
+		answer1 = parseInt($scope.hh1) + parseInt($scope.hh2)+ parseInt($scope.hh3)+ parseInt($scope.hh4)+ parseInt($scope.hh5)+ parseInt($scope.hh6)+ parseInt($scope.hh7)+ parseInt($scope.hh8)+ parseInt($scope.hh9)+ parseInt($scope.hh10)+ parseInt($scope.hh11)+ parseInt($scope.hh12)+ parseInt($scope.hh13)+ parseInt($scope.hh14)+ parseInt($scope.hh15)+ parseInt($scope.hh16)+ parseInt($scope.hh17)+ parseInt($scope.hh18) ;
+		return answer1 || 0;
+
+	};
+
+
+	}).error(function (data) {
+		alert("ERROR 1");
+
+	});
+    };
+
+   $scope.subAmendCourse = function () {
+       var club = $scope.selectedClub.ID;
+        console.log($scope.hh1);
+        console.log($scope.j1);
+       var confirmPopup = $ionicPopup.confirm({
+     title: 'Amend',
+     template: 'You are about to amend the course details for '+ club + '!'
+   })
+
+   confirmPopup.then(function(res) {
+     if(res) {
+
+ 	var link = 'http://regencyusedcars.co.uk/aAppUpdateCourse.php';
+         var data = {
+
+			'course': club,
+			'h1':$scope.hh1,
+			'j1':$scope.j1,
+			'h2':$scope.hh2,
+			'j2':$scope.j2,
+			'h3':$scope.hh3,
+			'j3':$scope.j3,
+			'h4':$scope.hh4,
+			'j4':$scope.j4,
+			'h5':$scope.hh5,
+			'j5':$scope.j5,
+			'h6':$scope.hh6,
+			'j6':$scope.j6,
+			'h7':$scope.hh7,
+			'j7':$scope.j7,
+			'h8':$scope.hh8,
+			'j8':$scope.j8,
+			'h9':$scope.hh9,
+			'j9':$scope.j9,
+			'h10':$scope.hh10,
+			'j10':$scope.j10,
+			'h11':$scope.hh11,
+			'j11':$scope.j11,
+			'h12':$scope.hh12,
+			'j12':$scope.j12,
+			'h13':$scope.hh13,
+			'j13':$scope.j13,
+			'h14':$scope.hh14,
+			'j14':$scope.j14,
+			'h15':$scope.hh15,
+			'j15':$scope.j15,
+			'h16':$scope.hh16,
+			'j16':$scope.j16,
+			'h17':$scope.hh17,
+			'j17':$scope.j17,
+			'h18':$scope.hh18,
+			'j18':$scope.j18
+						};
+		$http.post(link, data).success(function(data){
+
+
+								});
+
+		 } else {
+       //alert ("Action Cancelled");
+
+	 }
+   })
+   };
 	"use strict";
 	$scope.items = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 

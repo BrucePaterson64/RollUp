@@ -161,8 +161,7 @@ App.controller('CourseController', function($scope, $window,  $http, $state) {
               
                 $scope.players = data;
 				
-                
-            })
+                })
             .error(function(data) {
              
                 alert("ERROR 4");
@@ -623,4 +622,4 @@ App.controller('CardParCtrl', function($scope){
 
     }
 
-  });	 
+  });
