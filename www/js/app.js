@@ -854,8 +854,7 @@ App.controller('PlayerCtrl', function ($scope, $window, $http, $ionicPopup) {
 	$scope.selectedPlayer = {};
 	$scope.Hcp = [];
 	$scope.selectedHcp = {};
-	
-	
+
 	$scope.refresh = function () {
 		//$window.localStorage.club = $scope.selectedClub.ID;
 		//$scope.storedClub = $window.localStorage.club;
@@ -876,7 +875,8 @@ App.controller('PlayerCtrl', function ($scope, $window, $http, $ionicPopup) {
 		}).success(function (data) {
 			$scope.alPlayers = data;
 			
-						
+
+
 		$http ({ url:"http://regencyusedcars.co.uk/aAppGetTime.php",
 				method: "POST",
 				data: {
@@ -931,14 +931,18 @@ App.controller('PlayerCtrl', function ($scope, $window, $http, $ionicPopup) {
 			$scope.rahcp = $scope.RevHcps[0];
 			$scope.data.rbhcp = $scope.rahcp.RevHcp;
 			
-		})
-	
-	
-	}).error(function (data) {
+			}).error(function (data) {
 			
 			alert("ERROR 3");
 		});
-	};
+
+        })
+    };
+
+
+
+
+
 	
 	
 	$http.get("http://www.regencyusedcars.co.uk/aAppCourse.php").success(function (data) {
@@ -1113,7 +1117,7 @@ App.controller('PlayerCtrl', function ($scope, $window, $http, $ionicPopup) {
 			 			Player : $scope.data.selectedPlayer,
                         Club : $scope.data.selectedNewClub}).then(function (res){
             $scope.response = res.data;
-           console.log ($scope.data.selectedNewClub);
+
         });
 
 	
