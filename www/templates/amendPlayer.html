@@ -49,16 +49,17 @@ table tr:nth-child(even) {
 			</tr>
 			<tr>
 			   <td>Roll Up Time:</td>
-			   <td><select ng-model="data.selectedTime"  ng-options="item.TeeTime as item.TeeTime for item in allTeeTimes" ></select></td>
+			   <td><select ng-model="data.selectedTime"  ng-options="item.TeeTime as item.TeeTime for item in allTeeTimes | orderBy:'TeeTime'" ></select></td>
 			</tr>
 			 <tr>
 	  <td>Club Handicap:</td><td><input style="height:20px; width:55px"type="text" ng-model="data.bhcp" /></td>
 			 </tr>
 					  <tr>
-					  <td>Revised Handicap</td><td><input style="height:20px; width:55px"type="text" ng-model="data.rbhcp" /></td>
+					  <td>Revised Handicap:</td><td><input style="height:20px; width:55px"type="text" ng-model="data.rbhcp" /></td>
 				  </tr>
+			<tr><td>Player ID:</td><td ><input style="height:20px; width:55px"type="text" ng-model="data.pid" /></td></tr>
 					  <tr><td></td></tr></table>
-					<table>  <tr><td><button class="button button-positive" ng-click="refresh()">Refresh</button></td><td><button class="button button-positive" ng-click="amendAll()">Update</button></td><td><button class="button button-positive" ng-click="delPlayer()">Delete</button></td></tr>
+					<table>  <tr><td></td><td><button class="button button-positive" ng-click="amendAll()">Update</button></td><td></td></tr>
 				  </table>
 				
 	</div><br>
@@ -74,6 +75,7 @@ table tr:nth-child(even) {
 			
 			
 				 <tr><td></td><td><button class="button button-positive" ng-click="amendPlayer()">Update New Club</td></tr>
+
 				 </table>
 
 	</div>

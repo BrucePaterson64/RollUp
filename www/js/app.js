@@ -778,7 +778,7 @@ App.controller('NewCourseController', function ($scope, $window, $http) {
 		});
 	};
 });
-App.controller('PlayerCtrl', function ($scope, $window, $http, $ionicPopup) {
+App.controller('PlayerCtrl', function ($scope, $window, $http, $ionicPopup, $state) {
 	"use strict";
 	
 	
@@ -811,7 +811,7 @@ App.controller('PlayerCtrl', function ($scope, $window, $http, $ionicPopup) {
 			//$scope.selectedPlayer.ID = $scope.pp;
 			//console.log ($scope.pp);
 			//console.log ($scope.selectedPlayer.ID);
-	
+
 		$http ({url:"http://regencyusedcars.co.uk/AHcp.php",
 				method: "POST",
 				data: {
@@ -847,26 +847,17 @@ App.controller('PlayerCtrl', function ($scope, $window, $http, $ionicPopup) {
 	$scope.Clubs = [];
 	$scope.selectedClub = {};
 	$scope.Days = [];
+	$scope.Times = [];
 	$scope.selectedDay = {};
 	$scope.selectedTime = {};
 	$scope.Players = {};
-	$scope.TeeTimes = {};
+	$scope.TeeTime = {};
 	$scope.selectedPlayer = {};
 	$scope.Hcp = [];
 	$scope.selectedHcp = {};
-
+	$scope.Player_ID = {};
 	$scope.refresh = function () {
-		//$window.localStorage.club = $scope.selectedClub.ID;
-		//$scope.storedClub = $window.localStorage.club;
-		//$scope.selectedClub.ID = $scope.storedClub;
-		//$window.localStorage.day = $scope.selectedDay.ID;
-		//$scope.storedDay = $window.localStorage.day;
-		//$window.localStorage.time = $scope.selectedTime.ID;
-		//$scope.storedTime = $window.localStorage.time;
-		//$scope.selectedTime.ID = $scope.storedTime;
-		//$window.localStorage.player = $scope.selectedPlayer.ID;
-		//$scope.storedPlayer = $window.localStorage.player;
-		//$scope.selectedPlayer.ID = $scope.storedPlayer;
+
 		
 		$http ({url:"http://regencyusedcars.co.uk/aAppAllPlayers.php",
 				method: "POST",
@@ -874,23 +865,7 @@ App.controller('PlayerCtrl', function ($scope, $window, $http, $ionicPopup) {
 			'Club': $scope.data.selectedClub }
 		}).success(function (data) {
 			$scope.alPlayers = data;
-			
 
-
-		$http ({ url:"http://regencyusedcars.co.uk/aAppGetTime.php",
-				method: "POST",
-				data: {
-			'Club': $scope.data.selectedClub,
-			'Player': $scope.data.selectedPlayer }
-		}).success(function (data) {
-			$scope.Times = data;
-			$scope.t = $scope.Times[0];
-			$scope.data.selectedTime = $scope.t.Time;
-			
-			
-				
-		});
-		
 		$http ({ url:"http://regencyusedcars.co.uk/aAppGetDay.php",
 				method: "POST",
 				data: {
@@ -901,14 +876,48 @@ App.controller('PlayerCtrl', function ($scope, $window, $http, $ionicPopup) {
 			$scope.Days = data;
 			$scope.dd = $scope.Days[0];
 			$scope.data.selectedDay = $scope.dd.Day_S;
-			
-			
+			$window.localStorage.day = $scope.data.selectedDay;
+			$scope.storedDay = $window.localStorage.day;
+			$scope.selectedDay.ID = $scope.storedDay;
 		})
-		
-		var args2 = {
-			Club: $scope.data.selectedClub,
-			Player: $scope.data.selectedPlayer
-		};
+		$window.localStorage.club = $scope.data.selectedClub;
+		$scope.storedClub = $window.localStorage.club;
+		$scope.selectedClub.ID = $scope.storedClub;
+		$window.localStorage.player = $scope.data.selectedPlayer;
+		$scope.storedPlayer = $window.localStorage.player;
+		$scope.selectedPlayer.ID = $scope.storedPlayer;
+			$scope.TeeTime = {};
+			
+			
+		$http ({ url:"http://regencyusedcars.co.uk/aAppGetTime.php",
+				method: "POST",
+				data: {
+				'Club': $scope.selectedClub.ID,
+				'Player': $scope.selectedPlayer.ID
+			}
+		}).success(function (data) {
+			$scope.Times = data;
+			$scope.tt = $scope.Times[0];
+			$scope.data.selectedTime = $scope.tt.TeeTime;
+			$window.localStorage.time = $scope.data.selectedTime;
+			$scope.storedTime = $window.localStorage.time;
+			$scope.selectedTime.ID = $scope.storedTime;
+			console.log ($scope.data.selectedTime);
+						});
+
+		$http ({url:"http://regencyusedcars.co.uk/aAppPlayerID.php",
+				method: "POST",
+				data: {
+			'Club': $scope.storedClub,
+			'Player': $scope.data.selectedPlayer }
+		}).success(function (data) {
+			$scope.playerID = data;
+			$scope.p = $scope.playerID[0];
+			$scope.data.pid = $scope.p.Player_ID;
+		});
+
+
+
 		$http ({ url:"http://regencyusedcars.co.uk/AHcp.php",
 				method: "POST",
 				data:{
@@ -918,9 +927,10 @@ App.controller('PlayerCtrl', function ($scope, $window, $http, $ionicPopup) {
 			$scope.hcps = data;
 			$scope.ahcp = $scope.hcps[0];
 			$scope.data.bhcp = $scope.ahcp.Hcp;
-			
-		})
-		
+			$window.localStorage.hcp = $scope.data.bhcp;
+			$scope.storedHcp = $window.localStorage.hcp;
+			$scope.selectedHcp.ID = $scope.storedHcp;
+		});
 		$http ({ url:"http://regencyusedcars.co.uk/ARevHcp.php",
 				method: "POST",
 				data:{
@@ -929,12 +939,13 @@ App.controller('PlayerCtrl', function ($scope, $window, $http, $ionicPopup) {
 		}).success(function (data) {
 			$scope.RevHcps = data;
 			$scope.rahcp = $scope.RevHcps[0];
-			$scope.data.rbhcp = $scope.rahcp.RevHcp;
+			$scope.data.rbhcp = $scope.rahcp.Hcp;
 			
 			}).error(function (data) {
 			
 			alert("ERROR 3");
 		});
+
 
         })
     };
@@ -1080,15 +1091,17 @@ App.controller('PlayerCtrl', function ($scope, $window, $http, $ionicPopup) {
 
    confirmPopup.then(function(res) {
      if(res) {
+		console.log ($scope.data.pid);
        var link = 'http://regencyusedcars.co.uk/aAppDelPlayer.php';
 		 $http.post(link, {
 			 			Player : $scope.data.selectedPlayer,
                          Hcp  : $scope.data.selectedHcp,
                          TeeTime : $scope.data.selectedTime,
                          DayS : $scope.data.selectedDay,
+			 			 ID : $scope.data.pid,
                          Club : $scope.data.selectedClub}).then(function (res){
             $scope.response = res.data;
-            
+             $state.go('app.menuA');
         });
 
 	
@@ -1115,9 +1128,10 @@ App.controller('PlayerCtrl', function ($scope, $window, $http, $ionicPopup) {
        var link = 'http://regencyusedcars.co.uk/aAppAmendPlayer.php';
 		 $http.post(link, {
 			 			Player : $scope.data.selectedPlayer,
+			 			ID : $scope.data.pid,
                         Club : $scope.data.selectedNewClub}).then(function (res){
             $scope.response = res.data;
-
+			 console.log ($scope.data.pid);
         });
 
 	
@@ -1136,7 +1150,7 @@ $scope.data = {};
 		
 		var confirmPopup = $ionicPopup.confirm({
      title: 'Amend',
-     template: 'You are about to amend ' + $scope.data.selectedPlayer + "'" +'s deatils! '
+     template: 'You are about to amend ' + $scope.data.selectedPlayer + "'" +'s details! '
    })
 
    confirmPopup.then(function(res) {
@@ -1148,9 +1162,10 @@ $scope.data = {};
 			 TeeTime : $scope.data.selectedTime,
 			 Hcp : $scope.data.bhcp,
 			 RevHcp : $scope.data.rbhcp,
+			 ID : $scope.data.pid,
              Club : $scope.data.selectedClub}).then(function (res){
-            $scope.response = res.data;
-           console.log ($scope.data.selectedNewClub);
+             $scope.response = res.data;
+           	 $state.go('app.menuA');
         });
 
 	
@@ -1158,8 +1173,9 @@ $scope.data = {};
      } else {
       // alert ("Action Cancelled");
      }
+
    			})
-  
+
 };
 
 	$scope.data = {};
@@ -1180,6 +1196,7 @@ $scope.data = {};
 			'Club': $scope.data.selectedClub
 							}).success(function(data) 
 						{
+						 $state.go('app.menuA');
         	});
 				
     						 } else {
