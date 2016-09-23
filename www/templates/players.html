@@ -46,7 +46,7 @@
                 <h5><p align="center"><b>Click a Player to Amend Details</p></h5>
 			<ion-list>
                  <ion-item ng-model="selectedPlayer.ID" ng-repeat="item in players | orderBy:'Player'">
-                        <p align="center" style="font-size:20px"><a href="#/app/amendPlayer">{{item.Player}} </a></p>  
+                        <p align="center" style="font-size:20px"><a href="#/app/amendPlayer?player={{item.Player}}&Club={{selectedClub.ID }}">{{item.Player}} </a></p>
                  </ion-item>
             </ion-list>
            

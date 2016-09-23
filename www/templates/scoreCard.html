@@ -11,7 +11,7 @@
 		
         <div>
 			<label class="item in item-input item-select item-positive">
-				<div class="input-label" style="font-size:13px">Players ({{storedDay}} - {{storedTime}} Roll Up)</div><select ng-model="selectedPlayer.ID"  ng-options="item.Player as item.Player for item in Players" ng-change="update()" ></select></label>
+				<div class="input-label" style="font-size:13px">Players ({{storedDay}} - {{storedTime}} Roll Up)</div><select ng-model="selectedPlayer.ID"  ng-options="item.Player as item.Player for item in Players"  ng-change="update()" ></select></label>
 		<div>
 			<ion-radio style="height:42px; font-size:12px; " ng-model="user.value" ng-checked="checked" value="Club" ng-click="validateHcp(user);"><font size="3">&nbsp;Use Club Hcp (Default)&nbsp;&nbsp;</font></ion-radio>
 			<ion-radio style="height:42px; font-size:12px;" ng-model="user.value" value="Revised" ng-click="validateHcp(user);"><font size="3"> Use Perpetual Hcp</font></ion-radio>

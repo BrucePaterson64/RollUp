@@ -3,6 +3,20 @@
         "C:/Users/Bruce Paterson/myApp/plugins/cordova-plugin-device/www/device.js",
         "C:/Users/Bruce Paterson/myApp/platforms/ios/www/lib/ionic/js/ionic-angular.min.js",
         "C:/Users/Bruce Paterson/myApp/platforms/ios/www/lib/ionic/js/ionic.bundle.js",
-        "C:/Users/Bruce Paterson/myApp/platforms/ios/www/lib/ionic/js/ionic.bundle.min.js"
+        "C:/Users/Bruce Paterson/myApp/platforms/ios/www/lib/ionic/js/ionic.bundle.min.js",
+        "C:/RollUp/platforms/android/assets/www/lib/jquery/src/css/hiddenVisibleSelectors.js",
+        "C:/RollUp/platforms/android/assets/www/lib/jquery/src/css/showHide.js",
+        "C:/RollUp/platforms/android/assets/www/lib/jquery/src/css/support.js",
+        "C:/RollUp/platforms/android/assets/www/lib/jquery/src/data/var/acceptData.js",
+        "C:/RollUp/platforms/android/assets/www/lib/jquery/src/data/var/dataPriv.js",
+        "C:/RollUp/platforms/android/assets/www/lib/jquery/src/data/var/dataUser.js",
+        "C:/RollUp/platforms/android/assets/www/lib/jquery/src/data/Data.js",
+        "C:/RollUp/platforms/android/assets/www/lib/jquery/src/deferred/exceptionHook.js",
+        "C:/RollUp/platforms/android/assets/www/lib/jquery/src/effects/animatedSelector.js",
+        "C:/RollUp/platforms/android/assets/www/lib/jquery/src/effects/Tween.js",
+        "C:/RollUp/platforms/android/assets/www/lib/jquery/src/event/ajax.js",
+        "C:/RollUp/platforms/android/assets/www/lib/jquery/src/event/alias.js",
+        "C:/RollUp/platforms/android/assets/www/lib/jquery/src/event/focusin.js",
+        "C:/RollUp/platforms/android/assets/www/lib/jquery/src/event/support.js"
     ]
 }

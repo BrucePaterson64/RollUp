@@ -44,8 +44,8 @@
                 <h4><p align="center"><b>Members:</p></h4>
                 
                <ion-list>
-                 <ion-item ng-model="selectedPlayer.ID" ng-repeat="item in players | orderBy:'Player'">
-                        <p align="center" style="font-size:20px"><a href="#/app/scoreCard?{{item.Player}}">{{item.Player}} </a></p>
+                 <ion-item  ng-repeat="item in players | orderBy:'Player'">
+                        <p align="center" style="font-size:20px"><a ng-model="data.player" ng-href="#/app/scoreCard?player={{item.Player}}">{{item.Player}} </a></p>
                  </ion-item>
               </ion-list>
 			  
