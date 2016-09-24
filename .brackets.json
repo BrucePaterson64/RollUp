@@ -17,6 +17,11 @@
         "C:/RollUp/platforms/android/assets/www/lib/jquery/src/event/ajax.js",
         "C:/RollUp/platforms/android/assets/www/lib/jquery/src/event/alias.js",
         "C:/RollUp/platforms/android/assets/www/lib/jquery/src/event/focusin.js",
-        "C:/RollUp/platforms/android/assets/www/lib/jquery/src/event/support.js"
+        "C:/RollUp/platforms/android/assets/www/lib/jquery/src/event/support.js",
+        "C:/RollUp/www/lib/jquery/src/ajax/script.js",
+        "C:/RollUp/platforms/android/assets/www/js/app.js",
+        "C:/RollUp/platforms/android/assets/www/lib/jquery/src/event/trigger.js",
+        "C:/RollUp/platforms/android/assets/www/lib/jquery/src/exports/amd.js",
+        "C:/RollUp/platforms/android/assets/www/lib/jquery/src/exports/global.js"
     ]
 }
