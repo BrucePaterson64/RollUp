@@ -1551,20 +1551,15 @@ App.controller('scoreCtrl', function ($scope, $http, $window, $filter)  {
 	var $week = y+x;
 		$scope.week = $week;
 		$scope.ddate = x;
-	var args = {
-			Club: $scope.storedClub,
-			Day: $scope.storedDay,
-			Time: $scope.storedTime,
-			yrwk: $scope.week
-		};
+
 		
 	 $http({
 		 url: "http://regencyusedcars.co.uk/aAppWeeklyResults.php",
 		 method: "GET",
-		 params: {Club: $scope.storedClub,
-			Day: $scope.storedDay,
-			TeeTime: $scope.storedTime,
-			yrwk: $scope.week}
+		 params: {'Club': $scope.storedClub,
+				  'Day': $scope.storedDay,
+				  'TeeTime': $scope.storedTime,
+				  'yrwk': $scope.week}
 			   }).success(function(data) {
                 $scope.S = data;
                 
@@ -1586,49 +1581,31 @@ $scope.$on("$ionicView.enter", function (event, data) {
 		$scope.storedDay = localStorage.getItem('day');
 		$scope.storedTime = localStorage.getItem('time');
 		$scope.storedHcp = localStorage.getItem('hcp');
-		
-		var args = {
-			Club: $scope.storedClub,
-			DayS: $scope.storedDay,
-			TeeTime: $scope.storedTime
-			
-		};
-		
+
 		$http({
-			url:"http://regencyusedcars.co.uk/aAppMaxDate.php", 
+			url: "http://regencyusedcars.co.uk/aAppMaxDate.php",
 			method: "GET",
 			params: 	{'Club': $scope.storedClub,
 					'DayS': $scope.storedDay,
 					'TeeTime': $scope.storedTime}
 		}).success(function (data) {
 			$scope.maxdate = data;
-			
-			
-			var args11 = {
-			'Club': $scope.storedClub,
-			'DayS': $scope.storedDay,
-			'TeeTime': $scope.storedTime,
-			'Week': $scope.maxdate
-		};
+			$window.localStorage.maxdate = $scope.maxdate;
+			$scope.storedDate = $window.localStorage.maxdate;
+			});
+		$scope.storedDate = localStorage.getItem('maxdate');
 			$http({
-				url:"http://regencyusedcars.co.uk/aAppResults.php",
+				url: "http://regencyusedcars.co.uk/aAppResults.php",
 				method: "GET",
-				Params: {'Club': $scope.storedClub,
+				params: {'Club': $scope.storedClub,
 						'DayS': $scope.storedDay,
 						'TeeTime': $scope.storedTime,
-						'Week': $scope.maxdate }
+						'Week': $scope.storedDate }
 			
-		}).success(function (data) {
-            $scope.scores = data;
-				//$scope.s = $scope.scores[0];
-				//$scope.scores = data;
-				//console.log ($scope.scores);	
-			
-			
+		}).success(function (data1) {
+            $scope.scores = data1;
+				console.log($scope.storedDate);
 		})
-			
-			});
-	
 	
 	});
 });
