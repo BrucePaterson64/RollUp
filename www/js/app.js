@@ -198,8 +198,8 @@ App.controller('CourseController', function ($scope, $window, $http, $state, $lo
 
 		$http({
 			url: "http://regencyusedcars.co.uk/aAppDay.php",
-			method: "POST",
-			data: {'Club': $scope.selectedClub.ID}
+			method: "GET",
+			params: {'Club': $scope.selectedClub.ID}
 		}).success(function (data) {
 			$scope.Days = data;
 			
@@ -253,8 +253,8 @@ App.controller('CourseController', function ($scope, $window, $http, $state, $lo
 		//var $time = $scope.selectedTime.ID;
 		
 		$http({ url: "http://regencyusedcars.co.uk/aAppTeam.php",
-			   method: "POST",
-			   data: {
+			   method: "GET",
+			   params: {
 				'Club': $club,
 				'Day': $day,
 				'TeeTime': $time
@@ -311,8 +311,8 @@ App.controller('cardCtrl', function ($scope, $window, $http, $filter, $ionicPopu
 		$scope.selectedPlayer.ID = selectedPlayer;
 
 		$http({url: "http://regencyusedcars.co.uk/AHcp.php",
-				method: "POST",
-				data: {
+				method: "GET",
+				params: {
 				'Club': $scope.storedClub,
 				'Day': $scope.storedDay,
 				'Time': $scope.storedTime,
@@ -324,8 +324,8 @@ App.controller('cardCtrl', function ($scope, $window, $http, $filter, $ionicPopu
 		});
 		
 		$http({url: "http://regencyusedcars.co.uk/aAppTeam.php",
-				method: "POST",
-				data: {
+				method: "GET",
+				params: {
 				'Club': $scope.storedClub,
 				'Day': $scope.storedDay,
 				'TeeTime': $scope.storedTime
@@ -334,8 +334,8 @@ App.controller('cardCtrl', function ($scope, $window, $http, $filter, $ionicPopu
 			$scope.Players = data;
 		});
 		$http({url: "http://regencyusedcars.co.uk/aAppCourses.php",
-				method: "POST",
-				data: {
+				method: "GET",
+				params: {
 				'Club': $scope.storedClub
 			}
 			}).success(function (data1) {
@@ -344,14 +344,14 @@ App.controller('cardCtrl', function ($scope, $window, $http, $filter, $ionicPopu
 		});
 		
 		$http({ url: "http://regencyusedcars.co.uk/aAppCourse.php",
-			method: "POST"
+			method: "GET"
 		    }).success(function (data2) {
 			$scope.Clubs = data2;
 		}).error(function (data2) {
 		
 		});
 		$http({ url: "http://regencyusedcars.co.uk/aAppAmendCourse.php",
-			method: "POST"
+			method: "GET"
 		    }).success(function (data3) {
 			$scope.town = data3;
 		}).error(function (data3) {
@@ -461,8 +461,8 @@ App.controller('cardCtrl', function ($scope, $window, $http, $filter, $ionicPopu
 		
 		
 		$http ({url: "http://regencyusedcars.co.uk/AHcp.php",
-				method: "POST",
-				data: {
+				method: "GET",
+				params: {
 				'Club': $scope.storedClub,
 				'Day': $scope.storedDay,
 				'Time': $scope.storedTime,
@@ -475,8 +475,8 @@ App.controller('cardCtrl', function ($scope, $window, $http, $filter, $ionicPopu
 	
 			
 		$http ({url: "http://regencyusedcars.co.uk/ARevHcp.php",
-				method: "POST",
-				data: {
+				method: "GET",
+				params: {
 				'Club': $scope.storedClub,
 				'Day': $scope.storedDay,
 				'Time': $scope.storedTime,
@@ -489,7 +489,7 @@ App.controller('cardCtrl', function ($scope, $window, $http, $filter, $ionicPopu
 		
 				}).error(function (data) {
 			var alert;
-			alert("ERROR 6");
+
 								})
 		};
 
@@ -504,8 +504,8 @@ App.controller('cardCtrl', function ($scope, $window, $http, $filter, $ionicPopu
 		
 		if (user.value === "Revised") {
 			$http ({ url: "http://regencyusedcars.co.uk/ARevHcp.php",
-					method: "POST",
-					data: {
+					method: "GET",
+					params: {
 				'Club': $scope.storedClub,
 				'Day': $scope.storedDay,
 				'Time': $scope.storedTime,
@@ -514,12 +514,13 @@ App.controller('cardCtrl', function ($scope, $window, $http, $filter, $ionicPopu
 			}).success(function (data) {
 				$scope.hcps = data;
 				$scope.selectedHcp = data[0];
+				console.log($scope.selectedHcp.Hcp);
 			});
 		}
 		else {
 			$http ({ url: "http://regencyusedcars.co.uk/AHcp.php", 
-					method: "POST",
-					data: {
+					method: "GET",
+					params: {
 				'Club': $scope.storedClub,
 				'Day': $scope.storedDay,
 				'Time': $scope.storedTime,
@@ -531,8 +532,8 @@ App.controller('cardCtrl', function ($scope, $window, $http, $filter, $ionicPopu
 		}
 	};
 	$http ({ url: "http://regencyusedcars.co.uk/aAppCourses.php",
-			method: "POST",
-			data: {
+			method: "GET",
+			params: {
 			'Club': $scope.storedClub
 		}
 	}).success(function (data11) {
@@ -542,12 +543,27 @@ App.controller('cardCtrl', function ($scope, $window, $http, $filter, $ionicPopu
 
 		var myDate = new Date();
 		$scope.datePlayed = myDate;	
-		
+	$scope.hh = {};
+
+	var revHcp = {};
+	var RrevHcp = {};
 		$scope.submitScore = function (datePlayed) {
+	$http ({ url: "http://regencyusedcars.co.uk/ARevHcp.php",
+					method: "GET",
+					params: {
+				'Club': $scope.storedClub,
+				'Player': $scope.selectedPlayer.ID }
+
+			}).success(function (data) {
+				$scope.h = data;
+				$scope.hh = data[0];
+				$scope.selectedRevHcp = $scope.hh.Hcp;
+				console.log($scope.selectedRevHcp);
+
+
 			
 			
-			
-var nHcp  = $scope.selectedRevHcp.Hcp;
+var nHcp  = $scope.selectedRevHcp;
 var nPoints  =   $scope.totPts; 
 var shots = nPoints - 36;
 var A = ((nHcp - 5.4) / 0.2);
@@ -561,79 +577,72 @@ var B = shots - E;
 var J = shots - H;
 var K = Math.ceil(H,1);	
 
+		  	console.log (nHcp);
+			console.log (nPoints);
 	
 	if (nPoints < 36) 
 	  {
     	revHcp = (parseFloat(nHcp) + 0.1);
-		  var RrevHcp = Math.round( revHcp * 10 ) / 10;
-		  	console.log (RrevHcp);
+		  RrevHcp = Math.round( revHcp * 10 ) / 10;
+
      	  }
      	if (nPoints == 36) 
 	  {
     	revHcp = (parseFloat(nHcp));
-		  var RrevHcp = Math.round( revHcp * 10 ) / 10;
+		  RrevHcp = Math.round( revHcp * 10 ) / 10;
 		  	console.log (RrevHcp);
      	  }
 	if (nPoints > 36 && (parseFloat(nHcp)) < 5.5)
 	  {
-    	var revHcp = (parseFloat(nHcp)) - (shots * 0.1);
-		  var RrevHcp = Math.round( revHcp * 10 ) / 10;
+    	revHcp = (parseFloat(nHcp)) - (shots * 0.1);
+		  RrevHcp = Math.round( revHcp * 10 ) / 10;
 			console.log (RrevHcp);
      	  }
 	if (nPoints > 36 && (parseFloat(nHcp) > 5.4) && (parseFloat(nHcp) < 12.5 ) && shots < C)
           {
-         var revHcp = (parseFloat(nHcp) - (F * 0.2));
-			var RrevHcp = Math.round( revHcp * 10 ) / 10;
+         revHcp = (parseFloat(nHcp) - (F * 0.2));
+			RrevHcp = Math.round( revHcp * 10 ) / 10;
 			  console.log (RrevHcp);
 	  }	
 	if (nPoints > 36 && (parseFloat(nHcp) > 5.4)  && (parseFloat(nHcp) < 12.5 ) && shots > C)
          {
       		
       	RHcp = (parseFloat(nHcp) - (A * 0.2));
-			var revHcp = (RHcp - (D * 0.1));
-				 var RrevHcp = Math.round( revHcp * 10 ) / 10;
+			revHcp = (RHcp - (D * 0.1));
+				 RrevHcp = Math.round( revHcp * 10 ) / 10;
 			 		console.log (RrevHcp);	
          }
  	
   	if(nPoints > 36 && (parseFloat(nHcp) > 12.4)  && (parseFloat(nHcp) < 20.5 ) && shots < G)
           {
-         	var revHcp = (parseFloat(nHcp) - (F * 0.3));
-			 var RrevHcp = Math.round( revHcp * 10 ) / 10;
+         	revHcp = (parseFloat(nHcp) - (F * 0.3));
+			 RrevHcp = Math.round( revHcp * 10 ) / 10;
 				console.log (revHcp);
  	  }	
 	if (nPoints > 36 && (parseFloat(nHcp) > 12.4)  && (parseFloat(nHcp) < 20.5 ) && shots > G)
          {
       		
-      		var RHcp = (parseFloat(nHcp) - (E * 0.3));
-				var revHcp = (RHcp - (B * 0.2));
-					var RrevHcp = Math.round( revHcp * 10 ) / 10;
+      		RHcp = (parseFloat(nHcp) - (E * 0.3));
+				revHcp = (RHcp - (B * 0.2));
+					RrevHcp = Math.round( revHcp * 10 ) / 10;
 			 			console.log (RrevHcp);
          }
      if(nPoints > 36 && (parseFloat(nHcp) > 20.4) && shots < K)
           {
-         	var revHcp = (parseFloat(nHcp) - (F * 0.4));
-			  var RrevHcp = Math.round( revHcp * 10 ) / 10;
+         	revHcp = (parseFloat(nHcp) - (F * 0.4));
+			  RrevHcp = Math.round( revHcp * 10 ) / 10;
 				console.log (RrevHcp);
  	  }	
 	if(nPoints > 36 && (parseFloat(nHcp) > 20.4) && shots > K)
          {
       		
-      		var RHcp = (parseFloat(nHcp) - (H * 0.4));
-				var revHcp = (RHcp - (J * 0.3));
-			 		var RrevHcp = Math.round( revHcp * 10 ) / 10;
+      		RHcp = (parseFloat(nHcp) - (H * 0.4));
+				revHcp = (RHcp - (J * 0.3));
+			 		RrevHcp = Math.round( revHcp * 10 ) / 10;
 			 			console.log (RrevHcp);
          }
-	
-	
-	
-		
-			
-			
-			
-			
-			
-			
-			
+
+
 		var newDate = datePlayed;
 		var dateP = $filter('date')(newDate, "dd-MM-yyyy");		
 		var myWeek = $filter('date')(newDate, 'ww');
@@ -666,8 +675,8 @@ var K = Math.ceil(H,1);
    confirmPopup.then(function(res) {
      if(res) {
        	$http ({ url: "http://regencyusedcars.co.uk/aAppSubmitScores.php",
-				method: "POST",
-				data: {
+				method: "GET",
+				params: {
 				'Club': $scope.storedClub,
 				'Day': $scope.storedDay,
 				'Time': $scope.storedTime,
@@ -688,6 +697,7 @@ var K = Math.ceil(H,1);
    			})	
 	
 	}
+		});
 		}
 });
 App.controller('NewCourseController', function ($scope, $window, $http) {
@@ -1550,8 +1560,8 @@ App.controller('scoreCtrl', function ($scope, $http, $window, $filter)  {
 		
 	 $http({
 		 url: "http://regencyusedcars.co.uk/aAppWeeklyResults.php",
-		 method: "POST",
-		 data: {Club: $scope.storedClub,
+		 method: "GET",
+		 params: {Club: $scope.storedClub,
 			Day: $scope.storedDay,
 			TeeTime: $scope.storedTime,
 			yrwk: $scope.week}
@@ -1586,8 +1596,8 @@ $scope.$on("$ionicView.enter", function (event, data) {
 		
 		$http({
 			url:"http://regencyusedcars.co.uk/aAppMaxDate.php", 
-			method: "POST",
-			data: 	{'Club': $scope.storedClub,
+			method: "GET",
+			params: 	{'Club': $scope.storedClub,
 					'DayS': $scope.storedDay,
 					'TeeTime': $scope.storedTime}
 		}).success(function (data) {
@@ -1602,8 +1612,8 @@ $scope.$on("$ionicView.enter", function (event, data) {
 		};
 			$http({
 				url:"http://regencyusedcars.co.uk/aAppResults.php",
-				method: "POST",
-				data: {'Club': $scope.storedClub,
+				method: "GET",
+				Params: {'Club': $scope.storedClub,
 						'DayS': $scope.storedDay,
 						'TeeTime': $scope.storedTime,
 						'Week': $scope.maxdate }
