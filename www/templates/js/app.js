@@ -98,7 +98,7 @@ App.controller('CourseController', function($scope, $window,  $http, $state) {
         $http.get("http://www.regencyusedcars.co.uk/aAppCourse.php")
             .success(function(data) {
                 $scope.slubs = data;
-          console.log($scope.Clubs);
+
                 
             })
             .error(function(data) {
