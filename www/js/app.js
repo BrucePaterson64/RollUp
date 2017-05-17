@@ -726,10 +726,11 @@ App.controller('scorecardCtrl', function ($scope, $window, $http, $filter, $ioni
 			}
 			}).success(function (data1) {
 			$scope.Par = data1;
-
+            $scope.getTeam();
 		});
 
-		$http({url: "http://golf-rollup.co.uk/aAppTeam.php",
+        $scope.getTeam = function() {
+		   $http({url: "http://golf-rollup.co.uk/aAppTeam.php",
 				method: "GET",
 				params: {
 				'Club': $scope.storedClub,
@@ -738,10 +739,11 @@ App.controller('scorecardCtrl', function ($scope, $window, $http, $filter, $ioni
 			}
 			}).success(function (data) {
 			$scope.Players = data;
+            $scope.getHcp();
 		});
-
-
-	   $http({url: "http://golf-rollup.co.uk/AHcp.php",
+        }
+        $scope.getHcp = function() {
+	       $http({url: "http://golf-rollup.co.uk/AHcp.php",
 				method: "GET",
 				params: {
 				'Club': $scope.storedClub,
@@ -753,7 +755,7 @@ App.controller('scorecardCtrl', function ($scope, $window, $http, $filter, $ioni
 			$scope.hcps = data;
 			$scope.selectedHcp = data[0];
 		});
-
+        }
 	});
 
 	$scope.getShots = function (par) {
@@ -1208,15 +1210,18 @@ App.controller('PlayerCtrl', function ($scope, $window, $http, $ionicPopup, $sta
 		
 	$scope.init = function () {
 
-
+        var club = $location.search().Club;
+        $scope.data.selectedClub = club;
 
 
 
         $scope.getCourses();
+
+
     };
 
 
-    console.log("First clearing of $scope.data");
+
         $scope.pp = {};
 		$scope.data = {};
         $scope.Days = {};
@@ -1227,10 +1232,27 @@ App.controller('PlayerCtrl', function ($scope, $window, $http, $ionicPopup, $sta
 
 
     $scope.getCourses = function() {
+        var player = $location.search().player;
+        $scope.data.selectedPlayer = player;
 
         $http.get("http://www.golf-rollup.co.uk/aAppCourse.php").success(function (data) {
             $scope.Course = data;
 
+        $http ({url:"http://golf-rollup.co.uk/aaAppAllPlayers.php",
+				method: "GET",
+				params:{
+			    'Club': $scope.data.selectedClub }
+		      }).success(function (data) {
+
+            $scope.pp = data;
+             if (player) {
+                //player in url
+
+            }else{
+
+            }
+           $scope.getDays();
+            });
 
 
         }).error(function (data) {
@@ -1245,8 +1267,7 @@ App.controller('PlayerCtrl', function ($scope, $window, $http, $ionicPopup, $sta
 				params:{
 			'Club': $scope.data.selectedClub }
 		}).success(function (data) {
-            console.log ($scope.data.selectedClub);
-            $scope.pp = data;
+           $scope.pp = data;
 
 
             });
@@ -1293,9 +1314,7 @@ App.controller('PlayerCtrl', function ($scope, $window, $http, $ionicPopup, $sta
             $window.localStorage.time = $scope.data.selectedTime;
 			$scope.storedTime = $window.localStorage.time;
 			$scope.selectedTime.ID = $scope.storedTime;
-			console.log ($scope.data.selectedTime);
-            console.log ($scope.data.selectedClub);
-            console.log ($scope.data.selectedPlayer);
+
 						});
 
     };
@@ -1314,10 +1333,10 @@ App.controller('PlayerCtrl', function ($scope, $window, $http, $ionicPopup, $sta
 
 		var selectedClub = $location.search().Club;
 		$scope.data.selectedClub = selectedClub;
-		console.log($scope.data.selectedClub);
+
 		var selectedPlayer = $location.search().player;
 		$scope.data.selectedPlayer = selectedPlayer;
-		console.log($scope.data.selectedPlayer);
+
 
 
       $scope.getPlayers = function() {
@@ -1492,7 +1511,7 @@ App.controller('PlayerCtrl', function ($scope, $window, $http, $ionicPopup, $sta
                 $scope.Time = data;
     });
     
-    console.log("Clearing $scope.data");
+
     $scope.data = {};
     $scope.delPlayer = function () {    
 	   	var $player = $scope.data.selectedPlayer;
@@ -1531,7 +1550,7 @@ App.controller('PlayerCtrl', function ($scope, $window, $http, $ionicPopup, $sta
   
 };
 	
-    console.log("Clearing data here");
+
 	$scope.data = {};
     $scope.amendPlayer = function () {    
 	   	var $player = $scope.data.selectedPlayer;
@@ -1566,7 +1585,7 @@ App.controller('PlayerCtrl', function ($scope, $window, $http, $ionicPopup, $sta
   
 };
 
-    console.log("Clearing $scope.data yet again");
+
 $scope.data = {};
     $scope.amendAll = function () {    
 	   	var $player = $scope.data.selectedPlayer;
@@ -1605,7 +1624,7 @@ $scope.data = {};
 
 };
 
-    console.log("Clearing another $scope.data");
+
 	$scope.data = {};
 	$scope.submit = function (player) {
 	var confirmPopup = $ionicPopup.confirm({
