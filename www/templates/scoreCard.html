@@ -1,4 +1,4 @@
-<ion-view view-title={{storedClub}}  ng-controller="cardCtrl">
+<ion-view view-title={{storedClub}}  ng-controller="scorecardCtrl">
 <ion-nav-bar>
   
 </ion-nav-bar>
@@ -38,7 +38,7 @@
            <td class="col"> {{par.Par}}</td>
            <td class="col2">{{getPoints(par)}}</td>
            <td class="col">{{getShots(par)}}</td>
-           <td class="col3" ><select ng-model="par.Score"  ng-options="item for item in items" value=""></select</td>
+           <td class="col3" ><select ng-model="par.Score"  ng-options="item for item in items" value=""></select></td>
       	<tr class="row" style="height:32px">
            <td class="col">Total</td>
            <td class="col"></td>
@@ -49,7 +49,7 @@
         </tr>
 	   
 </table>
-		<form ng-submit="submitScore(datePlayed)">
+		<form id="scoreForm" name="scoreForm" ng-submit="submitScore(datePlayed)">
 			<label class="item in item-input item-positive">
 				<div >DATE OF ROUND :&nbsp;</div><input style="font-size: 14px; color: white" type="Date"  ng-model="datePlayed"><--Amend &nbsp;</label>
 			 </div>

@@ -28,11 +28,12 @@ table tr:nth-child(even) {
 </style>
 
 		<table>
+
 			<tr>  
-				<td align="right">Club:</td><td><select ng-model="data.selectedClub" ng-change="refresh()" ng-options="item.Club as item.Club for item in Clubs"  ></select></td>
+				<td align="right">Club:</td><td><select ng-model="data.selectedClub" ng-change="getAllPlayers();" ng-options="item.Club as item.Club for item in Course"  ></select></td>
 			</tr>
 			<tr>
-			    <td>Name:</td><td><select ng-model="data.selectedPlayer" ng-change="refresh()" ng-options="item.Player as item.Player for item in alPlayers"  ></select></td>
+			    <td>Name:</td><td><select ng-model="data.selectedPlayer" ng-change="getDays()" ng-options="item.Player as item.Player for item in pp"  ></select></td>
 			</tr>
 			<tr>
 			   <td>Roll Up Day:</td>
@@ -66,10 +67,10 @@ table tr:nth-child(even) {
 				  <div align="center">
 				  <table >
 					    <tr>
-					  <td>Name:</td><td><select ng-model="data.selectedPlayer"   ng-change="refresh()" ng-options="item.Player as item.Player for item in alPlayers" ></select></td>
+					  <td>Name:</td><td><select ng-model="data.selectedPlayer"   ng-change="refresh()" ng-options="item.Player as item.Player for item in pp" ></select></td>
 				  </tr>
 				  <tr>  
-					  <td align="right">New Club:</td><td><select ng-model="data.selectedNewClub"  ng-options="item.Club as item.Club for item in Clubs" ></select></td>
+					  <td align="right">New Club:</td><td><select ng-model="data.selectedNewClub"  ng-options="item.Club as item.Club for item in Course" ></select></td>
 				  </tr>
 				
 			

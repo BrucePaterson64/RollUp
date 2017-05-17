@@ -161,7 +161,7 @@ App.controller('ExampleController', function ($scope, $http) {
 	$scope.Players = {};
 	$scope.selectedPlayer = {};
 	var http;
-	http.get("http://regencyusedcars.co.uk/AppPlayers.php", {
+	http.get("http://golf-rollup.co.uk/AppPlayers.php", {
 		params: {
 			"key1": "value1",
 			"key2": "value2"
@@ -183,7 +183,7 @@ App.controller('CourseController', function ($scope, $window, $http, $state, $lo
 
 
 
-	$http({ url: "http://regencyusedcars.co.uk/aAppCourse.php",
+	$http({ url: "http://golf-rollup.co.uk/aAppCourse.php",
 			method: "GET"
 			
 		   }).success(function (data) {
@@ -197,7 +197,7 @@ App.controller('CourseController', function ($scope, $window, $http, $state, $lo
 	$scope.update = function () {
 
 		$http({
-			url: "http://regencyusedcars.co.uk/aAppDay.php",
+			url: "http://golf-rollup.co.uk/aAppDay.php",
 			method: "GET",
 			params: {'Club': $scope.selectedClub.ID}
 		}).success(function (data) {
@@ -215,7 +215,7 @@ App.controller('CourseController', function ($scope, $window, $http, $state, $lo
 		var $day = $scope.selectedDay.ID, $club = $scope.selectedClub.ID;
 		//var $club = $scope.selectedClub.ID;
 		$http({
-			url: "http://regencyusedcars.co.uk/aAppTime.php",
+			url: "http://golf-rollup.co.uk/aAppTime.php",
 			method: "GET",
 			params: {'Club': $club,
 					'Day': $day}
@@ -252,7 +252,7 @@ App.controller('CourseController', function ($scope, $window, $http, $state, $lo
 		//var $club = $scope.selectedClub.ID;
 		//var $time = $scope.selectedTime.ID;
 		
-		$http({ url: "http://regencyusedcars.co.uk/aAppTeam.php",
+		$http({ url: "http://golf-rollup.co.uk/aAppTeam.php",
 			   method: "GET",
 			   params: {
 				'Club': $club,
@@ -280,7 +280,7 @@ App.controller('AddPlayerCtrl', function ($scope, $http, $window, $state) {
 	
 	$scope.submit = function (player) {
 		
-		$http({url: "'http://regencyusedcars.co.uk/aAppAddPlayer.php",
+		$http({url: "'http://golf-rollup.co.uk/aAppAddPlayer.php",
             method: "GET",
 			params: {
 			'Player': $scope.data.NewPlayer,
@@ -312,7 +312,7 @@ App.controller('cardCtrl', function ($scope, $window, $http, $filter, $ionicPopu
 		var selectedPlayer = $location.search().player;
 		$scope.selectedPlayer.ID = selectedPlayer;
 
-		$http({url: "http://regencyusedcars.co.uk/AHcp.php",
+		$http({url: "http://golf-rollup.co.uk/AHcp.php",
 				method: "GET",
 				params: {
 				'Club': $scope.storedClub,
@@ -325,7 +325,7 @@ App.controller('cardCtrl', function ($scope, $window, $http, $filter, $ionicPopu
 			$scope.selectedHcp = data[0];
 		});
 		
-		$http({url: "http://regencyusedcars.co.uk/aAppTeam.php",
+		$http({url: "http://golf-rollup.co.uk/aAppTeam.php",
 				method: "GET",
 				params: {
 				'Club': $scope.storedClub,
@@ -335,7 +335,7 @@ App.controller('cardCtrl', function ($scope, $window, $http, $filter, $ionicPopu
 			}).success(function (data) {
 			$scope.Players = data;
 		});
-		$http({url: "http://regencyusedcars.co.uk/aAppCourses.php",
+		$http({url: "http://golf-rollup.co.uk/aAppCourses.php",
 				method: "GET",
 				params: {
 				'Club': $scope.storedClub
@@ -345,14 +345,14 @@ App.controller('cardCtrl', function ($scope, $window, $http, $filter, $ionicPopu
 			
 		});
 		
-		$http({ url: "http://regencyusedcars.co.uk/aAppCourse.php",
+		$http({ url: "http://golf-rollup.co.uk/aAppCourse.php",
 			method: "GET"
 		    }).success(function (data2) {
 			$scope.Clubs = data2;
 		}).error(function (data2) {
 		
 		});
-		$http({ url: "http://regencyusedcars.co.uk/aAppAmendCourse.php",
+		$http({ url: "http://golf-rollup.co.uk/aAppAmendCourse.php",
 			method: "GET"
 		    }).success(function (data3) {
 			$scope.town = data3;
@@ -462,7 +462,7 @@ App.controller('cardCtrl', function ($scope, $window, $http, $filter, $ionicPopu
 		$window.localStorage.player = $scope.selectedPlayer.ID;
 		
 		
-		$http ({url: "http://regencyusedcars.co.uk/AHcp.php",
+		$http ({url: "http://golf-rollup.co.uk/AHcp.php",
 				method: "GET",
 				params: {
 				'Club': $scope.storedClub,
@@ -476,7 +476,7 @@ App.controller('cardCtrl', function ($scope, $window, $http, $filter, $ionicPopu
 	
 	
 			
-		$http ({url: "http://regencyusedcars.co.uk/ARevHcp.php",
+		$http ({url: "http://golf-rollup.co.uk/ARevHcp.php",
 				method: "GET",
 				params: {
 				'Club': $scope.storedClub,
@@ -505,7 +505,7 @@ App.controller('cardCtrl', function ($scope, $window, $http, $filter, $ionicPopu
 		$window.localStorage.player = $scope.selectedPlayer.ID;
 		
 		if (user.value === "Revised") {
-			$http ({ url: "http://regencyusedcars.co.uk/ARevHcp.php",
+			$http ({ url: "http://golf-rollup.co.uk/ARevHcp.php",
 					method: "GET",
 					params: {
 				'Club': $scope.storedClub,
@@ -520,7 +520,7 @@ App.controller('cardCtrl', function ($scope, $window, $http, $filter, $ionicPopu
 			});
 		}
 		else {
-			$http ({ url: "http://regencyusedcars.co.uk/AHcp.php", 
+			$http ({ url: "http://golf-rollup.co.uk/AHcp.php",
 					method: "GET",
 					params: {
 				'Club': $scope.storedClub,
@@ -533,7 +533,7 @@ App.controller('cardCtrl', function ($scope, $window, $http, $filter, $ionicPopu
 			});
 		}
 	};
-	$http ({ url: "http://regencyusedcars.co.uk/aAppCourses.php",
+	$http ({ url: "http://golf-rollup.co.uk/aAppCourses.php",
 			method: "GET",
 			params: {
 			'Club': $scope.storedClub
@@ -550,7 +550,7 @@ App.controller('cardCtrl', function ($scope, $window, $http, $filter, $ionicPopu
 	var revHcp = {};
 	var RrevHcp = {};
 		$scope.submitScore = function (datePlayed) {
-	$http ({ url: "http://regencyusedcars.co.uk/ARevHcp.php",
+	$http ({ url: "http://golf-rollup.co.uk/ARevHcp.php",
 					method: "GET",
 					params: {
 				'Club': $scope.storedClub,
@@ -676,7 +676,7 @@ var K = Math.ceil(H,1);
 
    confirmPopup.then(function(res) {
      if(res) {
-       	$http ({ url: "http://regencyusedcars.co.uk/aAppSubmitScores.php",
+       	$http ({ url: "http://golf-rollup.co.uk/aAppSubmitScores.php",
 				method: "GET",
 				params: {
 				'Club': $scope.storedClub,
@@ -702,6 +702,405 @@ var K = Math.ceil(H,1);
 		});
 		}
 });
+
+App.controller('scorecardCtrl', function ($scope, $window, $http, $filter, $ionicPopup, $location) {
+	"use strict";
+
+	$scope.$on("$ionicView.enter", function (event, data) {
+
+
+		$scope.selectedPlayer = {};
+		$window.localStorage.player = $scope.selectedPlayer.ID;
+		$scope.storedPlayer = $window.localStorage.player;
+		$scope.storedClub = localStorage.getItem('club');
+		$scope.storedDay = localStorage.getItem('day');
+		$scope.storedTime = localStorage.getItem('time');
+		$scope.storedHcp = localStorage.getItem('hcp');
+		var selectedPlayer = $location.search().player;
+		$scope.selectedPlayer.ID = selectedPlayer;
+
+			$http({url: "http://golf-rollup.co.uk/aAppCourses.php",
+				method: "GET",
+				params: {
+				'Club': $scope.storedClub
+			}
+			}).success(function (data1) {
+			$scope.Par = data1;
+
+		});
+
+		$http({url: "http://golf-rollup.co.uk/aAppTeam.php",
+				method: "GET",
+				params: {
+				'Club': $scope.storedClub,
+				'Day': $scope.storedDay,
+				'TeeTime': $scope.storedTime
+			}
+			}).success(function (data) {
+			$scope.Players = data;
+		});
+
+
+	   $http({url: "http://golf-rollup.co.uk/AHcp.php",
+				method: "GET",
+				params: {
+				'Club': $scope.storedClub,
+				'Day': $scope.storedDay,
+				'Time': $scope.storedTime,
+				'Player': $scope.selectedPlayer.ID
+			}
+			}).success(function (data) {
+			$scope.hcps = data;
+			$scope.selectedHcp = data[0];
+		});
+
+	});
+
+	$scope.getShots = function (par) {
+
+		if (!$scope.selectedHcp) {
+			return null;
+		}
+		var val =  $scope.selectedHcp.Hcp - par.Index;
+
+		if (val > 17.4) {
+			return 2;
+		} else if (val >= -0.5) {
+			return 1;
+		} else if (val < -0.5) {
+			return 0;
+		}
+	};
+
+
+	$scope.getPoints = function (par) {
+		var shot = $scope.getShots(par), val = par.Score - shot - par.Par;
+
+		if (shot === null) {
+			return null;
+		}
+
+		//	console.log(par);
+		if (val > 1) {
+			return 0;
+		} else if (val == 1) {
+			return 1;
+		} else if (val == 0) {
+			return 2;
+		} else if (val == -1) {
+			return 3;
+		} else if (val == -2) {
+			return 4;
+		} else if (val == -3) {
+			return 5;
+		}
+		return null;
+	};
+	$scope.getTotal = function () {
+		if (!$scope.Par) { return 0;
+				}
+		var total = 0;
+		angular.forEach($scope.Par, function (item, index) {
+			total = total + ($scope.getPoints(item) || 0);
+			$scope.totPts = total;
+		});
+		return total;
+	};
+	$scope.getTotalShots = function () {
+		if (!$scope.Par) { return 0;
+						 }
+		var total = 0;
+		angular.forEach($scope.Par, function (item, index) {
+			total = total + ($scope.getShots(item) || 0);
+		});
+		return total;
+	};
+
+	$scope.getPar = function () {
+		if (!$scope.Par) { return 0;
+						 }
+		var total = 0;
+		for (var i = 0; i < $scope.Par.length; i++) {
+			total += parseInt($scope.Par[i].Par);
+		}
+		return total;
+	};
+
+	$scope.items = ['1','2','3','4','5','6','7','8','9','10','11','12'];
+
+
+	$scope.getScoreTotal = function () {
+		if (!$scope.Par)
+			return 0;
+
+		var total = 0;
+		for (var i = 0; i < $scope.Par.length; i++) {
+			total += Number($scope.Par[i].Score) || 0;
+			$scope.totScore = total;
+		}
+		return total;
+
+	};
+
+
+
+
+
+	$scope.update = function () {
+		$window.localStorage.player = $scope.selectedPlayer.ID;
+		$scope.storedPlayer = localStorage.getItem('player');
+		$scope.storedClub = localStorage.getItem('club');
+		$scope.storedDay = localStorage.getItem('day');
+		$scope.storedTime = localStorage.getItem('time');
+		$scope.storedHcp = localStorage.getItem('hcp');
+		$window.localStorage.player = $scope.selectedPlayer.ID;
+
+
+		$http ({url: "http://golf-rollup.co.uk/AHcp.php",
+				method: "GET",
+				params: {
+				'Club': $scope.storedClub,
+				'Day': $scope.storedDay,
+				'Time': $scope.storedTime,
+				'Player': $scope.storedPlayer }
+					  }).success(function (data) {
+			$scope.hcps = data;
+			$scope.selectedHcp = data[0];
+			   })
+
+
+
+		$http ({url: "http://golf-rollup.co.uk/ARevHcp.php",
+				method: "GET",
+				params: {
+				'Club': $scope.storedClub,
+				'Day': $scope.storedDay,
+				'Time': $scope.storedTime,
+				'Player': $scope.selectedPlayer.ID
+				}
+			}).success(function (data) {
+				$scope.revhcps = data;
+				$scope.selectedRevHcp = data[0];
+				console.log ($scope.selectedRevHcp);
+
+				}).error(function (data) {
+			var alert;
+
+								})
+		};
+
+	$scope.validateHcp = function (user) {
+		$window.localStorage.player = $scope.selectedPlayer.ID;
+		$scope.storedPlayer = localStorage.getItem('player');
+		$scope.storedClub = localStorage.getItem('club');
+		$scope.storedDay = localStorage.getItem('day');
+		$scope.storedTime = localStorage.getItem('time');
+		$scope.storedHcp = localStorage.getItem('hcp');
+		$window.localStorage.player = $scope.selectedPlayer.ID;
+
+		if (user.value === "Revised") {
+			$http ({ url: "http://golf-rollup.co.uk/ARevHcp.php",
+					method: "GET",
+					params: {
+				'Club': $scope.storedClub,
+				'Day': $scope.storedDay,
+				'Time': $scope.storedTime,
+				'Player': $scope.storedPlayer }
+
+			}).success(function (data) {
+				$scope.hcps = data;
+				$scope.selectedHcp = data[0];
+				console.log($scope.selectedHcp.Hcp);
+			});
+		}
+		else {
+			$http ({ url: "http://golf-rollup.co.uk/AHcp.php",
+					method: "GET",
+					params: {
+				'Club': $scope.storedClub,
+				'Day': $scope.storedDay,
+				'Time': $scope.storedTime,
+				'Player': $scope.storedPlayer }
+			}).success(function (data) {
+				$scope.hcps = data;
+				$scope.selectedHcp = data[0];
+			});
+		}
+	};
+	$http ({ url: "http://golf-rollup.co.uk/aAppCourses.php",
+			method: "GET",
+			params: {
+			'Club': $scope.storedClub
+		}
+	}).success(function (data11) {
+		// $scope.shots = ;
+	});
+
+
+		var myDate = new Date();
+		$scope.datePlayed = myDate;
+	$scope.hh = {};
+    var RHcp = {};
+	var revHcp = {};
+	var RrevHcp = {};
+		$scope.submitScore = function (datePlayed) {
+	$http ({ url: "http://golf-rollup.co.uk/ARevHcp.php",
+					method: "GET",
+					params: {
+				'Club': $scope.storedClub,
+				'Player': $scope.selectedPlayer.ID }
+
+			}).success(function (data) {
+				$scope.h = data;
+				$scope.hh = data[0];
+				$scope.selectedRevHcp = $scope.hh.Hcp;
+				console.log($scope.selectedRevHcp);
+
+
+
+
+var nHcp  = $scope.selectedRevHcp;
+var nPoints  =   $scope.totPts;
+var shots = nPoints - 36;
+var A = ((nHcp - 5.4) / 0.2);
+var E = ((nHcp - 12.4) / 0.3);
+var H = ((nHcp - 20.4) / 0.4);
+var C = Math.ceil(A,1);
+var D = shots - A;
+var G = Math.ceil(E,1);
+var F = shots;
+var B = shots - E;
+var J = shots - H;
+var K = Math.ceil(H,1);
+
+		  	console.log (nHcp);
+			console.log (nPoints);
+
+	if (nPoints < 36)
+	  {
+    	revHcp = (parseFloat(nHcp) + 0.1);
+		  RrevHcp = Math.round( revHcp * 10 ) / 10;
+
+     	  }
+     	if (nPoints == 36)
+	  {
+    	revHcp = (parseFloat(nHcp));
+		  RrevHcp = Math.round( revHcp * 10 ) / 10;
+		  	console.log (RrevHcp);
+     	  }
+	if (nPoints > 36 && (parseFloat(nHcp)) < 5.5)
+	  {
+    	revHcp = (parseFloat(nHcp)) - (shots * 0.1);
+		  RrevHcp = Math.round( revHcp * 10 ) / 10;
+			console.log (RrevHcp);
+     	  }
+	if (nPoints > 36 && (parseFloat(nHcp) > 5.4) && (parseFloat(nHcp) < 12.5 ) && shots < C)
+          {
+         revHcp = (parseFloat(nHcp) - (F * 0.2));
+			RrevHcp = Math.round( revHcp * 10 ) / 10;
+			  console.log (RrevHcp);
+	  }
+	if (nPoints > 36 && (parseFloat(nHcp) > 5.4)  && (parseFloat(nHcp) < 12.5 ) && shots > C)
+         {
+
+      	RHcp = (parseFloat(nHcp) - (A * 0.2));
+			revHcp = (RHcp - (D * 0.1));
+				 RrevHcp = Math.round( revHcp * 10 ) / 10;
+			 		console.log (RrevHcp);
+         }
+
+  	if(nPoints > 36 && (parseFloat(nHcp) > 12.4)  && (parseFloat(nHcp) < 20.5 ) && shots < G)
+          {
+         	revHcp = (parseFloat(nHcp) - (F * 0.3));
+			 RrevHcp = Math.round( revHcp * 10 ) / 10;
+				console.log (revHcp);
+ 	  }
+	if (nPoints > 36 && (parseFloat(nHcp) > 12.4)  && (parseFloat(nHcp) < 20.5 ) && shots > G)
+         {
+
+      		RHcp = (parseFloat(nHcp) - (E * 0.3));
+				revHcp = (RHcp - (B * 0.2));
+					RrevHcp = Math.round( revHcp * 10 ) / 10;
+			 			console.log (RrevHcp);
+         }
+     if(nPoints > 36 && (parseFloat(nHcp) > 20.4) && shots < K)
+          {
+         	revHcp = (parseFloat(nHcp) - (F * 0.4));
+			  RrevHcp = Math.round( revHcp * 10 ) / 10;
+				console.log (RrevHcp);
+ 	  }
+	if(nPoints > 36 && (parseFloat(nHcp) > 20.4) && shots > K)
+         {
+
+      		RHcp = (parseFloat(nHcp) - (H * 0.4));
+				revHcp = (RHcp - (J * 0.3));
+			 		RrevHcp = Math.round( revHcp * 10 ) / 10;
+			 			console.log (RrevHcp);
+         }
+
+
+		var newDate = datePlayed;
+		var dateP = $filter('date')(newDate, "dd-MM-yyyy");
+		var myWeek = $filter('date')(newDate, 'ww');
+		var myYear = $filter('date')(newDate, 'yyyy');
+
+		var newDate = myYear + myWeek;
+
+			var args1 = {
+			Club: $scope.storedClub,
+			Day: $scope.storedDay,
+			Time: $scope.storedTime,
+			Player: $scope.selectedPlayer.ID,
+			yrwk: newDate,
+			Pts: $scope.totPts,
+			Hcp: $scope.selectedHcp.Hcp,
+			RevHcp: RrevHcp
+
+		};
+			if ($scope.selectedPlayer.ID == null) {
+				var confirmPopup = $ionicPopup.confirm({
+     title: 'ERROR!',
+     template: 'PLEASE SELECT A PLAYER!'
+   })
+			}else {
+			var confirmPopup = $ionicPopup.confirm({
+     title: 'Submit Score',
+     template: 'You are about to submit '+ $scope.selectedPlayer.ID + "'" + 's score for '  + dateP + ' with a Perpetual Handicap of ' + RrevHcp + ' !'
+   })
+
+   confirmPopup.then(function(res) {
+     if(res) {
+       	$http ({ url: "http://golf-rollup.co.uk/aAppSubmitScores.php",
+				method: "GET",
+				params: {
+				'Club': $scope.storedClub,
+				'Day': $scope.storedDay,
+				'Time': $scope.storedTime,
+				'Player': $scope.selectedPlayer.ID,
+				'yrwk': newDate,
+				'Pts': $scope.totPts,
+				'Hcp': $scope.selectedHcp.Hcp,
+				'RevHcp': RrevHcp }
+	}).success(function (data11) {
+		// $scope.shots = ;
+	});
+
+
+
+     } else {
+     alert ("Action Cancelled");
+       $window.location.reload(true);
+     }
+   			})
+
+	}
+		});
+
+
+		}
+
+
+});
 App.controller('NewCourseController', function ($scope, $window, $http) {
 	"use strict";
 	$scope.Clubs = [];
@@ -722,7 +1121,7 @@ App.controller('NewCourseController', function ($scope, $window, $http) {
 		, Day: $scope.storedDay
 		, Time: $scope.storedTime
 	};
-	$http ({ url: "http://regencyusedcars.co.uk/aAppTeam.php",
+	$http ({ url: "http://golf-rollup.co.uk/aAppTeam.php",
 			method: "GET",
 			params: {
 			Club: $scope.storedClub,
@@ -734,14 +1133,14 @@ App.controller('NewCourseController', function ($scope, $window, $http) {
 		var alert;
 		alert("ERROR 4");
 	});
-	$http.get("http://www.regencyusedcars.co.uk/aAppCourse.php").success(function (data) {
+	$http.get("http://www.golf-rollup.co.uk/aAppCourse.php").success(function (data) {
 		$scope.Clubs = data;
 	}).error(function (data) {
 		var alert;
 		alert("ERROR 1");
 	});
 	$scope.update = function () {
-		$http ({url: "http://regencyusedcars.co.uk/aAppDay.php",
+		$http ({url: "http://golf-rollup.co.uk/aAppDay.php",
 				method: "GET",
 				params:{
 				"Club": $scope.selectedClub.ID
@@ -757,7 +1156,7 @@ App.controller('NewCourseController', function ($scope, $window, $http) {
 		localStorage.clear();
 	};
 	$scope.DayUpdate = function () {
-		$http ({ url: "http://regencyusedcars.co.uk/aAppTime.php",
+		$http ({ url: "http://golf-rollup.co.uk/aAppTime.php",
 				method: "GET",
 				params: {
 				"Club": $scope.selectedClub.ID,
@@ -785,7 +1184,7 @@ App.controller('NewCourseController', function ($scope, $window, $http) {
 			, Day: $scope.selectedDay.ID
 			, Time: $scope.selectedTime.ID
 		};
-		$http ({ url:"http://regencyusedcars.co.uk/aAppTeam.php",
+		$http ({ url:"http://golf-rollup.co.uk/aAppTeam.php",
 				method: "GET",
 				params:{
 			'Club': $scope.selectedClub.ID,
@@ -806,11 +1205,113 @@ App.controller('NewCourseController', function ($scope, $window, $http) {
 	};
 });
 App.controller('PlayerCtrl', function ($scope, $window, $http, $ionicPopup, $state, $location) {
-		//$scope.$on("$ionicView.enter", function (event, data) {
+		
+	$scope.init = function () {
+
+
+
+
+
+        $scope.getCourses();
+    };
+
+
+    console.log("First clearing of $scope.data");
+        $scope.pp = {};
+		$scope.data = {};
+        $scope.Days = {};
+
+
+
+
+
+
+    $scope.getCourses = function() {
+
+        $http.get("http://www.golf-rollup.co.uk/aAppCourse.php").success(function (data) {
+            $scope.Course = data;
+
+
+
+        }).error(function (data) {
+
+                  });
+    };
+
+    $scope.getAllPlayers = function() {
+
+        $http ({url:"http://golf-rollup.co.uk/aaAppAllPlayers.php",
+				method: "GET",
+				params:{
+			'Club': $scope.data.selectedClub }
+		}).success(function (data) {
+            console.log ($scope.data.selectedClub);
+            $scope.pp = data;
+
+
+            });
+
+
+    };
+     //var player = $scope.data.selectedPlayer;
+     $scope.getDays = function() {
+       $http ({ url:"http://golf-rollup.co.uk/aAppGetDay.php",
+				method: "GET",
+				params: {
+				'Club': $scope.data.selectedClub,
+				'Player': $scope.data.selectedPlayer
+			}
+		}).success(function (data) {
+
+			$scope.Days = data;
+			$scope.dd = $scope.Days[0];
+			$scope.data.selectedDay = $scope.dd.Day_S;
+
+            $scope.getTimes();
+            $window.localStorage.day = $scope.data.selectedDay;
+			$scope.storedDay = $window.localStorage.day;
+			$scope.selectedDay.ID = $scope.storedDay;
+		})
+
+    };
+
+
+    $scope.getTimes = function() {
+
+        $http ({ url:"http://golf-rollup.co.uk/aAppGetTime.php",
+				method: "GET",
+				params: {
+				'Club': $scope.data.selectedClub,
+				'Player': $scope.data.selectedPlayer
+			}
+		}).success(function (data) {
+			$scope.Times = data;
+			$scope.tt = $scope.Times[0];
+			$scope.data.selectedTime = $scope.tt.TeeTime;
+
+            $scope.getPlayers();
+            $window.localStorage.time = $scope.data.selectedTime;
+			$scope.storedTime = $window.localStorage.time;
+			$scope.selectedTime.ID = $scope.storedTime;
+			console.log ($scope.data.selectedTime);
+            console.log ($scope.data.selectedClub);
+            console.log ($scope.data.selectedPlayer);
+						});
+
+    };
+
+
+    $scope.getPlayer = function (playerID) {
+        if (playerID) {
+            // Player ID is null - get all players
+        } else {
+            // Get single player
+        }
+
+    };
+
 		
 
-		$scope.data = {};
-		$scope.init = function () {
 		var selectedClub = $location.search().Club;
 		$scope.data.selectedClub = selectedClub;
 		console.log($scope.data.selectedClub);
@@ -819,257 +1320,47 @@ App.controller('PlayerCtrl', function ($scope, $window, $http, $ionicPopup, $sta
 		console.log($scope.data.selectedPlayer);
 
 
-		
-		$http ({url:"http://regencyusedcars.co.uk/aAppAllPlayers.php",
-				method: "GET",
-				params: {
-			'Club': $scope.data.selectedClub }
-		}).success(function (data) {
-			
-			$scope.alPlayers = data;
-			$scope.p = $scope.alPlayers[0];
-			//$scope.pp = $scope.p.Player;
-			//$scope.selectedPlayer.ID = $scope.pp;
-			//console.log ($scope.pp);
-			//console.log ($scope.selectedPlayer.ID);
+      $scope.getPlayers = function() {
 
-		$http ({url:"http://regencyusedcars.co.uk/AHcp.php",
-				method: "GET",
-				params: {
-			'Club': $scope.selectedClub.ID,
-			'Player': $scope.data.selectedPlayer }
-		}).success(function (data) {
-			$scope.hcps = data;
-
-			$scope.ahcp = $scope.hcps[0];
-			$scope.data.bhcp = $scope.ahcp.Hcp;
-			console.log ($scope.data.bhcp);
-		
-		});
-		
-		$http ({url:"http://regencyusedcars.co.uk/aARevHcp.php",
+		$http ({url:"http://golf-rollup.co.uk/aAppAllPlayers.php",
 				method: "GET",
 				params:{
-			'Club': $scope.selectedClub.ID,
-			'Player': $scope.data.selectedPlayer }
+			'Club': $scope.data.selectedClub,
+				'Player': $scope.data.selectedPlayer
+                }
 		}).success(function (data) {
-			$scope.RevHcps = data;
+
+
+            $scope.hcp = data;
+			$scope.h = $scope.hcp[0];
+			$scope.data.bhcp = $scope.h.Hcp;
+
+            $scope.RevHcps = data;
 			$scope.rahcp = $scope.RevHcps[0];
 			$scope.data.rbhcp = $scope.rahcp.RevHcp;
-			
-				});
-		});
-		$http ({url:"http://regencyusedcars.co.uk/aAppAllPlayers.php",
-				method: "GET",
-				params:{
-			'Club': $scope.data.selectedClub }
-		}).success(function (data) {
-			$scope.alPlayers = data;
 
-		$http ({ url:"http://regencyusedcars.co.uk/aAppGetDay.php",
-				method: "GET",
-				params: {
-				'Club': $scope.data.selectedClub,
-				'Player': $scope.data.selectedPlayer
-			}
-		}).success(function (data) {
-			$scope.Days = data;
-			$scope.dd = $scope.Days[0];
-			$scope.data.selectedDay = $scope.dd.Day_S;
-			$window.localStorage.day = $scope.data.selectedDay;
-			$scope.storedDay = $window.localStorage.day;
-			$scope.selectedDay.ID = $scope.storedDay;
-		})
+            $scope.playerID = data;
+			$scope.p = $scope.playerID[0];
+			$scope.data.pid = $scope.p.PlayerID;
+        });
+
+
+
 		$window.localStorage.club = $scope.data.selectedClub;
 		$scope.storedClub = $window.localStorage.club;
 		$scope.selectedClub.ID = $scope.storedClub;
 		$window.localStorage.player = $scope.data.selectedPlayer;
 		$scope.storedPlayer = $window.localStorage.player;
 		$scope.selectedPlayer.ID = $scope.storedPlayer;
+        };
 
-
-
-		$http ({ url:"http://regencyusedcars.co.uk/aAppGetTime.php",
-				method: "GET",
-				params: {
-				'Club': $scope.selectedClub.ID,
-				'Player': $scope.selectedPlayer.ID
-			}
-		}).success(function (data) {
-			$scope.Times = data;
-			$scope.tt = $scope.Times[0];
-			$scope.data.selectedTime = $scope.tt.TeeTime;
-			$window.localStorage.time = $scope.data.selectedTime;
-			$scope.storedTime = $window.localStorage.time;
-			$scope.selectedTime.ID = $scope.storedTime;
-			console.log ($scope.data.selectedTime);
-						});
-
-		$http ({url:"http://regencyusedcars.co.uk/aAppPlayerID.php",
-				method: "GET",
-				params: {
-			'Club': $scope.storedClub,
-			'Player': $scope.data.selectedPlayer }
-		}).success(function (data) {
-			$scope.playerID = data;
-			$scope.p = $scope.playerID[0];
-			$scope.data.pid = $scope.p.Player_ID;
-		});
-
-
-
-		$http ({ url:"http://regencyusedcars.co.uk/AHcp.php",
-				method: "GET",
-				params:{
-				'Club': $scope.data.selectedClub,
-				'Player': $scope.data.selectedPlayer }
-		}).success(function (data) {
-			$scope.hcps = data;
-			$scope.ahcp = $scope.hcps[0];
-			$scope.data.bhcp = $scope.ahcp.Hcp;
-			$window.localStorage.hcp = $scope.data.bhcp;
-			$scope.storedHcp = $window.localStorage.hcp;
-			$scope.selectedHcp.ID = $scope.storedHcp;
-		});
-
-		$http ({ url:"http://regencyusedcars.co.uk/ARevHcp.php",
-				method: "GET",
-				params:{
-				'Club': $scope.data.selectedClub,
-				'Player': $scope.data.selectedPlayer }
-		}).success(function (data) {
-			$scope.RevHcps = data;
-			$scope.rahcp = $scope.RevHcps[0];
-			$scope.data.rbhcp = $scope.rahcp.Hcp;
-
-			}).error(function (data) {
-
-
-		});
-
-
-        })
-		};
-				
-		//end of $scope.$on
-	//})
-			   
-
-		
-		$scope.refresh = function () {
-
-		$scope.tt = {};
-		$scope.rahcp = {};
-		$scope.p = {};
-		$http ({url:"http://regencyusedcars.co.uk/aAppAllPlayers.php",
-				method: "GET",
-				params:{
-			'Club': $scope.data.selectedClub }
-		}).success(function (data) {
-			$scope.alPlayers = data;
-
-		$http ({ url:"http://regencyusedcars.co.uk/aAppGetDay.php",
-				method: "GET",
-				params: {
-				'Club': $scope.data.selectedClub,
-				'Player': $scope.data.selectedPlayer
-			}
-		}).success(function (data) {
-			$scope.Days = data;
-			$scope.dd = $scope.Days[0];
-			$scope.data.selectedDay = $scope.dd.Day_S;
-			$window.localStorage.day = $scope.data.selectedDay;
-			$scope.storedDay = $window.localStorage.day;
-			$scope.selectedDay.ID = $scope.storedDay;
-		})
-		$window.localStorage.club = $scope.data.selectedClub;
-		$scope.storedClub = $window.localStorage.club;
-		$scope.selectedClub.ID = $scope.storedClub;
-		$window.localStorage.player = $scope.data.selectedPlayer;
-		$scope.storedPlayer = $window.localStorage.player;
-		$scope.selectedPlayer.ID = $scope.storedPlayer;
-
-			
-			
-		$http ({ url:"http://regencyusedcars.co.uk/aAppGetTime.php",
-				method: "GET",
-				params: {
-				'Club': $scope.selectedClub.ID,
-				'Player': $scope.selectedPlayer.ID
-			}
-		}).success(function (data) {
-			$scope.Times = data;
-			$scope.tt = $scope.Times[0];
-			$scope.data.selectedTime = $scope.tt.TeeTime;
-			$window.localStorage.time = $scope.data.selectedTime;
-			$scope.storedTime = $window.localStorage.time;
-			$scope.selectedTime.ID = $scope.storedTime;
-			console.log ($scope.data.selectedTime);
-						});
-
-		$http ({url:"http://regencyusedcars.co.uk/aAppPlayerID.php",
-				method: "GET",
-				params: {
-			'Club': $scope.storedClub,
-			'Player': $scope.data.selectedPlayer }
-		}).success(function (data) {
-			$scope.playerID = data;
-			$scope.p = $scope.playerID[0];
-			$scope.data.pid = $scope.p.Player_ID;
-		});
-
-
-
-		$http ({ url:"http://regencyusedcars.co.uk/AHcp.php",
-				method: "GET",
-				params:{
-				'Club': $scope.data.selectedClub,
-				'Player': $scope.data.selectedPlayer }
-		}).success(function (data) {
-			$scope.hcps = data;
-			$scope.ahcp = $scope.hcps[0];
-			$scope.data.bhcp = $scope.ahcp.Hcp;
-			$window.localStorage.hcp = $scope.data.bhcp;
-			$scope.storedHcp = $window.localStorage.hcp;
-			$scope.selectedHcp.ID = $scope.storedHcp;
-		});
-
-		$http ({ url:"http://regencyusedcars.co.uk/ARevHcp.php",
-				method: "GET",
-				params:{
-				'Club': $scope.data.selectedClub,
-				'Player': $scope.data.selectedPlayer }
-		}).success(function (data) {
-			$scope.RevHcps = data;
-			$scope.rahcp = $scope.RevHcps[0];
-			$scope.data.rbhcp = $scope.rahcp.Hcp;
-			
-			}).error(function (data) {
-			
-			});
-
-
-        })
-    };
-
-
-
-
-
-	
-	
-	$http.get("http://www.regencyusedcars.co.uk/aAppCourse.php").success(function (data) {
-		$scope.Clubs = data;
-	}).error(function (data) {
-		
-
-	});
+    $scope.getTeam = function() {
 	var args = {
 		Club: $scope.storedClub,
 		Day: $scope.storedDay,
 		Time: $scope.storedTime
 	};
-	$http ({url:"http://regencyusedcars.co.uk/aAppTeam.php",
+	$http ({url:"http://golf-rollup.co.uk/aAppTeam.php",
 			method: "GET",
 			params: {
 		'Club': $scope.storedClub,
@@ -1081,11 +1372,15 @@ App.controller('PlayerCtrl', function ($scope, $window, $http, $ionicPopup, $sta
 		
 
 	});
+ };
+
+    $scope.getDay = function() {
+
 	$scope.selectedClub = {};
 	$scope.selectedDay = {};
 	$scope.selectedTime = 	{};
 	$scope.selectedPlayer = {};
-	$http ({ url:"http://regencyusedcars.co.uk/aAppDay.php",
+	$http ({ url:"http://golf-rollup.co.uk/aAppDay.php",
 			method: "GET",
 			params: {
 			"Club": $scope.selectedClub.ID
@@ -1094,9 +1389,13 @@ App.controller('PlayerCtrl', function ($scope, $window, $http, $ionicPopup, $sta
 		$scope.Days = data;
 	}).error(function (data) {
 		
-		alert("ERROR 2");
+
 	});
-	$http ({url:"http://regencyusedcars.co.uk/aAppTime.php",
+        $scope.getTime();
+    };
+
+     $scope.getTime = function() {
+	$http ({url:"http://golf-rollup.co.uk/aAppTime.php",
 			method: "GET",
 			params: {
 			"Club": $scope.selectedClub.ID,
@@ -1108,7 +1407,10 @@ App.controller('PlayerCtrl', function ($scope, $window, $http, $ionicPopup, $sta
 		
 
 	});
-	$http.get("http://regencyusedcars.co.uk/aAppTimes.php", {
+     };
+
+
+	$http.get("http://golf-rollup.co.uk/aAppTimes.php", {
 		
 	}).success(function (data) {
 		$scope.allTeeTimes = data;
@@ -1116,13 +1418,16 @@ App.controller('PlayerCtrl', function ($scope, $window, $http, $ionicPopup, $sta
 		
 
 	});
+
+
+     $scope.getHcp = function() {
 	var args = {
 		'Club': $scope.selectedClub.ID,
 		'Day': $scope.selectedDay.ID,
 		'Time': $scope.selectedTime.ID,
 		'Player': $scope.selectedPlayer.ID
 	};
-	$http ({ url:"http://regencyusedcars.co.uk/AHcp.php",
+	$http ({ url:"http://golf-rollup.co.uk/AHcp.php",
 			method: "GET",
 			params:{
 			'Club': $scope.selectedClub.ID,
@@ -1135,7 +1440,9 @@ App.controller('PlayerCtrl', function ($scope, $window, $http, $ionicPopup, $sta
 		
 
 	});
-	$http ({ url:"http://regencyusedcars.co.uk/aARevHcp.php",
+     };
+     $scope.getRevHcp = function() {
+	$http ({ url:"http://golf-rollup.co.uk/aARevHcp.php",
 			method: "GET",
 			params:{
 			'Club': $scope.selectedClub.ID,
@@ -1148,6 +1455,7 @@ App.controller('PlayerCtrl', function ($scope, $window, $http, $ionicPopup, $sta
 		
 
 	});
+     };
 	$scope.TeamUpdate = function () {
 		$window.localStorage.club = false;
 		$window.localStorage.day = false;
@@ -1166,7 +1474,7 @@ App.controller('PlayerCtrl', function ($scope, $window, $http, $ionicPopup, $sta
 			'Day': $scope.selectedDay.ID,
 			'Time': $scope.selectedTime.ID
 		};
-		$http ({url:"http://regencyusedcars.co.uk/aAppTeam.php",
+		$http ({url:"http://golf-rollup.co.uk/aAppTeam.php",
 				method: "GET",
 				params: {
 			'Club': $scope.selectedClub.ID,
@@ -1179,12 +1487,13 @@ App.controller('PlayerCtrl', function ($scope, $window, $http, $ionicPopup, $sta
 
 		});
 	};
-	$http.get("http://regencyusedcars.co.uk/aAppTimes.php")
+	$http.get("http://golf-rollup.co.uk/aAppTimes.php")
     .success(function(data) {
                 $scope.Time = data;
     });
     
-	$scope.data = {};
+    console.log("Clearing $scope.data");
+    $scope.data = {};
     $scope.delPlayer = function () {    
 	   	var $player = $scope.data.selectedPlayer;
 		var $club = $scope.data.selectedClub;
@@ -1198,7 +1507,7 @@ App.controller('PlayerCtrl', function ($scope, $window, $http, $ionicPopup, $sta
    confirmPopup.then(function(res) {
      if(res) {
 
-		 $http ({url:"http://regencyusedcars.co.uk/aAppDelPlayer.php",
+		 $http ({url:"http://golf-rollup.co.uk/aAppDelPlayer.php",
                  method: "GET",
 				params: {
 			 			Player : $scope.data.selectedPlayer,
@@ -1222,6 +1531,7 @@ App.controller('PlayerCtrl', function ($scope, $window, $http, $ionicPopup, $sta
   
 };
 	
+    console.log("Clearing data here");
 	$scope.data = {};
     $scope.amendPlayer = function () {    
 	   	var $player = $scope.data.selectedPlayer;
@@ -1235,7 +1545,7 @@ App.controller('PlayerCtrl', function ($scope, $window, $http, $ionicPopup, $sta
    confirmPopup.then(function(res) {
      if(res) {
 
-		 $http ({url: "http://regencyusedcars.co.uk/aAppAmendPlayer.php",
+		 $http ({url: "http://golf-rollup.co.uk/aAppAmendPlayer.php",
                  method: "GET",
 				params: {
 			 			Player : $scope.data.selectedPlayer,
@@ -1256,6 +1566,7 @@ App.controller('PlayerCtrl', function ($scope, $window, $http, $ionicPopup, $sta
   
 };
 
+    console.log("Clearing $scope.data yet again");
 $scope.data = {};
     $scope.amendAll = function () {    
 	   	var $player = $scope.data.selectedPlayer;
@@ -1268,7 +1579,7 @@ $scope.data = {};
 
    confirmPopup.then(function(res) {
      if(res) {
-       $http ({url: "http://regencyusedcars.co.uk/aAppAmendAllPlayer.php",
+       $http ({url: "http://golf-rollup.co.uk/aAppAmendAllPlayer.php",
                  method: "GET",
 				params: {
 			 Player : $scope.data.selectedPlayer,
@@ -1294,6 +1605,7 @@ $scope.data = {};
 
 };
 
+    console.log("Clearing another $scope.data");
 	$scope.data = {};
 	$scope.submit = function (player) {
 	var confirmPopup = $ionicPopup.confirm({
@@ -1304,7 +1616,7 @@ $scope.data = {};
    confirmPopup.then(function(res) {
      					if(res) {		
 
-			$http ({url: "http://regencyusedcars.co.uk/aAppAddPlayer.php",
+			$http ({url: "http://golf-rollup.co.uk/aAppAddPlayer.php",
                  method: "GET",
 				params: {
 			'Player': $scope.data.NewPlayer,
@@ -1327,7 +1639,7 @@ $scope.data = {};
 
 App.controller('CardParCtrl', function ($scope, $http, $ionicPopup) {
     $scope.selectedClub = {};
-    $http({ url: "http://regencyusedcars.co.uk/aAppCourse.php",
+    $http({ url: "http://golf-rollup.co.uk/aAppCourse.php",
 			method: "GET"
 
 		   }).success(function (data) {
@@ -1341,7 +1653,7 @@ App.controller('CardParCtrl', function ($scope, $http, $ionicPopup) {
     $scope.selTown = function () {
         var club = $scope.selectedClub.ID;
         console.log(club);
-          $http({ url: "http://regencyusedcars.co.uk/aAppAmendCourses.php",
+          $http({ url: "http://golf-rollup.co.uk/aAppAmendCourses.php",
 			method: "GET",
 			params: {
 			 	'Club': club
@@ -1413,7 +1725,7 @@ App.controller('CardParCtrl', function ($scope, $http, $ionicPopup) {
 
    confirmPopup.then(function(res) {
      if(res) {
-         $http({ url: "http://regencyusedcars.co.uk/aAppUpdateCourse.php",
+         $http({ url: "http://golf-rollup.co.uk/aAppUpdateCourse.php",
 			method: "GET",
 			params: {
 
@@ -1490,7 +1802,7 @@ App.controller('CardParCtrl', function ($scope, $http, $ionicPopup) {
      if(res) {	
 	
 
-		$http({ url: "http://regencyusedcars.co.uk/aAppInsert.php",
+		$http({ url: "http://golf-rollup.co.uk/aAppInsert.php",
 			method: "GET",
 			params: {
 
@@ -1572,7 +1884,7 @@ App.controller('scoreCtrl', function ($scope, $http, $window, $filter)  {
 
 		
 	 $http({
-		 url: "http://regencyusedcars.co.uk/aAppWeeklyResults.php",
+		 url: "http://golf-rollup.co.uk/aAppWeeklyResults.php",
 		 method: "GET",
 		 params: {'Club': $scope.storedClub,
 				  'Day': $scope.storedDay,
@@ -1601,7 +1913,7 @@ $scope.$on("$ionicView.enter", function (event, data) {
 		$scope.storedHcp = localStorage.getItem('hcp');
 
 		$http({
-			url: "http://regencyusedcars.co.uk/aAppMaxDate.php",
+			url: "http://golf-rollup.co.uk/aAppMaxDate.php",
 			method: "GET",
 			params: 	{'Club': $scope.storedClub,
 					'DayS': $scope.storedDay,
@@ -1613,7 +1925,7 @@ $scope.$on("$ionicView.enter", function (event, data) {
 
 		$scope.storedDate = localStorage.getItem('maxdate');
 			$http({
-				url: "http://regencyusedcars.co.uk/aAppResults.php",
+				url: "http://golf-rollup.co.uk/aAppResults.php",
 				method: "GET",
 				params: {'Club': $scope.storedClub,
 						'DayS': $scope.storedDay,
@@ -1634,7 +1946,7 @@ App.controller('SocietyCtrl', function ($scope, $window, $http, $ionicPopup) {
 		
 		
 		
-	$http.get("http://www.regencyusedcars.co.uk/aAppSociety.php").success(function (data) {
+	$http.get("http://www.golf-rollup.co.uk/aAppSociety.php").success(function (data) {
 		$scope.Clubs = data;
 	}).error(function (data) {
 		
@@ -1645,7 +1957,7 @@ $scope.data = {};
 	
 	$scope.submit = function (player) {
 		
-		$http({ url: "http://regencyusedcars.co.uk/aAppAddSocPlayer.php",
+		$http({ url: "http://golf-rollup.co.uk/aAppAddSocPlayer.php",
 			method: "GET",
 			params: {
 			'Player': $scope.data.NewPlayer,
