@@ -107,6 +107,13 @@ var App = angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers'
 				templateUrl: 'templates/players.html'
 			}
 		}
+        }).state('app.socMenuB', {
+		url: '/socMenuB',
+		views: {
+			'menuContent': {
+				templateUrl: 'templates/socMenuB.html'
+			}
+		}
 	}).state('app.scoreCard', {
 		url: '/scoreCard',
 		views: {
