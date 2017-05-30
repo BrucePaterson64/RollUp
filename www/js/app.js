@@ -105,6 +105,13 @@ var App = angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers'
 				templateUrl: 'templates/scoreCard.html'
 			}
 		}
+        }).state('app.societySignin', {
+		url: '/societySignin',
+		views: {
+			'menuContent': {
+				templateUrl: 'templates/societySignin.html'
+			}
+		}
 	}).state('app.index', {
 		url: '/index',
 		views: {
@@ -156,23 +163,89 @@ var App = angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers'
 App.controller('MainCtrl', function ($scope, $ionicModal) {
 	'use strict';
 });
-App.controller('ExampleController', function ($scope, $http) {
-	"use strict";
-	$scope.Players = {};
-	$scope.selectedPlayer = {};
-	var http;
-	http.get("http://golf-rollup.co.uk/AppPlayers.php", {
-		params: {
-			"key1": "value1",
-			"key2": "value2"
-		}
+
+
+
+App.controller('SignInCtrl', function ($scope, $window, $http, $state, $location) {
+    $scope.data = {};
+     $http ({ url: "http://golf-rollup.co.uk/society/societies.php",
+
 	}).success(function (data) {
-		$scope.Players = data;
+        $scope.soc = data;
+
+        });
+    $scope.login = function() {
+
+        $http ({ url: "http://golf-rollup.co.uk/society/AppSignin.php",
+			method: "POST",
+			params: {
+			email: $scope.data.username,
+			password: $scope.data.password}
+
+	}).success(function (data) {
+        if (data) {
+            data = data.replace(/\s/g, '');
+        }
+        //console.log(data.length);
+		$scope.society = data;
+        console.log($scope.society);
+            if (!$scope.society){
+                alert ("Login Details Not Recognised!! Please retry or Sign in");
+               } else {
+                  alert ("Welcome to the " + $scope.society + " society");
+               }
 	}).error(function (data) {
 		var alert;
-		alert("ERROR");
+		alert("ERROR 4");
 	});
-});
+    }
+       $scope.login = function() {
+
+        $http ({ url: "http://golf-rollup.co.uk/society/AppSignin.php",
+			method: "POST",
+			params: {
+			email: $scope.data.username,
+			password: $scope.data.password}
+
+	}).success(function (data) {
+        if (data) {
+            data = data.replace(/\s/g, '');
+        }
+        console.log(data.length);
+		$scope.society = data;
+        console.log($scope.society);
+            if (!$scope.society){
+                alert ("Login Details Not Recognised!! Please retry or Sign in");
+               } else {
+                  alert ("Welcome to the " + $scope.society + " society");
+               }
+	}).error(function (data) {
+		var alert;
+		alert("ERROR 4");
+	});
+    }
+          $scope.signin = function() {
+        console.log($scope.data);
+        //console.log("LOGIN user: " + $scope.data.username + " - PW: " + $scope.data.password);
+        $http ({ url: "http://golf-rollup.co.uk/society/AppRegister.php",
+			method: "POST",
+			params: {
+			email: $scope.data.email,
+            society: $scope.data.selectedSociety,
+            name: $scope.data.name,
+			password: $scope.data.password}
+
+	}).success(function (data) {
+
+
+	}).error(function (data) {
+
+		alert("ERROR 4");
+	});
+    }
+
+     });
+
 App.controller('CourseController', function ($scope, $window, $http, $state, $location) {
 	"use strict";
 

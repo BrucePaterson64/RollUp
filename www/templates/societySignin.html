@@ -1,0 +1,42 @@
+<ion-view view-title="Society Log In">
+<ion-nav-bar>
+
+</ion-nav-bar>
+   <ion-nav-buttons side="left">
+  <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+
+  <ion-content ng-controller="SignInCtrl">
+   <div class="list list-inset">
+          <label class="item item-input">
+              <input type="email" placeholder="Enter Email Address" ng-model="data.username">
+          </label>
+          <label class="item item-input">
+              <input type="password" placeholder="Password" ng-model="data.password">
+          </label>
+      </div>
+      <button class="button button-block button-calm" ng-click="login()">Log in</button>
+
+
+
+   <button class="button button-block button-assertive" >PLEASE ENTER YOUR EMAIL ADDRESS AND A PASSWORD BELOW TO SIGN IN:</button>
+     <div class="list list-inset">
+          <label class="item item-input">
+              <input type="text" placeholder="Enter Name" ng-model="data.name">
+          </label>
+          <label class="item item-input">
+              <input type="text" placeholder="Enter Email Address" ng-model="data.email">
+          </label>
+          <label class="item item-input">
+              <input type="password" placeholder="Password" ng-model="data.password">
+          </label>
+
+          <label  class="item item-input">
+             <p class="balanced">Select a Society: &nbsp;  </p>  <select ng-model="data.selectedSociety" ng-change="society()" ng-options="item.Society as item.Society for item in soc" ></select>
+          </label>
+      </div>
+      <button class="button button-block button-assertive" ng-click="signin()">Sign in</button>
+
+  </ion-content>
+
+</ion-view>

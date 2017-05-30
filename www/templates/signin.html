@@ -1,0 +1,35 @@
+<ion-view view-title="Society Log In">
+<ion-nav-bar>
+
+</ion-nav-bar>
+   <ion-nav-buttons side="left">
+  <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+
+  <ion-content ng-controller="SignInCtrl">
+   <div class="list list-inset">
+          <label class="item item-input">
+              <input type="text" placeholder="Enter Email Address" ng-model="data.username">
+          </label>
+          <label class="item item-input">
+              <input type="password" placeholder="Password" ng-model="data.password">
+          </label>
+      </div>
+      <button class="button button-block button-calm" ng-click="login()">Login</button>
+
+  </ion-content>
+
+      <ion-content ng-controller="SignInCtrl">
+   <div class="list list-inset">
+          <label class="item item-input">
+              <input type="text" placeholder="Enter Email Address" ng-model="data.username">
+          </label>
+          <label class="item item-input">
+              <input type="password" placeholder="Password" ng-model="data.password">
+          </label>
+      </div>
+      <button class="button button-block button-calm" ng-click="signin()">Sign in</button>
+
+  </ion-content>
+
+</ion-view>
