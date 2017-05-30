@@ -61,6 +61,15 @@ var App = angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers'
 				
 			}
 		}
+    }).state('app.socMenu', {
+		cache: false,
+		url: '/socMenu',
+		views: {
+			'menuContent': {
+				templateUrl: 'templates/socMenu.html'
+
+			}
+		}
 	}).state('app.menuC', {
 		cache: false,
 		url: '/menuC',
@@ -168,7 +177,9 @@ App.controller('MainCtrl', function ($scope, $ionicModal) {
 
 App.controller('SignInCtrl', function ($scope, $window, $http, $state, $location) {
     $scope.data = {};
+    $scope.showLogIn = true;
      $http ({ url: "http://golf-rollup.co.uk/society/societies.php",
+
 
 	}).success(function (data) {
         $scope.soc = data;
@@ -193,6 +204,7 @@ App.controller('SignInCtrl', function ($scope, $window, $http, $state, $location
                 alert ("Login Details Not Recognised!! Please retry or Sign in");
                } else {
                   alert ("Welcome to the " + $scope.society + " society");
+                    window.location.href="#/app/socMenu";
                }
 	}).error(function (data) {
 		var alert;
@@ -202,9 +214,9 @@ App.controller('SignInCtrl', function ($scope, $window, $http, $state, $location
        $scope.login = function() {
 
         $http ({ url: "http://golf-rollup.co.uk/society/AppSignin.php",
-			method: "POST",
+			method: "GET",
 			params: {
-			email: $scope.data.username,
+			email: $scope.data.email,
 			password: $scope.data.password}
 
 	}).success(function (data) {
@@ -215,16 +227,20 @@ App.controller('SignInCtrl', function ($scope, $window, $http, $state, $location
 		$scope.society = data;
         console.log($scope.society);
             if (!$scope.society){
-                alert ("Login Details Not Recognised!! Please retry or Sign in");
+                alert ("Login Details Not Recognised!! Please Sign in");
+                $scope.showSignIn = true;
+                $scope.showLogIn = false;
                } else {
                   alert ("Welcome to the " + $scope.society + " society");
+                   $scope.showSignIn = false;
+                   window.location.href="#/app/socMenu";
                }
 	}).error(function (data) {
-		var alert;
+
 		alert("ERROR 4");
 	});
     }
-          $scope.signin = function() {
+        $scope.signin = function() {
         console.log($scope.data);
         //console.log("LOGIN user: " + $scope.data.username + " - PW: " + $scope.data.password);
         $http ({ url: "http://golf-rollup.co.uk/society/AppRegister.php",
