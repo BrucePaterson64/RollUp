@@ -93,11 +93,25 @@ var App = angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers'
 				templateUrl: 'templates/courses.html'
 			}
 		}
+        }).state('app.SocCourses', {
+		url: '/socCourses',
+		views: {
+			'menuContent': {
+				templateUrl: 'templates/socCourses.html'
+			}
+		}
 	}).state('app.amendCourses', {
 		url: '/amendCourses',
 		views: {
 			'menuContent': {
 				templateUrl: 'templates/amendCourses.html'
+			}
+		}
+        }).state('app.socAmendCourses', {
+		url: '/socAmendCourses',
+		views: {
+			'menuContent': {
+				templateUrl: 'templates/socAmendCourses.html'
 			}
 		}
 	}).state('app.players', {
@@ -107,11 +121,25 @@ var App = angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers'
 				templateUrl: 'templates/players.html'
 			}
 		}
+        }).state('app.socPlayers', {
+		url: '/socPlayers',
+		views: {
+			'menuContent': {
+				templateUrl: 'templates/socPlayers.html'
+			}
+		}
         }).state('app.socMenuB', {
 		url: '/socMenuB',
 		views: {
 			'menuContent': {
 				templateUrl: 'templates/socMenuB.html'
+			}
+		}
+         }).state('app.socMenuA', {
+		url: '/socMenuA',
+		views: {
+			'menuContent': {
+				templateUrl: 'templates/socMenuA.html'
 			}
 		}
 	}).state('app.scoreCard', {
@@ -144,6 +172,14 @@ var App = angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers'
 			}
 		}
 	}).state('app.addPlayer', {
+		url: '/socAddPlayer',
+		views: {
+			'menuContent': {
+				templateUrl: 'templates/socAddPlayer.html',
+
+			}
+		}
+        }).state('app.socAddPlayer', {
 		url: '/addPlayer',
 		views: {
 			'menuContent': {
@@ -183,6 +219,8 @@ App.controller('MainCtrl', function ($scope, $ionicModal) {
 
 
 App.controller('SignInCtrl', function ($scope, $window, $http, $state, $location) {
+
+
     $scope.data = {};
     $scope.showLogIn = true;
      $http ({ url: "http://golf-rollup.co.uk/society/societies.php",
@@ -190,7 +228,9 @@ App.controller('SignInCtrl', function ($scope, $window, $http, $state, $location
 
 	}).success(function (data) {
         $scope.soc = data;
-
+         $scope.dd = $scope.soc[0];
+			$scope.data.selectedSoc = $scope.dd.Society;
+         console.log($scope.data.selectedSoc);
         });
     $scope.login = function() {
 
@@ -240,6 +280,9 @@ App.controller('SignInCtrl', function ($scope, $window, $http, $state, $location
                } else {
                   alert ("Welcome to the " + $scope.society + " society");
                    $scope.showSignIn = false;
+                   $window.localStorage.society = $scope.society;
+			         $scope.storedSociety = $window.localStorage.society;
+                   console.log($scope.storedSociety);
                    window.location.href="#/app/socMenu";
                }
 	}).error(function (data) {

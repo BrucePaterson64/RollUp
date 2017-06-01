@@ -1,0 +1,45 @@
+
+
+<body ng-app="starter">
+<ion-view view-title="Players Menu" cache-view="false">
+<ion-nav-bar></ion-nav-bar>
+   <ion-nav-buttons side="left">
+	   <button  class="button button-icon icon ion-navicon" ui-sref="app.socMenu"></button>
+   </ion-nav-buttons>
+        <ion-nav-view></ion-nav-view>
+
+
+    <ion-header-bar class="bar-stable bar-positive" >
+      <h1 class="title">Player Menu</h1>
+    </ion-header-bar>
+    <ion-content class="dark">
+      <ion-list >
+
+
+		  <ion-item menu-close href="#/app/socAddPlayer">
+          <i class="icon ion-person"></i>&nbsp;&nbsp;Add a Player
+        </ion-item>
+
+
+		  <ion-item menu-close href="#/app/socAmendPlayer">
+        <i class="icon ion-home"></i>&nbsp;&nbsp;Amend a Players Details
+        </ion-item>
+
+		   <ion-item menu-close href="#/app/socDelPlayer">
+        <i class="icon ion-home"></i>&nbsp;&nbsp;Delete a Player
+        </ion-item>
+
+		    <ion-item menu-close href="#/app/socPlayers">
+          <i class="icon ion-person-stalker"></i>&nbsp;&nbsp;Roll Up's Players
+        </ion-item>
+
+		  <ion-item menu-close href="#/app/socMenu">
+        <i class="icon ion-home"></i>&nbsp;&nbsp;Home
+        </ion-item>
+
+      </ion-list>
+
+    </ion-content>
+
+  </ion-side-menu>
+</ion-side-menus>
