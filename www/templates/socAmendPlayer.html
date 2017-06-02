@@ -1,0 +1,58 @@
+
+<ion-view view-title="Amend Player \ Roll Up" cache-view="false">
+	<ion-nav-bar></ion-nav-bar>
+		<ion-nav-buttons side="left">
+			<button  class="button button-icon icon ion-navicon" ui-sref="app.socMenu"></button>
+		</ion-nav-buttons>
+   	<ion-nav-view></ion-nav-view>
+<ion-content ng-controller="SignInCtrl" data-ng-init="init()">
+
+  <ion-list>
+  <br>
+	  <div align="center">
+
+<style>
+table, th , td {
+  border: 0px solid grey;
+  border-collapse: collapse;
+  padding: 5px;
+  text-align: left;
+	color:yellow;
+}
+table tr:nth-child(odd) {
+  background-color: clear;
+}
+table tr:nth-child(even) {
+  background-color: clear;
+}
+</style>
+
+		<table>
+
+			<tr>
+				<td align="right">Society:</td><td><select ng-model="data.selectedClub" ng-change="getAllPlayers();" ng-options="item.Society as item.Society for item in soc"  ></select></td>
+			</tr>
+			<tr>
+			    <td>Name:</td><td><select ng-model="data.selectedPlayer" ng-change="getHcp()" ng-options="item.Player as item.Player for item in pp"  ></select></td>
+			</tr>
+
+
+			 <tr>
+	           <td>Club Handicap:</td><td><input style="height:20px; width:55px"type="text" ng-model="data.bhcp" /></td>
+			 </tr>
+					  <tr>
+				<td>Perpetual Handicap:</td><td><input style="height:20px; width:55px"type="text" ng-model="data.rbhcp" /></td>
+				  </tr>
+
+					  <tr><td></td></tr></table>
+					<table>  <tr><td></td><td><button class="button button-positive" ng-click="amendAll()">Update</button></td><td></td></tr>
+				  </table>
+
+	</div><br>
+
+
+		</ion-list>
+	</ion-content>
+</ion-view>
+
+

@@ -34,6 +34,15 @@ var App = angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers'
 				
 			}
 		}
+        }).state('app.socAmendPlayer', {
+		cache: false,
+		url: '/socAmendPlayer',
+		views: {
+			'menuContent': {
+				templateUrl: 'templates/socAmendPlayer.html'
+
+			}
+		}
 	}).state('app.delPlayer', {
 		cache: false,
 		url: '/delPlayer',
@@ -218,20 +227,38 @@ App.controller('MainCtrl', function ($scope, $ionicModal) {
 
 
 
-App.controller('SignInCtrl', function ($scope, $window, $http, $state, $location) {
+App.controller('SignInCtrl', function ($scope, $window, $http, $state, $location, $ionicPopup) {
+
 
 
     $scope.data = {};
+
+
+
+
     $scope.showLogIn = true;
      $http ({ url: "http://golf-rollup.co.uk/society/societies.php",
 
 
 	}).success(function (data) {
-        $scope.soc = data;
+         $scope.soc = data;
          $scope.dd = $scope.soc[0];
-			$scope.data.selectedSoc = $scope.dd.Society;
-         console.log($scope.data.selectedSoc);
-        });
+		 $scope.data.selectedSoc = $scope.dd.Society;
+
+
+
+     $http ({url:"http://golf-rollup.co.uk/society/socPlayer.php",
+				method: "GET",
+				params:{
+			'Club': $scope.data.selectedSoc }
+		}).success(function (data) {
+           $scope.pp = data;
+           $scope.pPlay = $scope.pp[0];
+           $scope.pPlayer = $scope.pp.Player;
+
+            });
+     });
+
     $scope.login = function() {
 
         $http ({ url: "http://golf-rollup.co.uk/society/AppSignin.php",
@@ -270,9 +297,9 @@ App.controller('SignInCtrl', function ($scope, $window, $http, $state, $location
         if (data) {
             data = data.replace(/\s/g, '');
         }
-        console.log(data.length);
+
 		$scope.society = data;
-        console.log($scope.society);
+
             if (!$scope.society){
                 alert ("Login Details Not Recognised!! Please Sign in");
                 $scope.showSignIn = true;
@@ -282,7 +309,7 @@ App.controller('SignInCtrl', function ($scope, $window, $http, $state, $location
                    $scope.showSignIn = false;
                    $window.localStorage.society = $scope.society;
 			         $scope.storedSociety = $window.localStorage.society;
-                   console.log($scope.storedSociety);
+
                    window.location.href="#/app/socMenu";
                }
 	}).error(function (data) {
@@ -310,6 +337,88 @@ App.controller('SignInCtrl', function ($scope, $window, $http, $state, $location
 	});
     }
 
+	$scope.data = {};
+
+	$scope.submit = function (player) {
+
+		$http({url: "http://golf-rollup.co.uk/society/insertSocPlayer.php",
+            method: "GET",
+			params: {
+			'Player': $scope.data.NewPlayer,
+			'Hcp': $scope.data.Handicap,
+			'Club': $scope.data.selectedSoc
+               }
+		}).success(function (data) {
+
+		}).error(function (data) {
+            console.log($http);
+		});
+	};
+      $scope.getAllPlayers = function() {
+
+        $http ({url:"http://golf-rollup.co.uk/society/socPlayer.php",
+				method: "GET",
+				params:{
+			'Club': $scope.data.selectedClub }
+		}).success(function (data) {
+           $scope.pp = data;
+
+
+            });
+
+
+    };
+
+    $scope.getHcp = function() {
+     $http ({url:"http://golf-rollup.co.uk/society/socPlayHcp.php",
+				method: "GET",
+				params:{
+			'Club': $scope.data.selectedClub,
+            'Player': $scope.data.selectedPlayer}
+		}).success(function (data) {
+           $scope.ph = data[0];
+           $scope.data.bhcp = $scope.ph.Hcp;
+            $scope.data.rbhcp = $scope.ph.RevHcp;
+            console.log($scope.data.bhcp);
+            });
+
+    }
+
+
+//$scope.data = {};
+    $scope.amendAll = function () {
+	   	var $player = $scope.data.selectedPlayer;
+		var $club = $scope.data.selectedNewClub;
+
+		var confirmPopup = $ionicPopup.confirm({
+     title: 'Amend',
+     template: 'You are about to amend ' + $scope.data.selectedPlayer + "'" +'s details! '
+   })
+
+   confirmPopup.then(function(res) {
+     if(res) {
+       $http ({url: "http://golf-rollup.co.uk/society/socAmendPlay.php",
+                 method: "GET",
+				params: {
+			 Player : $scope.data.selectedPlayer,
+			 Hcp : $scope.data.bhcp,
+			 RevHcp : $scope.data.rbhcp,
+			 Club : $scope.data.selectedClub
+                }
+              }).then(function (res){
+             $scope.response = res.data;
+           	 $state.go('app.socMenu');
+        });
+
+
+
+     } else {
+      // alert ("Action Cancelled");
+     }
+
+   			})
+
+};
      });
 
 App.controller('CourseController', function ($scope, $window, $http, $state, $location) {

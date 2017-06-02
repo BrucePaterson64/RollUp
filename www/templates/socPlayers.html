@@ -1,0 +1,42 @@
+
+
+<body ng-app="starter">
+<ion-view view-title="Society Members" cache-view="false">
+<ion-nav-bar></ion-nav-bar>
+   <ion-nav-buttons side="left">
+	  <button  class="button button-icon icon ion-navicon" ui-sref="app.socMenu"></button>
+   </ion-nav-buttons>
+        <ion-nav-view></ion-nav-view>
+<ion-content ng-controller="SignInCtrl">
+    <ion-list>
+   <div>
+       <style>
+table.players, th , td {
+  border: 1px solid grey;
+  border-collapse: collapse;
+  padding: 5px;
+  text-align: center;
+}
+table.players tr:nth-child(odd) {
+  background-color: #f1f1f1;
+}
+table.players tr:nth-child(even) {
+  background-color: #ffffff;
+}
+</style>
+        <table class="players" style="width:100%">
+            <tr ><th style="text-align:center">Name</th><th>Club Hcp</th><th>Revised Hcp</th></tr>
+            <tr ng-repeat="item in pp  | orderBy: 'Player '  ">
+        <td style="text-align:left">{{item.Player}}</td>
+        <td >{{item.Hcp}}</td>
+        <td >{{item.RevHcp}}</td></tr>
+
+
+
+       </table>
+    </div>
+
+            </ion-list>
+
+</ion-content>
+</ion-view>
