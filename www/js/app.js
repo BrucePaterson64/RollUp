@@ -25,6 +25,22 @@ var App = angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers'
 				templateUrl: 'templates/results.html'
 			}
 		}
+        }).state('app.socResults', {
+		url: '/socResults',
+		views: {
+			'menuContent': {
+				templateUrl: 'templates/socResults.html'
+			}
+		}
+        }).state('app.socLeaderBoard', {
+		cache: false,
+		url: '/socLeaderBoard',
+		views: {
+			'menuContent': {
+				templateUrl: 'templates/socLeaderBoard.html'
+
+			}
+		}
 	}).state('app.amendPlayer', {
 		cache: false,
 		url: '/amendPlayer',
@@ -52,7 +68,16 @@ var App = angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers'
 				
 			}
 		}
-	}).state('app.menuA', {
+    }).state('app.socDelPlayer', {
+		cache: false,
+		url: '/socDelPlayer',
+		views: {
+			'menuContent': {
+				templateUrl: 'templates/socDelPlayer.html'
+
+			}
+		}
+    }).state('menuA', {
 		cache: false,
 		url: '/menuA',
 		views: {
@@ -151,11 +176,25 @@ var App = angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers'
 				templateUrl: 'templates/socMenuA.html'
 			}
 		}
+        }).state('app.socMenuC', {
+		url: '/socMenuC',
+		views: {
+			'menuContent': {
+				templateUrl: 'templates/socMenuC.html'
+			}
+		}
 	}).state('app.scoreCard', {
 		url: '/scoreCard',
 		views: {
 			'menuContent': {
 				templateUrl: 'templates/scoreCard.html'
+			}
+		}
+        }).state('app.socCard', {
+		url: '/socCard',
+		views: {
+			'menuContent': {
+				templateUrl: 'templates/socCard.html'
 			}
 		}
         }).state('app.societySignin', {
@@ -225,7 +264,59 @@ App.controller('MainCtrl', function ($scope, $ionicModal) {
 	'use strict';
 });
 
+App.controller('ResultCtrl', function ($scope, $window, $http, $state, $location, $ionicPopup) {
 
+    selectedSoc = {}
+    var Society = $window.localStorage.getItem('society');
+    $scope.selectedSoc = Society;
+  $http({
+		 url: "http://golf-rollup.co.uk/society/socWeeksResults.php",
+		 method: "GET",
+		 params: {'Club': Society
+				}
+			   }).success(function(data) {
+                $scope.S = data;
+
+           })
+  			$http({
+				url: "http://golf-rollup.co.uk/society/socLeader.php",
+				method: "GET",
+				params: {'Club': Society }
+
+		}).success(function (data) {
+            $scope.scores = data;
+
+		})
+
+
+            $http({url: "http://golf-rollup.co.uk/society/socPlayer.php",
+				method: "GET",
+				params: {
+				'Club': Society
+
+			}
+			}).success(function (data) {
+			$scope.Players = data;
+
+
+		});
+     $scope.selectedPlayer = {}    ;
+       $scope.getHcp = function() {
+
+          var pp =  $scope.selectedPlayer.ID;
+         $http({url: "http://golf-rollup.co.uk/society/socHcp.php",
+				method: "GET",
+				params: {
+				'Club': Society,
+				'Player': pp
+			}
+			}).success(function (data) {
+			$scope.hcps = data;
+            console.log(pp);
+
+		});
+       }
+});
 
 App.controller('SignInCtrl', function ($scope, $window, $http, $state, $location, $ionicPopup) {
 
@@ -349,7 +440,7 @@ App.controller('SignInCtrl', function ($scope, $window, $http, $state, $location
 			'Club': $scope.data.selectedSoc
                }
 		}).success(function (data) {
-
+            $state.go('app.socMenu');
 		}).error(function (data) {
             console.log($http);
 		});
@@ -362,7 +453,7 @@ App.controller('SignInCtrl', function ($scope, $window, $http, $state, $location
 			'Club': $scope.data.selectedClub }
 		}).success(function (data) {
            $scope.pp = data;
-
+            $state.go('app.socMenu');
 
             });
 
@@ -419,6 +510,39 @@ App.controller('SignInCtrl', function ($scope, $window, $http, $state, $location
    			})
 
 };
+
+    $scope.delPlayer = function () {
+	   	var $player = $scope.data.selectedPlayer;
+		var $club = $scope.data.selectedClub;
+
+		var confirmPopup = $ionicPopup.confirm({
+     title: 'Delete',
+     template: 'Are you sure you want to delete ' + $player + ' from ' + $club + "'" + 's Society?'
+   })
+
+   confirmPopup.then(function(res) {
+     if(res) {
+
+		 $http ({url:"http://golf-rollup.co.uk/society/socDelPlayer.php",
+                 method: "GET",
+				params: {
+			 			Player : $scope.data.selectedPlayer,
+                        Club : $scope.data.selectedClub
+                }
+                }).then(function (res){
+            $scope.response = res.data;
+             $state.go('app.socMenu');
+        });
+
+
+
+     } else {
+      // alert ("Action Cancelled");
+     }
+   			})
+
+};
+
      });
 
 App.controller('CourseController', function ($scope, $window, $http, $state, $location) {

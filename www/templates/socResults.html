@@ -1,0 +1,59 @@
+
+<ion-view view-title="Daily Results"  ng-controller="ResultCtrl">
+<ion-nav-bar>
+
+</ion-nav-bar>
+   <ion-nav-buttons side="left">
+  			 <button  class="button button-icon icon ion-navicon" ui-sref="app.socMenu"></button>
+
+  </ion-nav-buttons>
+    <ion-content>
+      <div class="bar bar-loading bar-assertive top-bar">
+			<span >
+				{{selectedSoc}}'s Results  </span>
+	     </div><br><br>
+	  <div>
+		  <style>
+table.weeks, th , td {
+  border: 1px solid grey;
+  border-collapse: collapse;
+  padding: 5px;
+	text-align: center;
+}
+table.weeks tr:nth-child(odd) {
+  background-color: #f1f1f1;
+}
+table.weeks tr:nth-child(even) {
+  background-color: #ffffff;
+}
+</style>
+
+    <table class="weeks" style="width:100%">
+            <tr>
+                <th>Name</th>
+                <th>Round 1</th>
+                <th>Round 2</th>
+                <th>Round 3</th>
+                <th>Round 4</th>
+
+            </tr>
+            <tr ng-repeat="score in S track by $index">
+                <td style="text-align:left">{{score.Player}}</td>
+                <td>{{score.Rd1}}</td>
+                <td> {{score.Rd2}}</td>
+                <td>{{score.Rd3}}</td>
+                <td>{{score.Rd4}}</td>
+
+            </tr>
+        </table>
+		</div>
+
+    </ion-content>
+
+		<ion-footer-bar class="bar bar-footer bar-energized">
+			<a href="#/app/socSociety" class="button button-clear" >Course</a>
+			<div class="title"><a href="#/app/socLeaderBoard" class="button button-clear" >Leader Board</a></div>
+			<a href="#/app/socResults" class="button button-clear">Roll Up</a>
+		</ion-footer-bar>
+</ion-view>
+

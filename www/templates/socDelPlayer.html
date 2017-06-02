@@ -1,5 +1,5 @@
 
-<ion-view view-title="Amend Player \ Roll Up" cache-view="false">
+<ion-view view-title="Delete Player" cache-view="false">
 	<ion-nav-bar></ion-nav-bar>
 		<ion-nav-buttons side="left">
 			<button  class="button button-icon icon ion-navicon" ui-sref="app.socMenu"></button>
@@ -30,7 +30,7 @@ table tr:nth-child(even) {
 		<table>
 
 			<tr>
-				<td align="right">Society:</td><td><select ng-model="data.selectedClub" ng-options="item.Society as item.Society for item in soc"  ></select></td>
+				<td align="right">Society:</td><td><select ng-model="data.selectedClub"  ng-options="item.Society as item.Society for item in soc"  ></select></td>
 			</tr>
 			<tr>
 			    <td>Name:</td><td><select ng-model="data.selectedPlayer" ng-change="getHcp()" ng-options="item.Player as item.Player for item in pp"  ></select></td>
@@ -40,12 +40,10 @@ table tr:nth-child(even) {
 			 <tr>
 	           <td>Club Handicap:</td><td><input style="height:20px; width:55px"type="text" ng-model="data.bhcp" /></td>
 			 </tr>
-					  <tr>
-				<td>Perpetual Handicap:</td><td><input style="height:20px; width:55px"type="text" ng-model="data.rbhcp" /></td>
-				  </tr>
+
 
 					  <tr><td></td></tr></table>
-					<table>  <tr><td></td><td><button class="button button-positive" ng-click="amendAll()">Update</button></td><td></td></tr>
+					<table>  <tr><td></td><td><button class="button button-positive" ng-click="delPlayer()">Delete</button></td><td></td></tr>
 				  </table>
 
 	</div><br>

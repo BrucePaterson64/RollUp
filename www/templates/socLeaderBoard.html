@@ -1,16 +1,16 @@
 
-<ion-view view-title="Leader Board"  ng-controller="leaderCtrl">
+<ion-view view-title="Leader Board"  ng-controller="ResultCtrl">
 <ion-nav-bar>
-  
+
 </ion-nav-bar>
    <ion-nav-buttons side="left">
-  <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+ <button  class="button button-icon icon ion-navicon" ui-sref="app.socMenu"></button>
   </ion-nav-buttons>
     <ion-content >
-		
+
       <div class="bar bar-loading bar-assertive top-bar">
 			<span >
-				{{storedClub}}'s - {{storedDay}}   {{storedTime}} Roll Up </span>
+				{{selectedSoc}}'s Results </span>
 	     </div><br><br>
 	  <div>
 <style>
@@ -29,23 +29,23 @@ table.leaderboard tr:nth-child(even) {
 </style>
 
 <table class="leaderboard" style="width:100%" >
-	<tr><th>Name</th><th>Score  </th><th>Hcp  </th><th>New Hcp</th></tr>
-	<tr ng-repeat="Score in scores | orderBy: '-Score '  "> 
-		
+	<tr><th>Name</th><th>Score  </th><th>Hcp  </th><th>New Hcp</th><th>Penalty</th></tr>
+	<tr ng-repeat="Score in scores | orderBy: '-Score '  ">
+
           <td style="text-align:left">{{Score.Player}}</td>
           <td>{{Score.Score}}</td>
           <td>{{Score.Hcp}}</td>
 		  <td>{{Score.RevHcp}}</td>
-		  
+		  <td>{{Score.Penalty}}</td>
 
 	</tr>
-	
+
 </table>
-		</div>	
-			
-		
+		</div>
+
+
     </ion-content>
-      
-	
+
+
 </ion-view>
 
