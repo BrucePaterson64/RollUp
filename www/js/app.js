@@ -686,7 +686,7 @@ var K = Math.ceil(H,1);
        	$http ({ url: "http://golf-rollup.co.uk/society/aAppSubmitScores.php",
 				method: "GET",
 				params: {
-				'Club': $scope.storedClub,
+				'Club': Society,
 				'Player': $scope.selectedPlayer.ID,
 				'Pts': $scope.totPts,
 				'Hcp': $scope.selectedHcp.Hcp,
