@@ -661,6 +661,7 @@ var K = Math.ceil(H,1);
 		var myYear = $filter('date')(newDate, 'yyyy');
 
 		var newDate = myYear + myWeek;
+        var adjH = $window.localStorage.getItem('adjHcp');
 
 			var args1 = {
 			Club: $scope.storedClub,
@@ -675,11 +676,15 @@ var K = Math.ceil(H,1);
      title: 'ERROR!',
      template: 'PLEASE SELECT A PLAYER!'
    })
-			}else {
+			} else {
+            if (adjH == "no")  {
+
 			var confirmPopup = $ionicPopup.confirm({
      title: 'Submit Score',
-     template: 'You are about to submit '+ $scope.selectedPlayer.ID + "'" + 's score with a Perpetual Handicap of ' + RrevHcp + ' !'
+     template: 'You are about to submit '+ $scope.selectedPlayer.ID + "'" + 's score with a Perpetual Handicap of ' + nHcp + ' !'
    })
+
+
 
    confirmPopup.then(function(res) {
      if(res) {
@@ -690,12 +695,40 @@ var K = Math.ceil(H,1);
 				'Player': $scope.selectedPlayer.ID,
 				'Pts': $scope.totPts,
 				'Hcp': $scope.selectedHcp.Hcp,
-				'RevHcp': RrevHcp }
+				'RevHcp': RrevHcp,
+                'AdjHcp': adjH }
 	}).success(function (data11) {
 
 	});
 
+     } else {
+       alert ("Action Cancelled");
+     }
+   			})
 
+	}        if (adjH == "yes")  {
+
+			var confirmPopup = $ionicPopup.confirm({
+     title: 'Submit Score',
+     template: 'You are about to submit '+ $scope.selectedPlayer.ID + "'" + 's score with a Perpetual Handicap of ' + RrevHcp + ' !'
+   })
+
+
+
+   confirmPopup.then(function(res) {
+     if(res) {
+       	$http ({ url: "http://golf-rollup.co.uk/society/aAppSubmitScores.php",
+				method: "GET",
+				params: {
+				'Club': Society,
+				'Player': $scope.selectedPlayer.ID,
+				'Pts': $scope.totPts,
+				'Hcp': $scope.selectedHcp.Hcp,
+				'RevHcp': RrevHcp,
+                'AdjHcp': adjH }
+	}).success(function (data11) {
+
+	});
 
      } else {
        alert ("Action Cancelled");
@@ -703,6 +736,7 @@ var K = Math.ceil(H,1);
    			})
 
 	}
+            }
 		});
 		}
 });
@@ -1265,7 +1299,7 @@ App.controller('cardCtrl', function ($scope, $window, $http, $filter, $ionicPopu
 		$scope.storedHcp = localStorage.getItem('hcp');
 		$window.localStorage.player = $scope.selectedPlayer.ID;
 		
-		if (user.value === "Revised") {
+		if (user.value === "2") {
 			$http ({ url: "http://golf-rollup.co.uk/ARevHcp.php",
 					method: "GET",
 					params: {
@@ -1661,7 +1695,7 @@ App.controller('scorecardCtrl', function ($scope, $window, $http, $filter, $ioni
 		$scope.storedHcp = localStorage.getItem('hcp');
 		$window.localStorage.player = $scope.selectedPlayer.ID;
 
-		if (user.value === "Revised") {
+		if (user.value === "2") {
 			$http ({ url: "http://golf-rollup.co.uk/ARevHcp.php",
 					method: "GET",
 					params: {

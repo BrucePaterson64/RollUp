@@ -253,7 +253,7 @@ $scope.storedHcp = localStorage.getItem('hcp');
                 Time: $scope.storedTime,
 				Player: $scope.selectedPlayer.ID
 						};
-				if (user.value == "'Revised'") {
+				if (user.value == "'2'") {
 				$http.get("http://regencyusedcars.co.uk/RHcp.php", {params: args1}) 
 		
             .success(function(data) {
