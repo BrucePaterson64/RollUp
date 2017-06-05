@@ -1,0 +1,113 @@
+
+
+<body ng-app="starter">
+<ion-view view-title="SOCIETY SETTINGS" cache-view="false">
+<ion-nav-bar></ion-nav-bar>
+   <ion-nav-buttons side="left">
+	    <button  class="button button-icon icon ion-navicon" ui-sref="app.socMenu"></button>
+   </ion-nav-buttons>
+        <ion-nav-view></ion-nav-view>
+
+
+    <ion-header-bar class="bar-stable bar-positive" >
+      <h1 class="title">Society Settings</h1>
+    </ion-header-bar>
+    <ion-content ng-controller="SettingsCtrl" >
+        <style>
+table, th , td {
+  border:0px solid grey;
+  border-collapse: collapse;
+  padding: 5px;
+  background-color: #f1f1f1;
+
+
+}
+        </style>
+      <div align="center">
+          <div><table width="100%">
+      <tr ><td  colspan="2"> Select number of Courses to be played:  </td><td></td><td> <select name="repeatSelect" id="repeatSelect" ng-model="course.model">
+      <option ng-repeat="option in course.availableOptions" value="{{option.id}}">{{option.name}}</option>
+    </select></td></tr>
+        </table>
+        </div>
+    <div  ng-if="course.model==1">
+       <table><tr><td>COURSE 1:</td><td> <select ng-model="data.selectedClub1"  ng-options="item.Club as item.Club for item in Clubs" ng-change="getClub()" ></select></td></tr>
+          <tr><td colspan="2">Shot Deduction for Daily Winner:  </td><td></td>
+         <td> <select name="repeatSelect" id="repeatSelect" ng-model="shots.model"  ng-change="getClub()">
+        <option ng-repeat="option in course.availableOptions" value="{{option.id}}">{{option.name}}</option>
+        </select></td></tr>
+        <tr><td >Adjust Handicaps After Each Round:</td><td>YES: <input type="radio" ng-model="adj.hcp" value="yes" ng-change="getClub()"></td><td>NO: <input type="radio" ng-model="adj.hcp" value="no" ng-change="getClub()"></td></tr>           </table>
+    </div>
+
+    <div ng-if="course.model==2">
+      <table><tr><td>COURSE 1:</td><td><select ng-model="data.selectedClub1"  ng-options="item.Club as item.Club for item in Clubs"  ></select></td></tr>
+      <tr><td>COURSE 2:</td><td><select ng-model="data.selectedClub2"  ng-options="item.Club as item.Club for item in Clubs" ng-change="getClub()" ></select></td></tr>
+        <tr><td colspan="2">Shot Deduction for Daily Winner:  </td><td></td>
+         <td> <select name="repeatSelect" id="repeatSelect" ng-model="shots.model" ng-change="getClub()">
+        <option ng-repeat="option in course.availableOptions" value="{{option.id}}">{{option.name}}</option>
+        </select></td></tr>
+        <tr><td >Adjust Handicaps After Each Round:</td><td>YES: <input type="radio" ng-model="adj.hcp" value="yes" ng-change="getClub()"></td><td>NO: <input type="radio" ng-model="adj.hcp" value="no" ng-change="getClub()"></td></tr>           </table>
+    </div>
+    <div ng-if="course.model==3">
+      <table><tr><td>COURSE 1:</td><td><select ng-model="data.selectedClub1"  ng-options="item.Club as item.Club for item in Clubs"  ></select></td></tr>
+       <tr><td>COURSE 2:</td><td> <select ng-model="data.selectedClub2"  ng-options="item.Club as item.Club for item in Clubs"  ></select></td></tr>
+       <tr><td>COURSE 3:</td><td> <select ng-model="data.selectedClub3"  ng-options="item.Club as item.Club for item in Clubs"  ng-change="getClub()"></select></td></tr>
+        <tr><td colspan="2">Shot Deduction for Daily Winner:  </td><td></td>
+         <td> <select name="repeatSelect" id="repeatSelect" ng-model="shots.model" ng-change="getClub()">
+        <option ng-repeat="option in course.availableOptions" value="{{option.id}}">{{option.name}}</option>
+        </select></td></tr>
+        <tr><td >Adjust Handicaps After Each Round:</td><td>YES: <input type="radio" ng-model="adj.hcp" value="yes" ng-change="getClub()"></td><td>NO: <input type="radio" ng-model="adj.hcp" value="no" ng-change="getClub()"></td></tr>
+    </table>
+    </div>
+
+     <div ng-if="course.model==4">
+      <table>
+        <tr><td>COURSE 1:</td><td> <select ng-model="data.selectedClub1"  ng-options="item.Club as item.Club for item in Clubs"  ></select></td></tr>
+        <tr><td>COURSE 2:</td><td> <select ng-model="data.selectedClub2"  ng-options="item.Club as item.Club for item in Clubs"  ></select></td></tr>
+        <tr><td>COURSE 3:</td><td> <select ng-model="data.selectedClub3"  ng-options="item.Club as item.Club for item in Clubs"  ></select></td></tr>
+        <tr><td>COURSE 4:</td><td> <select ng-model="data.selectedClub4"  ng-options="item.Club as item.Club for item in Clubs" ng-change="getClub()" ></select></td></tr>
+        <tr><td colspan="2">Shot Deduction for Daily Winner:  </td><td></td>
+         <td> <select name="repeatSelect" id="repeatSelect" ng-model="shots.model" ng-change="getClub()">
+        <option ng-repeat="option in course.availableOptions" value="{{option.id}}">{{option.name}}</option>
+        </select></td></tr>
+        <tr><td >Adjust Handicaps After Each Round:</td><td>YES: <input type="radio" ng-model="adj.hcp" value="yes" ng-change="getClub()"></td><td>NO: <input type="radio" ng-model="adj.hcp" value="no" ng-change="getClub()"></td></tr>
+    </table>
+    </div>
+
+    <div ng-if="course.model==5">
+      <table>
+        <tr><td>COURSE 1:</td><td> <select ng-model="data.selectedClub1"  ng-options="item.Club as item.Club for item in Clubs"  ></select></td></tr>
+        <tr><td>COURSE 2:</td><td> <select ng-model="data.selectedClub2"  ng-options="item.Club as item.Club for item in Clubs"  ></select></td></tr>
+        <tr><td>COURSE 3:</td><td> <select ng-model="data.selectedClub3"  ng-options="item.Club as item.Club for item in Clubs"  ></select></td></tr>
+        <tr><td>COURSE 4:</td><td> <select ng-model="data.selectedClub4"  ng-options="item.Club as item.Club for item in Clubs"  ></select></td></tr>
+        <tr><td>COURSE 5:</td><td> <select ng-model="data.selectedClub5"  ng-options="item.Club as item.Club for item in Clubs" ng-change="getClub()" ></select></td></tr>
+        <tr><td colspan="2">Shot Deduction for Daily Winner:  </td><td></td>
+         <td> <select name="repeatSelect" id="repeatSelect" ng-model="shots.model" ng-change="getClub()">
+        <option ng-repeat="option in course.availableOptions" value="{{option.id}}">{{option.name}}</option>
+        </select></td></tr>
+        <tr><td >Adjust Handicaps After Each Round:</td><td>YES: <input type="radio" ng-model="adj.hcp" value="yes" ng-change="getClub()"></td><td>NO: <input type="radio" ng-model="adj.hcp" value="no" ng-change="getClub()"></td></tr>
+    </table>
+    </div>
+     <div ng-if="course.model==6">
+      <table>
+        <tr><td>COURSE 1:</td><td colspan="2"> <select ng-model="data.selectedClub1"  ng-options="item.Club as item.Club for item in Clubs"  ></select></td><td></td></tr>
+        <tr><td>COURSE 2:</td><td colspan="2"> <select ng-model="data.selectedClub2"  ng-options="item.Club as item.Club for item in Clubs"  ></select></td><td></td></tr>
+        <tr><td>COURSE 3:</td><td colspan="2"> <select ng-model="data.selectedClub3"  ng-options="item.Club as item.Club for item in Clubs"  ></select></td><td></td></tr>
+        <tr><td>COURSE 4:</td><td colspan="2"> <select ng-model="data.selectedClub4"  ng-options="item.Club as item.Club for item in Clubs"  ></select></td><td></td></tr>
+        <tr><td>COURSE 5:</td><td colspan="2"><select ng-model="data.selectedClub5"  ng-options="item.Club as item.Club for item in Clubs"  ></select></td><td></td></tr>
+        <tr><td>COURSE 6:</td><td colspan="2"> <select ng-model="data.selectedClub6"  ng-options="item.Club as item.Club for item in Clubs" ng-change="getClub()" ></select></td><td></td></tr>
+        <tr><td colspan="2">Shot Deduction for Daily Winner:  </td><td></td>
+         <td> <select name="repeatSelect" id="repeatSelect" ng-model="shots.model" ng-change="getClub()">
+        <option ng-repeat="option in course.availableOptions" value="{{option.id}}">{{option.name}}</option>
+        </select></td></tr>
+        <tr><td >Adjust Handicaps After Each Round:</td><td>YES: <input type="radio" ng-model="adj.hcp" value="yes" ng-change="getClub()"></td><td>NO: <input type="radio" ng-model="adj.hcp" value="no" ng-change="getClub()"></td></tr>
+    </table>
+    </div>
+<table>
+
+</table>
+    </div>
+    </ion-content>
+
+  </ion-side-menu>
+</ion-side-menus>

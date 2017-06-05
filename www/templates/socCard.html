@@ -9,20 +9,88 @@
 
 
 
-        <div>
+
 			<label class="item in item-input item-select item-positive">
-				<div class="input-label" style="font-size:12px">{{selectedSoc}} Players </div><select ng-model="selectedPlayer.ID" ng-change="getHcp()" ng-options="item.Player as item.Player for item in Players"  ng-change="update()" ></select></label>
-		<div>
-			<ion-radio style="height:42px; font-size:12px; " ng-model="user.value" ng-checked="checked" value="Club" ng-click="validateHcp(user);"><font size="3">&nbsp;Use Club Hcp (Default)&nbsp;&nbsp;</font></ion-radio>
-			<ion-radio style="height:42px; font-size:12px;" ng-model="user.value" value="Revised" ng-click="validateHcp(user);"><font size="3"> Use Perpetual Hcp</font></ion-radio>
-        </div></div>
+		<div class="input-label" style="font-size:12px">{{selectedSoc}} Players </div>
+            <select ng-model="selectedPlayer.ID" ng-change="getHcp()" ng-options="item.Player as item.Player for item in Players"  ng-change="update()" ></select></label>
+		<div ng-init="user.value=1">
+			<ion-radio style="height:42px; font-size:12px; " ng-model="user.value" ng-checked="checked" value="1" ng-click="validateHcp(user);"><font size="3">&nbsp;Use Club Hcp (Default)&nbsp;&nbsp;</font></ion-radio>
+			<ion-radio style="height:42px; font-size:12px;" ng-model="user.value" value="2" ng-click="validateHcp(user);"><font size="3"> Use Perpetual Hcp</font></ion-radio>
+
+        </div>
+         <div  ng-if="selNoOfCourses==1">
+   <table style="width:100%">
+    <tr class="row header" style="height:50px">
+
+     <td class="col" style="height:50px"><label ><input type="radio" name="course" value="Course1" ng-click="getCourse()"ng-model="course.one" />&nbsp;{{c1}}</label></td>
+  </tr>
+    </table>
+    </div>
+         <div  ng-if="selNoOfCourses==2">
+   <table style="width:100%">
+    <tr class="row header" style="height:50px">
+
+     <td class="col" style="height:50px"><label ><input type="radio" name="course" value="Course1" ng-click="getCourse()"ng-model="course.one" />&nbsp;{{c1}}</label></td>
+     <td class="col" style="height:50px"><label><input type="radio" name="course" value="Course2" ng-click="getCourse()"ng-model="course.one" />&nbsp;{{c2}}</label></td>
+     </tr>
+    </table>
+    </div>
+         <div  ng-if="selNoOfCourses==3">
+   <table style="width:100%">
+    <tr class="row header" style="height:50px">
+
+     <td class="col" style="height:50px"><label ><input type="radio" name="course" value="Course1" ng-click="getCourse()"ng-model="course.one" />&nbsp;{{c1}}</label></td>
+     <td class="col" style="height:50px"><label><input type="radio" name="course" value="Course2" ng-click="getCourse()"ng-model="course.one" />&nbsp;{{c2}}</label></td>
+     <td class="col" style="height:50px"><label><input type="radio" name="course" value="Course3" ng-click="getCourse()"ng-model="course.one" />&nbsp;{{c3}}</label></td>
+
+    </tr>
+    </table>
+    </div>
+    <div  ng-if="selNoOfCourses==4">
+   <table style="width:100%">
+    <tr class="row header" style="height:50px">
+
+     <td class="col" style="height:50px"><label ><input type="radio" name="course" value="Course1" ng-click="getCourse()"ng-model="course.one" />&nbsp;{{c1}}</label></td>
+     <td class="col" style="height:50px"><label><input type="radio" name="course" value="Course2" ng-click="getCourse()"ng-model="course.one" />&nbsp;{{c2}}</label></td>
+     <td class="col" style="height:50px"><label><input type="radio" name="course" value="Course3" ng-click="getCourse()"ng-model="course.one" />&nbsp;{{c3}}</label></td>
+     <td class="col" style="height:50px" ><label><input type="radio" name="course" value="Course4" ng-click="getCourse()"ng-model="course.one" />&nbsp;{{c4}}</label></td>
+    </tr>
+    </table>
+    </div>
+    <div  ng-if="selNoOfCourses==5">
+   <table style="width:100%">
+    <tr class="row header" style="height:50px">
+
+     <td class="col" style="height:50px"><label ><input type="radio" name="course" value="Course1" ng-click="getCourse()"ng-model="course.one" />&nbsp;{{c1}}</label></td>
+     <td class="col" style="height:50px"><label><input type="radio" name="course" value="Course2" ng-click="getCourse()"ng-model="course.one" />&nbsp;{{c2}}</label></td>
+     <td class="col" style="height:50px"><label><input type="radio" name="course" value="Course3" ng-click="getCourse()"ng-model="course.one" />&nbsp;{{c3}}</label></td>
+     <td class="col" style="height:50px" ><label><input type="radio" name="course" value="Course4" ng-click="getCourse()"ng-model="course.one" />&nbsp;{{c4}}</label></td>
+     <td class="col" style="height:50px" ><label><input type="radio" name="course" value="Course5" ng-click="getCourse()"ng-model="course.one" />&nbsp;{{c5}}</label></td>
+    </tr>
+    </table>
+    </div>
+    <div  ng-if="selNoOfCourses==6">
+   <table style="width:100%">
+    <tr class="row header" style="height:50px">
+
+     <td class="col" style="height:50px"><label ><input type="radio" name="course" value="Course1" ng-click="getCourse()"ng-model="course.one" />&nbsp;{{c1}}</label></td>
+     <td class="col" style="height:50px"><label><input type="radio" name="course" value="Course2" ng-click="getCourse()"ng-model="course.one" />&nbsp;{{c2}}</label></td>
+     <td class="col" style="height:50px"><label><input type="radio" name="course" value="Course3" ng-click="getCourse()"ng-model="course.one" />&nbsp;{{c3}}</label></td>
+     <td class="col" style="height:50px" ><label><input type="radio" name="course" value="Course4" ng-click="getCourse()"ng-model="course.one" />&nbsp;{{c4}}</label></td>
+     <td class="col" style="height:50px"><label><input type="radio" name="course" value="Course5" ng-click="getCourse()"ng-model="course.one" />&nbsp;{{c5}}</label></td>
+     <td class="col" style="height:50px" ><label><input type="radio" name="course" value="Course6" ng-click="getCourse()"ng-model="course.one" />&nbsp;{{c6}}</label></td>
+    </tr>
+    </table>
+    </div>
+        <div layout-align='center center'layout='coloumn' >
 <table style="width:100%">
+
 		<tr class="row header" style="height:38px">
           <th class="col4">Player:</th>
           <th class="col4" colspan="3" style="width:50%" >{{selectedPlayer.ID}}</th>
           <th></th><th></th>
           <th class="col4">Hcp:</th>
-		  <th class="col4" style="text-align: center; vertical-align: middle;"><select  ng-options="item as item.Hcp for item in hcps" ng-change="getShots(par)" ng-model="selectedHcp"></select></th></tr>
+		  <th class="col4" valign="top"><input class="text-center" type="text" size="10" id="MyField" ng-model="selHcp" /></th></tr>
 
          <tr class="row header">
            <td class="col">Hole</td>
@@ -49,13 +117,9 @@
         </tr>
 
 </table>
-		<form id="scoreForm" name="scoreForm" ng-submit="submitScore(datePlayed)">
-			<label class="item in item-input item-positive">
-				<div >DATE OF ROUND :&nbsp;</div><input style="font-size: 14px; color: white" type="Date"  ng-model="datePlayed"><--Amend &nbsp;</label>
-			 </div>
-			   </form>
+        </div>
 
-			   <div ><button class="button button-block button-positive" ng-click="submitScore(datePlayed)" >SUBMIT RESULT</button></div>
+			   <div ><button class="button button-block button-positive" ng-click="submitScore()" >SUBMIT RESULT</button></div>
 
     </ion-content>
 
