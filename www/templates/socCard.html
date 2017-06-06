@@ -14,8 +14,8 @@
 		<div class="input-label" style="font-size:12px">{{selectedSoc}} Players </div>
             <select ng-model="selectedPlayer.ID" ng-change="getHcp()" ng-options="item.Player as item.Player for item in Players"  ng-change="update()" ></select></label>
 		<div ng-init="user.value=1">
-			<ion-radio style="height:42px; font-size:12px; " ng-model="user.value" ng-checked="checked" value="1" ng-click="validateHcp(user);"><font size="3">&nbsp;Use Club Hcp (Default)&nbsp;&nbsp;</font></ion-radio>
-			<ion-radio style="height:42px; font-size:12px;" ng-model="user.value" value="2" ng-click="validateHcp(user);"><font size="3"> Use Perpetual Hcp</font></ion-radio>
+			<ion-radio style="height:42px; font-size:12px; " ng-model="user.value " ng-checked="checked" value="1" ng-click="validateHcp(user);"><font size="3">&nbsp;Use Club Hcp (Default)&nbsp;&nbsp;</font></ion-radio>
+			<ion-radio style="height:42px; font-size:12px;" ng-model="user.value " value="2" ng-click="validateHcp(user);"><font size="3"> Use Perpetual Hcp</font></ion-radio>
 
         </div>
          <div  ng-if="selNoOfCourses==1">
@@ -90,7 +90,7 @@
           <th class="col4" colspan="3" style="width:50%" >{{selectedPlayer.ID}}</th>
           <th></th><th></th>
           <th class="col4">Hcp:</th>
-		  <th class="col4" valign="top"><input class="text-center" type="text" size="10" id="MyField" ng-model="selHcp" /></th></tr>
+		  <th class="col4" valign="top"><input class="text-center" type="text" size="10" id="MyField" ng-model="selHcp | number:1" /></th></tr>
 
          <tr class="row header">
            <td class="col">Hole</td>
