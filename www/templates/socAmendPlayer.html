@@ -30,7 +30,7 @@ table tr:nth-child(even) {
 		<table>
 
 			<tr>
-				<td align="right">Society:</td><td><select ng-model="data.selectedClub" ng-options="item.Society as item.Society for item in soc"  ></select></td>
+				<td align="right">Society:</td><td><select ng-model="data.selectedSoc" ng-options="item.Society as item.Society for item in soc"  ></select></td>
 			</tr>
 			<tr>
 			    <td>Name:</td><td><select ng-model="data.selectedPlayer" ng-change="getHcp()" ng-options="item.Player as item.Player for item in pp"  ></select></td>

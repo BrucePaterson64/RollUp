@@ -27,7 +27,7 @@ table.players tr:nth-child(even) {
         <table class="players" style="width:100%">
             <tr ><th style="text-align:center">Name</th><th>Club Hcp</th><th>Revised Hcp</th></tr>
             <tr ng-repeat="item in pp  | orderBy: 'Player '  ">
-        <td style="text-align:left">{{item.Player}}</td>
+                <td style="text-align:left"><a ui-sref ="app.socAmendPlayer">{{item.Player}}</a></td>
         <td >{{item.Hcp}}</td>
         <td >{{item.RevHcp}}</td></tr>
 
