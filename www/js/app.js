@@ -41,6 +41,7 @@ var App = angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers'
 
 			}
 		}
+
 	}).state('app.amendPlayer', {
 		cache: false,
 		url: '/amendPlayer',
@@ -77,7 +78,7 @@ var App = angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers'
 
 			}
 		}
-    }).state('menuA', {
+    }).state('app.menuA', {
 		cache: false,
 		url: '/menuA',
 		views: {
@@ -882,7 +883,10 @@ App.controller('SignInCtrl', function ($scope, $window, $http, $state, $location
 		alert("ERROR 4");
 	});
     }
-
+  $scope.signup = function() {
+        $scope.showSignIn = true;
+        $scope.showLogIn = false;
+    }
 	$scope.data = {};
 
 	$scope.submit = function (player) {
