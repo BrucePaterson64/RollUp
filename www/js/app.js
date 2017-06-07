@@ -363,7 +363,7 @@ App.controller('ResultCtrl', function ($scope, $window, $http, $state, $location
     $scope.selNoOfCourses = NoOfCourses;
     var Society = $window.localStorage.getItem('society');
     $scope.selectedSoc = Society;
-
+console.log(NoOfCourses);
    $scope.getResults = function() {
   $http({
 		 url: "http://golf-rollup.co.uk/society/socWeeksResults.php",
@@ -398,11 +398,29 @@ App.controller('ResultCtrl', function ($scope, $window, $http, $state, $location
 
 
 		});
-     $scope.selectedPlayer = {}    ;
-       $scope.getHcp = function() {
 
-          var pp =  $scope.selectedPlayer.ID;
-         $http({url: "http://golf-rollup.co.uk/society/socHcp.php",
+        $scope.selectedPlayer = {};
+        $scope.selectedHcp = {};
+        $scope.pen = {};
+        $scope.selpen = {};
+
+        $scope.getHcp = function() {
+           var pp =  $scope.selectedPlayer.ID;
+            $http({url: "http://golf-rollup.co.uk/society/socPenalty.php",
+				method: "GET",
+				params: {
+				'Club': Society,
+				'Player': pp
+			}
+			}).success(function (data) {
+                console.log(data);
+                $scope.selpen = 0;
+                if (data && data.length) { // Data isn't null and has more than 0 items
+            $scope.pen = data[0];
+            $scope.selpen = $scope.pen.Penalty;
+            console.log($scope.selpen);
+                }
+                 $http({url: "http://golf-rollup.co.uk/society/socHcp.php",
 				method: "GET",
 				params: {
 				'Club': Society,
@@ -412,10 +430,19 @@ App.controller('ResultCtrl', function ($scope, $window, $http, $state, $location
 			$scope.hcps = data;
             $scope.selectedHcp = data[0];
 
-             $scope.penalty = $scope.selectedHcp.Penalty
-             $scope.selHcp = $scope.selectedHcp.Hcp - $scope.penalty
+             console.log($scope.selectedHcp.Hcp);
+             console.log($scope.selpen);
+
+             $scope.selHcp = $scope.selectedHcp.Hcp - $scope.selpen;
+             console.log($scope.selHcp);
+		});
+
+
+
 
 		});
+          var pp =  $scope.selectedPlayer.ID;
+
        }
        $scope.course = {};
        $scope.getCourse= function() {
@@ -2488,6 +2515,7 @@ $scope.data = {};
 	});
 
 App.controller('CardParCtrl', function ($scope, $http, $ionicPopup) {
+   $scope.showFooter = false;
     $scope.selectedClub = {};
     $http({ url: "http://golf-rollup.co.uk/aAppCourse.php",
 			method: "POST"
