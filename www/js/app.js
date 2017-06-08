@@ -348,7 +348,7 @@ App.controller('SettingsCtrl', function ($scope, $window, $http, $state, $locati
 
         var NoOfCourses  = $scope.course.model;
         $window.localStorage.NoOfCourses = NoOfCourses;
-        console.log($scope.adj.hcp);
+
         window.location.href="#/app/socMenu";
     }
 
@@ -367,7 +367,7 @@ App.controller('ResultCtrl', function ($scope, $window, $http, $state, $location
     $scope.selNoOfCourses = NoOfCourses;
     var Society = $window.localStorage.getItem('society');
     $scope.selectedSoc = Society;
-console.log(NoOfCourses);
+
    $scope.getResults = function() {
   $http({
 		 url: "http://golf-rollup.co.uk/society/socWeeksResults.php",
@@ -417,12 +417,12 @@ console.log(NoOfCourses);
 				'Player': pp
 			}
 			}).success(function (data) {
-                console.log(data);
+
                 $scope.selpen = 0;
                 if (data && data.length) { // Data isn't null and has more than 0 items
             $scope.pen = data[0];
             $scope.selpen = $scope.pen.Penalty;
-            console.log($scope.selpen);
+
                 }
                  $http({url: "http://golf-rollup.co.uk/society/socHcp.php",
 				method: "GET",
@@ -433,12 +433,8 @@ console.log(NoOfCourses);
 			}).success(function (data) {
 			$scope.hcps = data;
             $scope.selectedHcp = data[0];
+            $scope.selHcp = $scope.selectedHcp.Hcp - $scope.selpen;
 
-             console.log($scope.selectedHcp.Hcp);
-             console.log($scope.selpen);
-
-             $scope.selHcp = $scope.selectedHcp.Hcp - $scope.selpen;
-             console.log($scope.selHcp);
 		});
 
 
@@ -505,7 +501,7 @@ console.log(NoOfCourses);
 			return null;
 		}
 
-		//	console.log(par);
+
 		if (val > 1) {
 			return 0;
 		} else if (val == 1) {
@@ -630,8 +626,7 @@ var B = shots - E;
 var J = shots - H;
 var K = Math.ceil(H,1);
 
-		  	console.log ('Club Hcp' + nHcp);
-			console.log (nPoints);
+
 
 	if (nPoints < 36)
 	  {
@@ -643,19 +638,19 @@ var K = Math.ceil(H,1);
 	  {
     	revHcp = (parseFloat(nHcp));
 		  RrevHcp = Math.round( revHcp * 10 ) / 10;
-		  	console.log (RrevHcp);
+		  	//console.log (RrevHcp);
      	  }
 	if (nPoints > 36 && (parseFloat(nHcp)) < 5.5)
 	  {
     	revHcp = (parseFloat(nHcp)) - (shots * 0.1);
 		  RrevHcp = Math.round( revHcp * 10 ) / 10;
-			console.log (RrevHcp);
+			//console.log (RrevHcp);
      	  }
 	if (nPoints > 36 && (parseFloat(nHcp) > 5.4) && (parseFloat(nHcp) < 12.5 ) && shots < C)
           {
          revHcp = (parseFloat(nHcp) - (F * 0.2));
 			RrevHcp = Math.round( revHcp * 10 ) / 10;
-			  console.log (RrevHcp);
+			  //console.log (RrevHcp);
 	  }
 	if (nPoints > 36 && (parseFloat(nHcp) > 5.4)  && (parseFloat(nHcp) < 12.5 ) && shots > C)
          {
@@ -663,14 +658,14 @@ var K = Math.ceil(H,1);
       	RHcp = (parseFloat(nHcp) - (A * 0.2));
 			revHcp = (RHcp - (D * 0.1));
 				 RrevHcp = Math.round( revHcp * 10 ) / 10;
-			 		console.log (RrevHcp);
+			 		//console.log (RrevHcp);
          }
 
   	if(nPoints > 36 && (parseFloat(nHcp) > 12.4)  && (parseFloat(nHcp) < 20.5 ) && shots < G)
           {
          	revHcp = (parseFloat(nHcp) - (F * 0.3));
 			 RrevHcp = Math.round( revHcp * 10 ) / 10;
-				console.log (revHcp);
+				//console.log (revHcp);
  	  }
 	if (nPoints > 36 && (parseFloat(nHcp) > 12.4)  && (parseFloat(nHcp) < 20.5 ) && shots > G)
          {
@@ -678,13 +673,13 @@ var K = Math.ceil(H,1);
       		RHcp = (parseFloat(nHcp) - (E * 0.3));
 				revHcp = (RHcp - (B * 0.2));
 					RrevHcp = Math.round( revHcp * 10 ) / 10;
-			 			console.log (RrevHcp);
+			 			//console.log (RrevHcp);
          }
      if(nPoints > 36 && (parseFloat(nHcp) > 20.4) && shots < K)
           {
          	revHcp = (parseFloat(nHcp) - (F * 0.4));
 			  RrevHcp = Math.round( revHcp * 10 ) / 10;
-				console.log (RrevHcp);
+				//console.log (RrevHcp);
  	  }
 	if(nPoints > 36 && (parseFloat(nHcp) > 20.4) && shots > K)
          {
@@ -692,7 +687,7 @@ var K = Math.ceil(H,1);
       		RHcp = (parseFloat(nHcp) - (H * 0.4));
 				revHcp = (RHcp - (J * 0.3));
 			 		RrevHcp = Math.round( revHcp * 10 ) / 10;
-			 			console.log (RrevHcp);
+			 			//console.log (RrevHcp);
          }
 
 
@@ -849,9 +844,9 @@ App.controller('SignInCtrl', function ($scope, $window, $http, $state, $location
         if (data) {
             data = data.replace(/\s/g, '');
         }
-        //console.log(data.length);
+
 		$scope.society = data;
-        console.log($scope.society);
+
             if (!$scope.society){
                 alert ("Login Details Not Recognised!! Please retry or Sign in");
                } else {
@@ -896,7 +891,6 @@ App.controller('SignInCtrl', function ($scope, $window, $http, $state, $location
 	});
     }
         $scope.signin = function() {
-        console.log($scope.data);
         //console.log("LOGIN user: " + $scope.data.username + " - PW: " + $scope.data.password);
         $http ({ url: "http://golf-rollup.co.uk/society/AppRegister.php",
 			method: "POST",
@@ -932,7 +926,7 @@ App.controller('SignInCtrl', function ($scope, $window, $http, $state, $location
 		}).success(function (data) {
             $state.go('app.socMenu');
 		}).error(function (data) {
-            console.log($http);
+
 		});
 	};
       $scope.getAllPlayers = function() {
@@ -960,7 +954,7 @@ App.controller('SignInCtrl', function ($scope, $window, $http, $state, $location
            $scope.ph = data[0];
            $scope.data.bhcp = $scope.ph.Hcp;
             $scope.data.rbhcp = $scope.ph.RevHcp;
-            console.log($scope.data.bhcp);
+
             });
 
     }
@@ -1349,7 +1343,7 @@ App.controller('cardCtrl', function ($scope, $window, $http, $filter, $ionicPopu
 			}).success(function (data) {
 				$scope.revhcps = data;
 				$scope.selectedRevHcp = data[0];
-				console.log ($scope.selectedRevHcp);
+
 		
 				}).error(function (data) {
 			var alert;
@@ -1378,7 +1372,7 @@ App.controller('cardCtrl', function ($scope, $window, $http, $filter, $ionicPopu
 			}).success(function (data) {
 				$scope.hcps = data;
 				$scope.selectedHcp = data[0];
-				console.log($scope.selectedHcp.Hcp);
+
 			});
 		}
 		else {
@@ -1422,7 +1416,6 @@ App.controller('cardCtrl', function ($scope, $window, $http, $filter, $ionicPopu
 				$scope.h = data;
 				$scope.hh = data[0];
 				$scope.selectedRevHcp = $scope.hh.Hcp;
-				console.log($scope.selectedRevHcp);
 
 
 			
@@ -1454,19 +1447,19 @@ var K = Math.ceil(H,1);
 	  {
     	revHcp = (parseFloat(nHcp));
 		  RrevHcp = Math.round( revHcp * 10 ) / 10;
-		  	console.log (RrevHcp);
+
      	  }
 	if (nPoints > 36 && (parseFloat(nHcp)) < 5.5)
 	  {
     	revHcp = (parseFloat(nHcp)) - (shots * 0.1);
 		  RrevHcp = Math.round( revHcp * 10 ) / 10;
-			console.log (RrevHcp);
+
      	  }
 	if (nPoints > 36 && (parseFloat(nHcp) > 5.4) && (parseFloat(nHcp) < 12.5 ) && shots < C)
           {
          revHcp = (parseFloat(nHcp) - (F * 0.2));
 			RrevHcp = Math.round( revHcp * 10 ) / 10;
-			  console.log (RrevHcp);
+
 	  }	
 	if (nPoints > 36 && (parseFloat(nHcp) > 5.4)  && (parseFloat(nHcp) < 12.5 ) && shots > C)
          {
@@ -1474,14 +1467,14 @@ var K = Math.ceil(H,1);
       	RHcp = (parseFloat(nHcp) - (A * 0.2));
 			revHcp = (RHcp - (D * 0.1));
 				 RrevHcp = Math.round( revHcp * 10 ) / 10;
-			 		console.log (RrevHcp);	
+
          }
  	
   	if(nPoints > 36 && (parseFloat(nHcp) > 12.4)  && (parseFloat(nHcp) < 20.5 ) && shots < G)
           {
          	revHcp = (parseFloat(nHcp) - (F * 0.3));
 			 RrevHcp = Math.round( revHcp * 10 ) / 10;
-				console.log (revHcp);
+
  	  }	
 	if (nPoints > 36 && (parseFloat(nHcp) > 12.4)  && (parseFloat(nHcp) < 20.5 ) && shots > G)
          {
@@ -1495,7 +1488,7 @@ var K = Math.ceil(H,1);
           {
          	revHcp = (parseFloat(nHcp) - (F * 0.4));
 			  RrevHcp = Math.round( revHcp * 10 ) / 10;
-				console.log (RrevHcp);
+
  	  }	
 	if(nPoints > 36 && (parseFloat(nHcp) > 20.4) && shots > K)
          {
@@ -1503,7 +1496,7 @@ var K = Math.ceil(H,1);
       		RHcp = (parseFloat(nHcp) - (H * 0.4));
 				revHcp = (RHcp - (J * 0.3));
 			 		RrevHcp = Math.round( revHcp * 10 ) / 10;
-			 			console.log (RrevHcp);
+
          }
 
 
@@ -1745,7 +1738,7 @@ App.controller('scorecardCtrl', function ($scope, $window, $http, $filter, $ioni
 			}).success(function (data) {
 				$scope.revhcps = data;
 				$scope.selectedRevHcp = data[0];
-				console.log ($scope.selectedRevHcp);
+
 
 				}).error(function (data) {
 			var alert;
@@ -1837,8 +1830,7 @@ var B = shots - E;
 var J = shots - H;
 var K = Math.ceil(H,1);
 
-		  	console.log (nHcp);
-			console.log (nPoints);
+
 
 	if (nPoints < 36)
 	  {
@@ -1850,19 +1842,19 @@ var K = Math.ceil(H,1);
 	  {
     	revHcp = (parseFloat(nHcp));
 		  RrevHcp = Math.round( revHcp * 10 ) / 10;
-		  	console.log (RrevHcp);
+		  	//console.log (RrevHcp);
      	  }
 	if (nPoints > 36 && (parseFloat(nHcp)) < 5.5)
 	  {
     	revHcp = (parseFloat(nHcp)) - (shots * 0.1);
 		  RrevHcp = Math.round( revHcp * 10 ) / 10;
-			console.log (RrevHcp);
+			//console.log (RrevHcp);
      	  }
 	if (nPoints > 36 && (parseFloat(nHcp) > 5.4) && (parseFloat(nHcp) < 12.5 ) && shots < C)
           {
          revHcp = (parseFloat(nHcp) - (F * 0.2));
 			RrevHcp = Math.round( revHcp * 10 ) / 10;
-			  console.log (RrevHcp);
+			  //console.log (RrevHcp);
 	  }
 	if (nPoints > 36 && (parseFloat(nHcp) > 5.4)  && (parseFloat(nHcp) < 12.5 ) && shots > C)
          {
@@ -1870,14 +1862,14 @@ var K = Math.ceil(H,1);
       	RHcp = (parseFloat(nHcp) - (A * 0.2));
 			revHcp = (RHcp - (D * 0.1));
 				 RrevHcp = Math.round( revHcp * 10 ) / 10;
-			 		console.log (RrevHcp);
+			 		//console.log (RrevHcp);
          }
 
   	if(nPoints > 36 && (parseFloat(nHcp) > 12.4)  && (parseFloat(nHcp) < 20.5 ) && shots < G)
           {
          	revHcp = (parseFloat(nHcp) - (F * 0.3));
 			 RrevHcp = Math.round( revHcp * 10 ) / 10;
-				console.log (revHcp);
+				//console.log (revHcp);
  	  }
 	if (nPoints > 36 && (parseFloat(nHcp) > 12.4)  && (parseFloat(nHcp) < 20.5 ) && shots > G)
          {
@@ -1885,13 +1877,13 @@ var K = Math.ceil(H,1);
       		RHcp = (parseFloat(nHcp) - (E * 0.3));
 				revHcp = (RHcp - (B * 0.2));
 					RrevHcp = Math.round( revHcp * 10 ) / 10;
-			 			console.log (RrevHcp);
+			 			//console.log (RrevHcp);
          }
      if(nPoints > 36 && (parseFloat(nHcp) > 20.4) && shots < K)
           {
          	revHcp = (parseFloat(nHcp) - (F * 0.4));
 			  RrevHcp = Math.round( revHcp * 10 ) / 10;
-				console.log (RrevHcp);
+				//console.log (RrevHcp);
  	  }
 	if(nPoints > 36 && (parseFloat(nHcp) > 20.4) && shots > K)
          {
@@ -1899,7 +1891,7 @@ var K = Math.ceil(H,1);
       		RHcp = (parseFloat(nHcp) - (H * 0.4));
 				revHcp = (RHcp - (J * 0.3));
 			 		RrevHcp = Math.round( revHcp * 10 ) / 10;
-			 			console.log (RrevHcp);
+			 			//console.log (RrevHcp);
          }
 
 
@@ -2435,7 +2427,7 @@ App.controller('PlayerCtrl', function ($scope, $window, $http, $ionicPopup, $sta
                 }
                 }).then(function (res){
             $scope.response = res.data;
-			 console.log ($scope.data.pid);
+
         });
 
 	
@@ -2816,7 +2808,7 @@ $scope.$on("$ionicView.enter", function (event, data) {
 			
 		}).success(function (data1) {
             $scope.scores = data1;
-				console.log($scope.storedDate);
+
 		})
 	});
 	});
@@ -2846,10 +2838,9 @@ $scope.data = {};
 			'Hcp': $scope.data.Handicap,
             }
 		}).success(function(data) {
-        console.log("Success bro !" + data);
-					console.log ($scope.data.NewPlayer);
+
     }).error(function(data) {
-			console.log ($scope.data.NewPlayer);
+
         alert("ERROR" + data);
 			
     });
