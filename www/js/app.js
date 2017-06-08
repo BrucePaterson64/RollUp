@@ -322,6 +322,13 @@ App.controller('SettingsCtrl', function ($scope, $window, $http, $state, $locati
         var shotDef = $scope.shots.model;
         var adjHcp = $scope.adj.hcp;
         var shotD = $scope.shots.model;
+
+        if ($scope.adj.hcp == undefined){
+      $scope.adj.hcp = "No"
+    }
+        if ($scope.shots.model == undefined){
+      $scope.shots.model = "0"
+    }
         $window.localStorage.course1 = $scope.data.selectedClub1;
 		var course1 = $window.localStorage.getItem('course1');
         $window.localStorage.course2 = $scope.data.selectedClub2;
@@ -341,11 +348,8 @@ App.controller('SettingsCtrl', function ($scope, $window, $http, $state, $locati
 
         var NoOfCourses  = $scope.course.model;
         $window.localStorage.NoOfCourses = NoOfCourses;
-
-
-
-
-
+        console.log($scope.adj.hcp);
+        window.location.href="#/app/socMenu";
     }
 
 })
