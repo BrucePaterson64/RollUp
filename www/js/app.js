@@ -17,7 +17,7 @@ var App = angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers'
 		url: '/app',
 		abstract: true,
 		templateUrl: 'templates/menu.html'
-		
+
 	}).state('app.results', {
 		url: '/results',
 		views: {
@@ -48,7 +48,7 @@ var App = angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers'
 		views: {
 			'menuContent': {
 				templateUrl: 'templates/amendPlayer.html'
-				
+
 			}
 		}
         }).state('app.socAmendPlayer', {
@@ -66,7 +66,7 @@ var App = angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers'
 		views: {
 			'menuContent': {
 				templateUrl: 'templates/delPlayer.html'
-				
+
 			}
 		}
     }).state('app.socDelPlayer', {
@@ -84,7 +84,7 @@ var App = angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers'
 		views: {
 			'menuContent': {
 				templateUrl: 'templates/menuA.html'
-				
+
 			}
 		}
 	}).state('app.menuB', {
@@ -93,7 +93,7 @@ var App = angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers'
 		views: {
 			'menuContent': {
 				templateUrl: 'templates/menuB.html'
-				
+
 			}
 		}
     }).state('app.socMenu', {
@@ -111,7 +111,7 @@ var App = angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers'
 		views: {
 			'menuContent': {
 				templateUrl: 'templates/menuC.html'
-				
+
 			}
 		}
 	}).state('app.menu', {
@@ -154,6 +154,13 @@ var App = angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers'
 		views: {
 			'menuContent': {
 				templateUrl: 'templates/players.html'
+			}
+		}
+        }).state('app.gps', {
+		url: '/gps',
+		views: {
+			'menuContent': {
+				templateUrl: 'templates/geo.html'
 			}
 		}
         }).state('app.socPlayers', {
@@ -267,11 +274,11 @@ var App = angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers'
 				controller: "leaderCtrl"
 			}
 		}
-	
-		
+
+
 	});
-	
-	
+
+
 	// if none of the above states are matched, use this as the fallback
 	$urlRouterProvider.otherwise('app/index');
 });
@@ -1041,13 +1048,13 @@ App.controller('CourseController', function ($scope, $window, $http, $state, $lo
 
 	$http({ url: "http://golf-rollup.co.uk/aAppCourse.php",
 			method: "GET"
-			
+
 		   }).success(function (data) {
 		$scope.Clubs = data;
-		
+
 	}).error(function (data) {
 
-		
+
 	});
 	$scope.selectedClub = {};
 	$scope.update = function () {
@@ -1058,12 +1065,12 @@ App.controller('CourseController', function ($scope, $window, $http, $state, $lo
 			params: {'Club': $scope.selectedClub.ID}
 		}).success(function (data) {
 			$scope.Days = data;
-			
+
 		}).error(function (data) {
-			
+
 
 		});
-		
+
 	};
 	$scope.selectedClub = {};
 	$scope.selectedDay = {};
@@ -1078,13 +1085,13 @@ App.controller('CourseController', function ($scope, $window, $http, $state, $lo
 		}).success(function (data) {
 			$scope.TeeTimes = data;
 		}).error(function (data) {
-			
+
 
 		});
 	};
 	$scope.Team2Update = function () {
 		//$window.localStorage.player = false;
-		
+
 		//$window.localStorage.player = $scope.selectedPlayer.ID;
 		//$scope.storedPlayer = $window.localStorage.player;
 		//$state.go('app.amendPlayer');
@@ -1107,7 +1114,7 @@ App.controller('CourseController', function ($scope, $window, $http, $state, $lo
 		var $day = $scope.selectedDay.ID, $club = $scope.selectedClub.ID, $time = $scope.selectedTime.ID;
 		//var $club = $scope.selectedClub.ID;
 		//var $time = $scope.selectedTime.ID;
-		
+
 		$http({ url: "http://golf-rollup.co.uk/aAppTeam.php",
 			   method: "GET",
 			   params: {
@@ -1117,7 +1124,7 @@ App.controller('CourseController', function ($scope, $window, $http, $state, $lo
 			}
 			}).success(function (data) {
 			$scope.players = data;
-			
+
 		}).error(function (data) {
 
 		});
@@ -1133,9 +1140,9 @@ App.controller('AddPlayerCtrl', function ($scope, $http, $window, $state) {
 	"use strict";
 
 	$scope.data = {};
-	
+
 	$scope.submit = function (player) {
-		
+
 		$http({url: "'http://golf-rollup.co.uk/aAppAddPlayer.php",
             method: "GET",
 			params: {
@@ -1156,7 +1163,7 @@ App.controller('cardCtrl', function ($scope, $window, $http, $filter, $ionicPopu
 	"use strict";
 
 	$scope.$on("$ionicView.enter", function (event, data) {
-		
+
 
 		$scope.selectedPlayer = {};
 		$window.localStorage.player = $scope.selectedPlayer.ID;
@@ -1180,7 +1187,7 @@ App.controller('cardCtrl', function ($scope, $window, $http, $filter, $ionicPopu
 			$scope.hcps = data;
 			$scope.selectedHcp = data[0];
 		});
-		
+
 		$http({url: "http://golf-rollup.co.uk/aAppTeam.php",
 				method: "GET",
 				params: {
@@ -1198,33 +1205,33 @@ App.controller('cardCtrl', function ($scope, $window, $http, $filter, $ionicPopu
 			}
 			}).success(function (data1) {
 			$scope.Par = data1;
-			
+
 		});
-		
+
 		$http({ url: "http://golf-rollup.co.uk/aAppCourse.php",
 			method: "GET"
 		    }).success(function (data2) {
 			$scope.Clubs = data2;
 		}).error(function (data2) {
-		
+
 		});
 		$http({ url: "http://golf-rollup.co.uk/aAppAmendCourse.php",
 			method: "GET"
 		    }).success(function (data3) {
 			$scope.town = data3;
 		}).error(function (data3) {
-		
+
 		});
-		
+
 	});
 
 	$scope.getShots = function (par) {
-		
+
 		if (!$scope.selectedHcp) {
 			return null;
 		}
 		var val =  $scope.selectedHcp.Hcp - par.Index;
-		
+
 		if (val > 17.4) {
 			return 2;
 		} else if (val >= -0.5) {
@@ -1233,15 +1240,15 @@ App.controller('cardCtrl', function ($scope, $window, $http, $filter, $ionicPopu
 			return 0;
 		}
 	};
-	
-	
+
+
 	$scope.getPoints = function (par) {
 		var shot = $scope.getShots(par), val = par.Score - shot - par.Par;
-		
+
 		if (shot === null) {
 			return null;
 		}
-		
+
 		//	console.log(par);
 		if (val > 1) {
 			return 0;
@@ -1277,7 +1284,7 @@ App.controller('cardCtrl', function ($scope, $window, $http, $filter, $ionicPopu
 		});
 		return total;
 	};
-	
+
 	$scope.getPar = function () {
 		if (!$scope.Par) { return 0;
 						 }
@@ -1287,24 +1294,24 @@ App.controller('cardCtrl', function ($scope, $window, $http, $filter, $ionicPopu
 		}
 		return total;
 	};
-	
+
 	$scope.items = ['1','2','3','4','5','6','7','8','9','10','11','12'];
-	
-		
+
+
 	$scope.getScoreTotal = function () {
 		if (!$scope.Par)
 			return 0;
-		
+
 		var total = 0;
 		for (var i = 0; i < $scope.Par.length; i++) {
 			total += Number($scope.Par[i].Score) || 0;
 			$scope.totScore = total;
 		}
 		return total;
-		
+
 	};
-	
-        
+
+
 
 
 
@@ -1316,8 +1323,8 @@ App.controller('cardCtrl', function ($scope, $window, $http, $filter, $ionicPopu
 		$scope.storedTime = localStorage.getItem('time');
 		$scope.storedHcp = localStorage.getItem('hcp');
 		$window.localStorage.player = $scope.selectedPlayer.ID;
-		
-		
+
+
 		$http ({url: "http://golf-rollup.co.uk/AHcp.php",
 				method: "GET",
 				params: {
@@ -1329,9 +1336,9 @@ App.controller('cardCtrl', function ($scope, $window, $http, $filter, $ionicPopu
 			$scope.hcps = data;
 			$scope.selectedHcp = data[0];
 			   })
-	
-	
-			
+
+
+
 		$http ({url: "http://golf-rollup.co.uk/ARevHcp.php",
 				method: "GET",
 				params: {
@@ -1344,7 +1351,7 @@ App.controller('cardCtrl', function ($scope, $window, $http, $filter, $ionicPopu
 				$scope.revhcps = data;
 				$scope.selectedRevHcp = data[0];
 
-		
+
 				}).error(function (data) {
 			var alert;
 
@@ -1359,7 +1366,7 @@ App.controller('cardCtrl', function ($scope, $window, $http, $filter, $ionicPopu
 		$scope.storedTime = localStorage.getItem('time');
 		$scope.storedHcp = localStorage.getItem('hcp');
 		$window.localStorage.player = $scope.selectedPlayer.ID;
-		
+
 		if (user.value === "2") {
 			$http ({ url: "http://golf-rollup.co.uk/ARevHcp.php",
 					method: "GET",
@@ -1368,7 +1375,7 @@ App.controller('cardCtrl', function ($scope, $window, $http, $filter, $ionicPopu
 				'Day': $scope.storedDay,
 				'Time': $scope.storedTime,
 				'Player': $scope.storedPlayer }
-					
+
 			}).success(function (data) {
 				$scope.hcps = data;
 				$scope.selectedHcp = data[0];
@@ -1400,7 +1407,7 @@ App.controller('cardCtrl', function ($scope, $window, $http, $filter, $ionicPopu
 
 
 		var myDate = new Date();
-		$scope.datePlayed = myDate;	
+		$scope.datePlayed = myDate;
 	$scope.hh = {};
 
 	var revHcp = {};
@@ -1418,10 +1425,10 @@ App.controller('cardCtrl', function ($scope, $window, $http, $filter, $ionicPopu
 				$scope.selectedRevHcp = $scope.hh.Hcp;
 
 
-			
-			
+
+
 var nHcp  = $scope.selectedRevHcp;
-var nPoints  =   $scope.totPts; 
+var nPoints  =   $scope.totPts;
 var shots = nPoints - 36;
 var A = ((nHcp - 5.4) / 0.2);
 var E = ((nHcp - 12.4) / 0.3);
@@ -1432,18 +1439,18 @@ var G = Math.ceil(E,1);
 var F = shots;
 var B = shots - E;
 var J = shots - H;
-var K = Math.ceil(H,1);	
+var K = Math.ceil(H,1);
 
 		  	console.log (nHcp);
 			console.log (nPoints);
-	
-	if (nPoints < 36) 
+
+	if (nPoints < 36)
 	  {
     	revHcp = (parseFloat(nHcp) + 0.1);
 		  RrevHcp = Math.round( revHcp * 10 ) / 10;
 
      	  }
-     	if (nPoints == 36) 
+     	if (nPoints == 36)
 	  {
     	revHcp = (parseFloat(nHcp));
 		  RrevHcp = Math.round( revHcp * 10 ) / 10;
@@ -1460,25 +1467,25 @@ var K = Math.ceil(H,1);
          revHcp = (parseFloat(nHcp) - (F * 0.2));
 			RrevHcp = Math.round( revHcp * 10 ) / 10;
 
-	  }	
+	  }
 	if (nPoints > 36 && (parseFloat(nHcp) > 5.4)  && (parseFloat(nHcp) < 12.5 ) && shots > C)
          {
-      		
+
       	RHcp = (parseFloat(nHcp) - (A * 0.2));
 			revHcp = (RHcp - (D * 0.1));
 				 RrevHcp = Math.round( revHcp * 10 ) / 10;
 
          }
- 	
+
   	if(nPoints > 36 && (parseFloat(nHcp) > 12.4)  && (parseFloat(nHcp) < 20.5 ) && shots < G)
           {
          	revHcp = (parseFloat(nHcp) - (F * 0.3));
 			 RrevHcp = Math.round( revHcp * 10 ) / 10;
 
- 	  }	
+ 	  }
 	if (nPoints > 36 && (parseFloat(nHcp) > 12.4)  && (parseFloat(nHcp) < 20.5 ) && shots > G)
          {
-      		
+
       		RHcp = (parseFloat(nHcp) - (E * 0.3));
 				revHcp = (RHcp - (B * 0.2));
 					RrevHcp = Math.round( revHcp * 10 ) / 10;
@@ -1489,10 +1496,10 @@ var K = Math.ceil(H,1);
          	revHcp = (parseFloat(nHcp) - (F * 0.4));
 			  RrevHcp = Math.round( revHcp * 10 ) / 10;
 
- 	  }	
+ 	  }
 	if(nPoints > 36 && (parseFloat(nHcp) > 20.4) && shots > K)
          {
-      		
+
       		RHcp = (parseFloat(nHcp) - (H * 0.4));
 				revHcp = (RHcp - (J * 0.3));
 			 		RrevHcp = Math.round( revHcp * 10 ) / 10;
@@ -1501,12 +1508,12 @@ var K = Math.ceil(H,1);
 
 
 		var newDate = datePlayed;
-		var dateP = $filter('date')(newDate, "dd-MM-yyyy");		
+		var dateP = $filter('date')(newDate, "dd-MM-yyyy");
 		var myWeek = $filter('date')(newDate, 'ww');
 		var myYear = $filter('date')(newDate, 'yyyy');
-				
+
 		var newDate = myYear + myWeek;
-			
+
 			var args1 = {
 			Club: $scope.storedClub,
 			Day: $scope.storedDay,
@@ -1516,7 +1523,7 @@ var K = Math.ceil(H,1);
 			Pts: $scope.totPts,
 			Hcp: $scope.selectedHcp.Hcp,
 			RevHcp: RrevHcp
-				
+
 		};
 			if ($scope.selectedPlayer.ID == null) {
 				var confirmPopup = $ionicPopup.confirm({
@@ -1546,13 +1553,13 @@ var K = Math.ceil(H,1);
 		// $scope.shots = ;
 	});
 
-	
-	  
+
+
      } else {
        alert ("Action Cancelled");
      }
-   			})	
-	
+   			})
+
 	}
 		});
 		}
@@ -2061,7 +2068,7 @@ App.controller('NewCourseController', function ($scope, $window, $http) {
 	};
 });
 App.controller('PlayerCtrl', function ($scope, $window, $http, $ionicPopup, $state, $location) {
-		
+
 	$scope.init = function () {
 
         var club = $location.search().Club;
@@ -2183,7 +2190,7 @@ App.controller('PlayerCtrl', function ($scope, $window, $http, $ionicPopup, $sta
 
     };
 
-		
+
 
 		var selectedClub = $location.search().Club;
 		$scope.data.selectedClub = selectedClub;
@@ -2242,7 +2249,7 @@ App.controller('PlayerCtrl', function ($scope, $window, $http, $ionicPopup, $sta
 	}).success(function (data) {
 		$scope.aPlayers = data;
 	}).error(function (data) {
-		
+
 
 	});
  };
@@ -2261,7 +2268,7 @@ App.controller('PlayerCtrl', function ($scope, $window, $http, $ionicPopup, $sta
 	}).success(function (data) {
 		$scope.Days = data;
 	}).error(function (data) {
-		
+
 
 	});
         $scope.getTime();
@@ -2277,18 +2284,18 @@ App.controller('PlayerCtrl', function ($scope, $window, $http, $ionicPopup, $sta
 	}).success(function (data) {
 		$scope.TeeTimes = data;
 	}).error(function (data) {
-		
+
 
 	});
      };
 
 
 	$http.get("http://golf-rollup.co.uk/aAppTimes.php", {
-		
+
 	}).success(function (data) {
 		$scope.allTeeTimes = data;
 	}).error(function (data) {
-		
+
 
 	});
 
@@ -2310,7 +2317,7 @@ App.controller('PlayerCtrl', function ($scope, $window, $http, $ionicPopup, $sta
 	}).success(function (data) {
 		$scope.hcps = data;
 	}).error(function (data) {
-		
+
 
 	});
      };
@@ -2325,7 +2332,7 @@ App.controller('PlayerCtrl', function ($scope, $window, $http, $ionicPopup, $sta
 	}).success(function (data) {
 		$scope.RevHcps = data;
 	}).error(function (data) {
-		
+
 
 	});
      };
@@ -2356,7 +2363,7 @@ App.controller('PlayerCtrl', function ($scope, $window, $http, $ionicPopup, $sta
 		}).success(function (data) {
 			$scope.players = data;
 		}).error(function (data) {
-			
+
 
 		});
 	};
@@ -2364,10 +2371,10 @@ App.controller('PlayerCtrl', function ($scope, $window, $http, $ionicPopup, $sta
     .success(function(data) {
                 $scope.Time = data;
     });
-    
+
 
     $scope.data = {};
-    $scope.delPlayer = function () {    
+    $scope.delPlayer = function () {
 	   	var $player = $scope.data.selectedPlayer;
 		var $club = $scope.data.selectedClub;
 		var $time = $scope.data.selectedTime;
@@ -2395,21 +2402,21 @@ App.controller('PlayerCtrl', function ($scope, $window, $http, $ionicPopup, $sta
              $state.go('app.menuA');
         });
 
-	
-	  
+
+
      } else {
       // alert ("Action Cancelled");
      }
    			})
-  
+
 };
-	
+
 
 	$scope.data = {};
-    $scope.amendPlayer = function () {    
+    $scope.amendPlayer = function () {
 	   	var $player = $scope.data.selectedPlayer;
 		var $club = $scope.data.selectedNewClub;
-		
+
 		var confirmPopup = $ionicPopup.confirm({
      title: 'Amend',
      template: 'Are you sure you want to add ' + $scope.data.selectedPlayer + ' to ' + $club + '?'
@@ -2430,21 +2437,21 @@ App.controller('PlayerCtrl', function ($scope, $window, $http, $ionicPopup, $sta
 
         });
 
-	
-	  
+
+
      } else {
       // alert ("Action Cancelled");
      }
    			})
-  
+
 };
 
 
 $scope.data = {};
-    $scope.amendAll = function () {    
+    $scope.amendAll = function () {
 	   	var $player = $scope.data.selectedPlayer;
 		var $club = $scope.data.selectedNewClub;
-		
+
 		var confirmPopup = $ionicPopup.confirm({
      title: 'Amend',
      template: 'You are about to amend ' + $scope.data.selectedPlayer + "'" +'s details! '
@@ -2468,8 +2475,8 @@ $scope.data = {};
            	 $state.go('app.menuA');
         });
 
-	
-	  
+
+
      } else {
       // alert ("Action Cancelled");
      }
@@ -2487,7 +2494,7 @@ $scope.data = {};
    					       })
 
    confirmPopup.then(function(res) {
-     					if(res) {		
+     					if(res) {
 
 			$http ({url: "http://golf-rollup.co.uk/aAppAddPlayer.php",
                  method: "GET",
@@ -2498,11 +2505,11 @@ $scope.data = {};
 			'DayS': $scope.data.selectedDay,
 			'Club': $scope.data.selectedClub
                 }
-							}).success(function(data) 
+							}).success(function(data)
 						{
 						 $state.go('app.menuA');
         	});
-				
+
     						 } else {
       // alert ("Action Cancelled");
      							 }
@@ -2657,24 +2664,24 @@ App.controller('CardParCtrl', function ($scope, $http, $ionicPopup) {
 
 	$scope.result = function () {
 		var answer = 0;
-		
+
 		answer = $scope.h1 + $scope.h2 + $scope.h3 + $scope.h4 + $scope.h5 + $scope.h6 + $scope.h7 + $scope.h8 + $scope.h9 + $scope.h10 + $scope.h11 + $scope.h12 + $scope.h13 + $scope.h14 + $scope.h15 + $scope.h16 + $scope.h17 + $scope.h18;
 		return answer || 0;
-		
+
 	};
 	"use strict";
 	$scope.data = {};
-	
+
 	$scope.subCourse = function() {
-		
+
 	var confirmPopup = $ionicPopup.confirm({
      title: 'Amend',
      template: 'Thank you for adding ' + $scope.data.NewCourse + ' to the database '
    })
 
    confirmPopup.then(function(res) {
-     if(res) {	
-	
+     if(res) {
+
 
 		$http({ url: "http://golf-rollup.co.uk/aAppInsert.php",
 			method: "GET",
@@ -2720,25 +2727,25 @@ App.controller('CardParCtrl', function ($scope, $http, $ionicPopup) {
 			'j18':$scope.j18
             }
 						}).success(function(data){
-    
-	
+
+
 								});
-		 
+
 		 } else {
        //alert ("Action Cancelled");
-     
-	 } 
+
+	 }
    })
  };
 });
 
 App.controller('dateCtrl', function ($scope, $http)  {
-	
+
 
 });
 App.controller('scoreCtrl', function ($scope, $http, $window, $filter)  {
 	$scope.$on("$ionicView.enter", function (event, data) {
-		
+
 		$scope.selectedPlayer = {};
 		$window.localStorage.player = $scope.selectedPlayer.ID;
 		$scope.storedPlayer = $window.localStorage.player;
@@ -2746,7 +2753,7 @@ App.controller('scoreCtrl', function ($scope, $http, $window, $filter)  {
 		$scope.storedDay = localStorage.getItem('day');
 		$scope.storedTime = localStorage.getItem('time');
 		$scope.storedHcp = localStorage.getItem('hcp');
-		
+
 	var myYear = new Date().getFullYear();
     var myDate = new Date();
     var myWeek = $filter('date')(myDate, 'ww');
@@ -2756,7 +2763,7 @@ App.controller('scoreCtrl', function ($scope, $http, $window, $filter)  {
 		$scope.week = $week;
 		$scope.ddate = x;
 
-		
+
 	 $http({
 		 url: "http://golf-rollup.co.uk/aAppWeeklyResults.php",
 		 method: "GET",
@@ -2766,18 +2773,18 @@ App.controller('scoreCtrl', function ($scope, $http, $window, $filter)  {
 				  'yrwk': $scope.week}
 			   }).success(function(data) {
                 $scope.S = data;
-                
+
            })
 	 });
 	});
 
-		
 
-App.controller('leaderCtrl', function ($scope, $http, $window, $filter)  {	
+
+App.controller('leaderCtrl', function ($scope, $http, $window, $filter)  {
 	$scope.data = {};
 $scope.$on("$ionicView.enter", function (event, data) {
-	
-		
+
+
 		$scope.selectedPlayer = {};
 		$window.localStorage.player = $scope.selectedPlayer.ID;
 		$scope.storedPlayer = $window.localStorage.player;
@@ -2805,7 +2812,7 @@ $scope.$on("$ionicView.enter", function (event, data) {
 						'DayS': $scope.storedDay,
 						'TeeTime': $scope.storedTime,
 						'Week': $scope.storedDate }
-			
+
 		}).success(function (data1) {
             $scope.scores = data1;
 
@@ -2813,24 +2820,24 @@ $scope.$on("$ionicView.enter", function (event, data) {
 	});
 	});
 });
-	
+
 App.controller('SocietyCtrl', function ($scope, $window, $http, $ionicPopup) {
 	"use strict";
-	
-		
-		
-		
+
+
+
+
 	$http.get("http://www.golf-rollup.co.uk/aAppSociety.php").success(function (data) {
 		$scope.Clubs = data;
 	}).error(function (data) {
-		
+
 
 	});
-	
+
 $scope.data = {};
-	
+
 	$scope.submit = function (player) {
-		
+
 		$http({ url: "http://golf-rollup.co.uk/aAppAddSocPlayer.php",
 			method: "GET",
 			params: {
@@ -2842,13 +2849,184 @@ $scope.data = {};
     }).error(function(data) {
 
         alert("ERROR" + data);
-			
+
     });
 	};
 });
-	
+
+App.controller('MapController', function($scope, $cordovaGeolocation, $ionicLoading, $ionicPlatform, $window) {
+    $scope.labels = [];
+
+    $scope.addLabel = function(label) {
+        $scope.labels.push(label);
+    };
+
+    $scope.clearLabels = function() {
+        while ($scope.labels.length) {
+            var label = $scope.labels[$scope.labels.length - 1];
+            label.onRemove();
+            $scope.labels.pop();
+        }
+    };
+
+
+        var posOptions = {
+            enableHighAccuracy: true,
+            timeout: 20000,
+            maximumAge: 0
+        };
+
+        $cordovaGeolocation.getCurrentPosition(posOptions).then(function (position) {
+         var lat  = position.coords.latitude ;
+         var long = position.coords.longitude;
+         var myLatlng = new google.maps.LatLng(lat, long);
+
+         var mapOptions = {
+             center: myLatlng,
+             zoom: 18,
+             mapTypeId: google.maps.MapTypeId.SATELLITE,
+             disableDefaultUI: true
+
+            };
+        var startCoordinates = [
+            myLatlng
+        ];
+        var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+           poly = new google.maps.Polyline({
+           path: startCoordinates,
+           strokeColor: '#FF0000',
+           strokeOpacity: 1.0,
+           strokeWeight: 3
+
+        });
+
+          poly.setMap(map);
+       var marker = new google.maps.Marker({
+           position: map.getCenter(),
+           draggable:true,
+           map: map,
+
+        });
+
+      google.maps.event.addListener(map, 'click', addLatLng);
 
 
 
-	
+      $scope.refresh = function() {
+      $window.location.reload();
+            }
+
+     var path = poly.getPath();
+
+
+    function addLatLng(event) {
+
+         path.push(event.latLng);
+
+       }
+
+
+
+    google.maps.event.addListener(map, 'click', function(e) {
+        placeMarker(e.latLng, map);
+
+     });
+
+
+    function placeMarker(position, map) {
+    var newMarker = new google.maps.Marker({
+       position: position,
+       map: map,
+       draggable:true
+
+        });
+
+    newMarker.addListener('dragend', handleEvent) ;
+
+    var newlat = newMarker.getPosition().lat();
+    var newlng = newMarker.getPosition().lng();
+    var f = new google.maps.LatLng(newlat,newlng);
+    var dis = (google.maps.geometry.spherical.computeDistanceBetween(myLatlng, f)* 1.09361)
+     $scope.d = dis.toFixed(0);
+    var dism = (google.maps.geometry.spherical.computeDistanceBetween(myLatlng, f))
+    var dm = dism.toFixed(0);
+
+
+
+          document.getElementById('total').innerHTML = $scope.d + ' yards';
+          document.getElementById('totalm').innerHTML = dm + ' mtrs';
+
+            $scope.clearLabels();
+
+           for (var i = 0; i < path.getLength() - 1; i++) {
+               var start = path.getAt(i);
+               var end = path.getAt(i + 1);
+               var length = ((google.maps.geometry.spherical.computeDistanceBetween(start, end))*1.09361).toFixed(0);
+
+               var midpoint = new google.maps.LatLng(
+                   (start.lat() + end.lat()) *0.5,
+                   (start.lng() + end.lng()) *0.5
+               );
+
+                $scope.addLabel(new Label({
+                    map: map,
+                    position: midpoint,
+                    text: length + " yds"
+                }));
+
+           }
+       labelMarker = new google.maps.Marker({
+			position: midpoint,
+			map: map,
+			visible: false
+	});
+ };
+       function handleEvent(event) {
+          removeLabel();
+           path.pop();
+           path.push(event.latLng);
+            $scope.clearLabels();
+           for (var i = 0; i < path.getLength() - 1; i++) {
+               var start = path.getAt(i);
+               var end = path.getAt(i + 1);
+               var length = ((google.maps.geometry.spherical.computeDistanceBetween(start, end))*1.09361).toFixed(0);
+
+               var midpoint = new google.maps.LatLng(
+                   (start.lat() + end.lat()) / 2,
+                   (start.lng() + end.lng()) / 2
+               );
+
+         $scope.addLabel(new Label({
+            map: map,
+            position: midpoint,
+            text: length + " yds"
+                }));
+
+         var lat = event.latLng.lat();
+         var lng = event.latLng.lng();
+         var f = new google.maps.LatLng(lat,lng);
+         var dis = (google.maps.geometry.spherical.computeDistanceBetween(myLatlng, f)* 1.09361)
+         $scope.d2 = dis.toFixed(0);
+         var dism = (google.maps.geometry.spherical.computeDistanceBetween(myLatlng, f))
+         var dm = dism.toFixed(0);
+         document.getElementById('total').innerHTML = $scope.d2 + ' yards';
+         document.getElementById('totalm').innerHTML = dm + ' mtrs';
+
+    }
+ }
+
+      function removeLabel(opt_options) {
+
+        }
+
+    });
+
+});
+
+
+
+
+
+
+
 
